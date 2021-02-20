@@ -14,7 +14,7 @@ enum UserTypes {
 }
 
 // Entity for all users in the application
-@Entity()
+@Entity('users')
 export default class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -32,9 +32,9 @@ export default class User {
   @Column({ type: 'enum', enum: UserTypes, default: UserTypes.SELL })
   userType: UserTypes;
 
-  @CreateDateColumn('timestamp with time zone')
+  @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn('timestamp with time zone')
+  @UpdateDateColumn()
   updated_at: Date;
 }
