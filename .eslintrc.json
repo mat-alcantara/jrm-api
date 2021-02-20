@@ -24,6 +24,7 @@
       "prettier"
     ],
     "rules": {
+      "camelcase": "off",
       "prettier/prettier": "error",
       "@typescript-eslint/camelcase": "off",
       "no-useless-constructor": "off",
