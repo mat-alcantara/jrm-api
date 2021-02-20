@@ -33,7 +33,7 @@ export default class CreateUser1613827607136 implements MigrationInterface {
           },
           {
             name: 'type',
-            type: 'varchar',
+            type: 'enum',
             enum: ['production', 'sell'],
             isNullable: false,
           },

@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import express from 'express';
 import routes from '@shared/infra/http/routes';
-import '@shared/infra/typeorm';
+import '@shared/infra/typeorm'; // Import database
 
 const server = express();
 
