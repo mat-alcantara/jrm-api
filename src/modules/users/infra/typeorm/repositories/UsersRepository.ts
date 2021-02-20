@@ -1,6 +1,6 @@
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import CreateUsersDTO from '@modules/users/dtos/CreateUserDTO';
+import ICreateUsersDTO from '@modules/users/dtos/ICreateUserDTO';
 import { getRepository, Repository } from 'typeorm';
 
 export default class UsersRepository implements IUsersRepository {
@@ -10,7 +10,7 @@ export default class UsersRepository implements IUsersRepository {
     this.ormRepository = getRepository(User);
   }
 
-  public async create(data: CreateUsersDTO): Promise<User> {
+  public async create(data: ICreateUsersDTO): Promise<User> {
     const user = await this.ormRepository.create(data);
 
     this.ormRepository.save(user);
