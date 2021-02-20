@@ -3,7 +3,7 @@
    "host": "localhost",
    "port": 5432,
    "username": "postgres",
-  "password": "docker",
+   "password": "docker",
    "database": "jrm-cortes",
    "synchronize": true,
    "logging": false,
@@ -15,6 +15,6 @@
    ],
    "cli": {
       "entitiesDir": "src/modules/**/infra/typeorm/entities",
-      "migrationsDir": "src/shared/infra/typeorm/migration"
+      "migrationsDir": "src/shared/infra/typeorm/migrations"
    }
 }
