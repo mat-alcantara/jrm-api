@@ -7,11 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-// interface to use in userType column
-enum UserTypes {
-  SELL = 'sell',
-  PRODUCTION = 'production',
-}
+import UserTypes from '@modules/users/dtos/UserTypes';
 
 // Entity for all users in the application
 @Entity('users')
