@@ -1,9 +1,9 @@
 {
    "type": "postgres",
    "host": "localhost",
-   "port": 3333,
-   "username": "database",
-   "password": "docker",
+   "port": 5432,
+   "username": "postgres",
+  "password": "docker",
    "database": "jrm-cortes",
    "synchronize": true,
    "logging": false,
