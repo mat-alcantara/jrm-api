@@ -1,5 +1,20 @@
-import sum from '../CreateUserService';
+// import CreateUserService from '@modules/users/services/CreateUserService';
+// import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
+// import UserTypes from '@modules/users/dtos/UserTypes';
+
+// const fakeUsersRepository = new FakeUsersRepository();
+// const createUserService = new CreateUserService(fakeUsersRepository);
+
+// describe('Create User', () => {
+//   it('should create a new user', async () => {
+//     const user = createUserService.execute({
+//       name: 'Mateus',
+//       email: 'mateus@mateus.com',
+//       password: '12345',
+//       userType: UserTypes.PRODUCTION,
+//     });
+
+//     expect(user).toHaveProperty('id')
+//   });
+// });

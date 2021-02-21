@@ -5,12 +5,9 @@ import IUsersRepository from '../IUsersRepository';
 
 export default class FakeUsersRepository implements IUsersRepository {
   // Array containing all users created
-  private usersCreated: User[];
+  private usersCreated: User[] = [];
 
-  constructor() {
-    this.usersCreated = [];
-  }
-
+  // Create a new User
   public async create(userData: ICreateUserDTO): Promise<User> {
     const user = new User();
 
