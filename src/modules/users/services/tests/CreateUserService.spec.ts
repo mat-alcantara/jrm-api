@@ -21,6 +21,10 @@ describe('Create User', () => {
 
   // Test the creation of a new user
   it('should create a new user', async () => {
+    // Spy the function createHash to check if it was called
+    const createHash = await jest.spyOn(fakeHashProvider, 'createHash');
+
+    // Create a new user
     const user = await createUserService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -28,6 +32,7 @@ describe('Create User', () => {
       userType: UserTypes.PRODUCTION,
     });
 
+    expect(createHash).toHaveBeenCalledWith('12345');
     expect(user).toHaveProperty('id');
   });
 });
