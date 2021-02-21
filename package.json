@@ -37,6 +37,7 @@
       "mysql": "^2.14.1",
       "pg": "^8.5.1",
       "reflect-metadata": "^0.1.10",
+      "tsyringe": "^4.4.0",
       "typeorm": "0.2.31"
    }
 }
