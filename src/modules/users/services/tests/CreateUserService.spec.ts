@@ -15,7 +15,6 @@ describe('Create User', () => {
       userType: UserTypes.PRODUCTION,
     });
 
-    console.log(user);
     expect(user).toHaveProperty('id');
   });
 });
