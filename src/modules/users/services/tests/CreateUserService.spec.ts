@@ -20,7 +20,7 @@ describe('Create User', () => {
   });
 
   // Test the creation of a new user
-  it('should create a new user', async () => {
+  it('should be able to create a new user', async () => {
     // Spy the function createHash to check if it was called
     const createHash = await jest.spyOn(fakeHashProvider, 'createHash');
 
@@ -32,7 +32,28 @@ describe('Create User', () => {
       userType: UserTypes.PRODUCTION,
     });
 
-    expect(createHash).toHaveBeenCalledWith('12345');
-    expect(user).toHaveProperty('id');
+    await expect(createHash).toHaveBeenCalledWith('12345');
+    await expect(user).toHaveProperty('id');
+  });
+
+  // Test the creation of a new user
+  it('should not be able to create two users with same email', async () => {
+    // Create a new user
+    await createUserService.execute({
+      name: 'Mateus',
+      email: 'mateus@mateus.com',
+      password: '12345',
+      userType: UserTypes.PRODUCTION,
+    });
+
+    // Try to create a new user with same email and expect to return an error
+    await expect(
+      await createUserService.execute({
+        name: 'Mateus',
+        email: 'mateus@mateus.com',
+        password: '12345',
+        userType: UserTypes.PRODUCTION,
+      }),
+    ).rejects;
   });
 });
