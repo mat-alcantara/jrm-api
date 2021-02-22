@@ -7,6 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 import UserTypes from '@modules/users/dtos/UserTypes';
 
 // Entity for all users in the application
@@ -22,6 +24,7 @@ export default class User {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   // userType will only allow 'sell' and 'production'
