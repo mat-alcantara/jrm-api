@@ -23,7 +23,7 @@ export default class CreateUserService {
 
     // If user exists, it'll return a error
     if (checkIfUserExists) {
-      throw new Error();
+      throw new Error('User already exists');
     }
 
     // Hash the password with bcrypt

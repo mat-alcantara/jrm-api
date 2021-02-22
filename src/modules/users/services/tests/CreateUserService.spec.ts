@@ -48,12 +48,12 @@ describe('Create User', () => {
 
     // Try to create a new user with same email and expect to return an error
     await expect(
-      await createUserService.execute({
+      createUserService.execute({
         name: 'Mateus',
         email: 'mateus@mateus.com',
         password: '12345',
         userType: UserTypes.PRODUCTION,
       }),
-    ).rejects;
+    ).rejects.toBeInstanceOf(Error);
   });
 });
