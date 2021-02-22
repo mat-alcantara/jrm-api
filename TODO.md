@@ -3,7 +3,8 @@
 [x] Create a new user
 [x] Hash Password
 [x] Check if user already exists
-[ ] Add Celebrate to routes
-[ ] Delete password from response
-[ ] Check if userType is PRODUCTION or SELL and return an error
+[x] Add Celebrate to routes
+[x] Delete password from response
+[x] Check if userType is PRODUCTION or SELL and return an error
 [ ] Create an AppError instance
+[ ] Create a test for the route
