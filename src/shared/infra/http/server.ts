@@ -1,23 +1,33 @@
 /* eslint-disable no-console */
 import 'reflect-metadata';
 
-import express from 'express';
-import routes from '@shared/infra/http/routes'; // Import all routes
+import express, { Response, Request, NextFunction } from 'express';
 import { errors } from 'celebrate';
+
+import routes from '@shared/infra/http/routes'; // Import all routes
+import AppError from '@shared/errors/AppError'; // Import Error instance
 
 import '@shared/infra/typeorm'; // Import database
 import '@shared/containers/index'; // Import dependency injection Containers
 
 const server = express();
 
-// Allow JSON on express
-server.use(express.json());
+server.use(express.json()); // Allow JSON on express
+server.use(routes); // Activate routes on express
+server.use(errors()); // Celebrate Errors
 
-// Activate routes on express
-server.use(routes);
+// Return an error as a instance of AppError
+server.use((err: Error, req: Request, res: Response, _: NextFunction) => {
+  if (err instanceof AppError) {
+    return res
+      .status(err.statusCode)
+      .json({ status: 'error', message: err.message });
+  }
+  console.log(err);
 
-// Celebrate Errors
-server.use(errors());
+  return res
+    .status(500)
+    .json({ status: 'error', message: 'Internal Server Error' });
+});
 
-// Server will be listened on port 333
-server.listen(3333, () => console.log('Server started'));
+server.listen(3333, () => console.log('⚡️ Server started on port 3333!')); // Server will be listened on port 333

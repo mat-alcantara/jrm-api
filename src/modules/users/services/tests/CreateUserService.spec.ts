@@ -1,3 +1,5 @@
+import AppError from '@shared/errors/AppError';
+
 import CreateUserService from '@modules/users/services/CreateUserService';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '@shared/containers/providers/HashProvider/fakes/FakeHashProvider';
@@ -54,6 +56,6 @@ describe('Create User', () => {
         password: '12345',
         userType: UserTypes.PRODUCTION,
       }),
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
