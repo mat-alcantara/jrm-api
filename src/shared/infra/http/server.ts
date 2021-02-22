@@ -2,10 +2,12 @@
 import 'reflect-metadata';
 
 import express, { Response, Request, NextFunction } from 'express';
+import 'express-async-errors'; // Dependency needed to catch erros in the application
+
 import { errors } from 'celebrate';
+import AppError from '@shared/errors/AppError'; // Import Error instance
 
 import routes from '@shared/infra/http/routes'; // Import all routes
-import AppError from '@shared/errors/AppError'; // Import Error instance
 
 import '@shared/infra/typeorm'; // Import database
 import '@shared/containers/index'; // Import dependency injection Containers
