@@ -7,6 +7,9 @@ import '@shared/containers/index';
 
 const server = express();
 
+// Allow JSON on express
+server.use(express.json());
+
 // Activate routes on express
 server.use(routes);
 
