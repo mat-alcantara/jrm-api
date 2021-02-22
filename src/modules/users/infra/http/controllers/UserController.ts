@@ -7,6 +7,7 @@ export default class UserController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, email, password, userType } = request.body;
 
+    // Inject dependencies on service and create it
     const createUserService = container.resolve(CreateUserService);
 
     const user = await createUserService.execute({
