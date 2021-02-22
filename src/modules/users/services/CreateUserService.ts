@@ -24,7 +24,7 @@ export default class CreateUserService {
 
     // If user exists, it'll return a error
     if (checkIfUserExists) {
-      throw new AppError('User already exists');
+      throw new AppError('Email address already used.');
     }
 
     // Hash the password with bcrypt
