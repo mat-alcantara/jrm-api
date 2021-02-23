@@ -8,3 +8,5 @@
 [x] Check if userType is PRODUCTION or SELL and return an error
 [x] Create an AppError instance
 [x] Change Error Handling on Celebrate
+
+# [ ] Create Authentication

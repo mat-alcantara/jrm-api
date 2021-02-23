@@ -30,6 +30,7 @@ export default class CreateUserService {
     // Hash the password with bcrypt
     const hashedPassword = await this.hashProvider.createHash(password);
 
+    // Create a new User in database
     const user = await this.usersRepository.create({
       name,
       email,
