@@ -4,6 +4,8 @@ import 'reflect-metadata';
 import express, { Response, Request, NextFunction } from 'express';
 import 'express-async-errors'; // Dependency needed to catch erros in the application
 
+import 'dotenv/config';
+
 import { errors } from 'celebrate';
 import AppError from '@shared/errors/AppError'; // Import Error instance
 

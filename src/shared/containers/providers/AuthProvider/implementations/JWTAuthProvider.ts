@@ -11,4 +11,8 @@ export default class JWTAuthProvider implements IAuthProvider {
 
     return token;
   }
+
+  public async verifyToken(token: string): Promise<boolean> {
+    return !!token;
+  }
 }
