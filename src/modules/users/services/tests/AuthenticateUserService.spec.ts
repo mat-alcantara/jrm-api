@@ -1,4 +1,4 @@
-// import AppError from '@shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 import UserTypes from '@modules/users/dtos/UserTypes';
 
@@ -46,5 +46,12 @@ describe('Authenticate User', () => {
     );
 
     expect(token).toHaveProperty('token');
+  });
+
+  //
+  it('should not generate a token if email is invalid', async () => {
+    await expect(
+      authenticateUserService.execute('mateus@mateus.com', '12345'),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
