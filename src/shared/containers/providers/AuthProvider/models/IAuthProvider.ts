@@ -2,5 +2,5 @@ import ITokenPayload from '@shared/containers/providers/AuthProvider/dtos/IToken
 
 export default interface IAuthProvider {
   generateToken(id: string): Promise<string>;
-  verifyToken(token: string): ITokenPayload;
+  verifyToken(token: string): Promise<ITokenPayload>;
 }
