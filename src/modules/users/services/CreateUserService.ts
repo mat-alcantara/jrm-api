@@ -1,10 +1,13 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
+
+import AppError from '@shared/errors/AppError';
+import User from '@modules/users/infra/typeorm/entities/User';
+
+// Interfaces
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@shared/containers/providers/HashProvider/models/IHashProvider';
-import AppError from '@shared/errors/AppError';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
-import User from '../infra/typeorm/entities/User';
 
 @injectable()
 export default class CreateUserService {

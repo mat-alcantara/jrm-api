@@ -2,10 +2,11 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
+// Interfaces
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@shared/containers/providers/HashProvider/models/IHashProvider';
 import IAuthProvider from '@shared/containers/providers/AuthProvider/models/IAuthProvider';
-import { response } from 'express';
+import IAuthResponseDTO from '@modules/users/dtos/IAuthResponseDTO';
 
 @injectable()
 export default class AuthenticateUserService {
@@ -20,7 +21,10 @@ export default class AuthenticateUserService {
     private authProvider: IAuthProvider,
   ) {}
 
-  public async execute(email: string, password: string): Promise<void> {
+  public async execute(
+    email: string,
+    password: string,
+  ): Promise<IAuthResponseDTO> {
     // Find the user by his email
     const user = await this.usersRepository.findByEmail(email);
 
@@ -44,6 +48,6 @@ export default class AuthenticateUserService {
     const token = await this.authProvider.generateToken(user.id);
 
     // Return token and user
-    return response.json({ user, token });
+    return { user, token };
   }
 }
