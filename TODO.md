@@ -9,4 +9,4 @@
 [x] Create an AppError instance
 [x] Change Error Handling on Celebrate
 
-# [ ] Create Authentication
+# [x] Create Authentication
