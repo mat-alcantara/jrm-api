@@ -48,10 +48,24 @@ describe('Authenticate User', () => {
     expect(token).toHaveProperty('token');
   });
 
-  //
+  // Test if generation fails in case of wrong email
   it('should not generate a token if email is invalid', async () => {
     await expect(
       authenticateUserService.execute('mateus@mateus.com', '12345'),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  // Test if generation fails in case of wrong password
+  it('should not generate a token if password is invalid', async () => {
+    await createUserService.execute({
+      name: 'Mateus',
+      email: 'mateus@mateus.com',
+      password: '12345',
+      userType: UserTypes.PRODUCTION,
+    });
+
+    await expect(
+      authenticateUserService.execute('mateus@mateus.com', '123456'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

@@ -35,7 +35,7 @@ export default class AuthenticateUserService {
     }
 
     // Check if the password is the same as the user's password
-    const isPasswordCorrect = this.hashProvider.checkHash(
+    const isPasswordCorrect = await this.hashProvider.checkHash(
       password,
       user.password,
     );
