@@ -16,11 +16,14 @@ export default class JWTAuthProvider implements IAuthProvider {
 
   public verifyToken(token: string): ITokenPayload {
     try {
+      // Verify is the token if valid
       const decoded = verify(token, authConfig.secret);
 
+      // Return the response from jwt.verify forcing the format as ITokenPayload
       return decoded as ITokenPayload;
     } catch {
-      throw new AppError('Token does not match');
+      // Throw a new error i
+      throw new AppError('Token does not match', 401);
     }
   }
 }
