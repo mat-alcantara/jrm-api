@@ -22,7 +22,7 @@ export default class JWTAuthProvider implements IAuthProvider {
       // Return the response from jwt.verify forcing the format as ITokenPayload
       return decoded as ITokenPayload;
     } catch {
-      // Throw a new error i
+      // Throw a new AppError if jwt.verify returns error
       throw new AppError('Token does not match', 401);
     }
   }

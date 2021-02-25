@@ -4,6 +4,8 @@ import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@shared/containers/providers/HashProvider/models/IHashProvider';
+import IAuthProvider from '@shared/containers/providers/AuthProvider/models/IAuthProvider';
+import { response } from 'express';
 
 @injectable()
 export default class AuthenticateUserService {
@@ -13,6 +15,9 @@ export default class AuthenticateUserService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('AuthProvider')
+    private authProvider: IAuthProvider,
   ) {}
 
   public async execute(email: string, password: string): Promise<void> {
@@ -34,5 +39,11 @@ export default class AuthenticateUserService {
     if (!isPasswordCorrect) {
       throw new AppError('Incorrect email/password combination');
     }
+
+    // Generate a new token
+    const token = await this.authProvider.generateToken(user.id);
+
+    // Return token and user
+    return response.json({ user, token });
   }
 }
