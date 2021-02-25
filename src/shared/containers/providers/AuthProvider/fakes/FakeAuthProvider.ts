@@ -6,7 +6,7 @@ export default class FakeAuthProvider implements IAuthProvider {
     return `fakeTokenWithId${id}`;
   }
 
-  public async verifyToken(token: string): ITokenPayload {
+  public async verifyToken(token: string): Promise<ITokenPayload> {
     return {
       iat: 123,
       exp: 123,
