@@ -15,11 +15,12 @@ export default class CreateCustomerSession {
 
   // Create a new customer
   public async execute(data: ICreateCustomersDTO): Promise<Customer> {
-    const { name, email, area, city, state } = data;
+    const { name, email, telephone, area, city, state } = data;
 
     const customer = await this.customersRepository.create({
       name,
       email,
+      telephone,
       area,
       city,
       state,

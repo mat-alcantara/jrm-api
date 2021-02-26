@@ -14,6 +14,9 @@ export default class Customer {
   @Column()
   name: string;
 
+  @Column('string', { array: true })
+  telephone: string[];
+
   @Column()
   email?: string;
 

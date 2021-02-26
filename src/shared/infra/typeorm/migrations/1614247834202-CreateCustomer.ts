@@ -25,7 +25,7 @@ export default class CreateCustomer1614247834202 implements MigrationInterface {
           },
           {
             name: 'telephone',
-            type: 'varchar',
+            type: 'varchar[]',
             isNullable: false,
           },
           {
