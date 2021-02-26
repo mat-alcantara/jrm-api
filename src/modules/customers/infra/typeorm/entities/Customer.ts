@@ -14,7 +14,7 @@ export default class Customer {
   @Column()
   name: string;
 
-  @Column('string', { array: true })
+  @Column('varchar', { array: true })
   telephone: string[];
 
   @Column()
