@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
@@ -12,6 +13,7 @@ export default class CreateCustomerSession {
     private customersRepository: ICustomersRepository,
   ) {}
 
+  // Create a new customer
   public async execute(data: ICreateCustomersDTO): Promise<Customer> {
     const { name, email, area, city, state } = data;
 
