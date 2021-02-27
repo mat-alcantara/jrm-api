@@ -30,4 +30,10 @@ export default class CustomerRepository implements ICustomerRepository {
 
     return customerFoundById;
   }
+
+  public async showAllCustomers(): Promise<Customer[]> {
+    const allCustomers = await this.ormRepository.find();
+
+    return allCustomers;
+  }
 }
