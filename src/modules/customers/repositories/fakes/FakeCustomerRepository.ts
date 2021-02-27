@@ -25,5 +25,11 @@ export default class FakeCustomerRepository implements ICustomerRepository {
   }
 
   // Delete a customer by id
-  public async deleteCustomerById(id: string): Promise<void> {}
+  public async deleteCustomerById(id: string): Promise<void> {
+    const customersWithDifferentId = this.customersCreated.filter(
+      customer => customer.id !== id,
+    );
+
+    this.customersCreated = customersWithDifferentId;
+  }
 }
