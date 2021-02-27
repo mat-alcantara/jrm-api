@@ -1,6 +1,6 @@
 import ICustomerRepository from '@modules/customers/repositories/ICustomersRepository';
 import CreateCustomerDTO from '@modules/customers/dtos/ICreateCustomerDTO';
-import { uuid } from 'uuidv4';
+import { v4 as uuid_v4 } from 'uuid';
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 
@@ -17,7 +17,7 @@ export default class FakeCustomerRepository implements ICustomerRepository {
   ): Promise<Customer> {
     const customer = new Customer();
 
-    Object.assign(customer, { id: uuid() }, customerData);
+    Object.assign(customer, { id: uuid_v4() }, customerData);
 
     this.customersCreated.push(customer);
 
@@ -44,10 +44,8 @@ export default class FakeCustomerRepository implements ICustomerRepository {
 
   // Show all customers
   public async showAllCustomers(): Promise<Customer[]> {
-    const allCustomers = await this.customersCreated.filter(
-      customer => customer,
-    );
-
-    return allCustomers;
+    console.log(this.customersCreated);
+    console.log('ok');
+    return this.customersCreated;
   }
 }

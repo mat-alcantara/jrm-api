@@ -1,6 +1,6 @@
 # Issues
 
-[ ] "Password must be a string"
+[x] "Password must be a string"
 
 # [x] Create User
 
