@@ -9,6 +9,8 @@ const customersController = new CustomersController();
 
 customersRoutes.use(ensureAuthenticated); // Ensure all routes after this will need authentication
 
+customersRoutes.get('/customers', customersController.show); // Show all customers
+
 customersRoutes.post(
   '/customers',
   // Schema validation for the requisition

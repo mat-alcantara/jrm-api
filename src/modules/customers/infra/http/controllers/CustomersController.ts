@@ -11,7 +11,7 @@ export default class CustomersController {
       ShowAllCustomersService,
     );
 
-    const allCustomers = showAllCustomersService.execute();
+    const allCustomers = await showAllCustomersService.execute();
 
     return response.json(allCustomers);
   }
