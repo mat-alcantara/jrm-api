@@ -24,7 +24,9 @@ export default class CustomerRepository implements ICustomerRepository {
   }
 
   public async findCustomerById(id: string): Promise<Customer | undefined> {
-    const customerFoundById = await this.ormRepository.findOne({ where: id });
+    const customerFoundById = await this.ormRepository.findOne({
+      where: { id },
+    });
 
     return customerFoundById;
   }
