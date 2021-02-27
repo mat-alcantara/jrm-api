@@ -1,3 +1,5 @@
+import AppError from '@shared/errors/AppError';
+
 import DeleteCustomerService from '@modules/customers/services/DeleteCustomerService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
@@ -32,7 +34,16 @@ describe('Delete Customers', () => {
 
     await deleteCustomerService.execute(customerCreated.id);
 
-    expect(spyDeleteCustomerById).toHaveBeenCalledWith(customerCreated.id);
+    await expect(spyDeleteCustomerById).toHaveBeenCalledWith(
+      customerCreated.id,
+    );
+  });
+
+  // Test the deletion of a user
+  it('should not be able to delete a customer if id is invalid', async () => {
+    await expect(
+      deleteCustomerService.execute('invalid id'),
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   // Test the creation of a new user

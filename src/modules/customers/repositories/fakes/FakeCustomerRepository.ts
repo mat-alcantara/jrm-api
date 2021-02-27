@@ -32,4 +32,13 @@ export default class FakeCustomerRepository implements ICustomerRepository {
 
     this.customersCreated = customersWithDifferentId;
   }
+
+  // Find a customer by id
+  public async findCustomerById(id: string): Promise<Customer | undefined> {
+    const customerFound = await this.customersCreated.find(
+      customer => customer.id === id,
+    );
+
+    return customerFound;
+  }
 }
