@@ -20,6 +20,6 @@
 [x] Create model with id, name, email, telephone, address, created_at, updated_at
 [x] Create a route to create a new customer
 [x] Only sellers can create a new customer
-[ ] Create a route to list all customers
+[x] Create a route to list all customers
 [x] Create a route to delete a customer
 [ ] Create a route to edit a customer
