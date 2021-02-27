@@ -8,6 +8,7 @@ const customersRoutes = Router();
 const customersController = new CustomersController();
 
 customersRoutes.use(ensureAuthenticated); // Ensure all routes after this will need authentication
+
 customersRoutes.post(
   '/customers',
   // Schema validation for the requisition
@@ -23,5 +24,15 @@ customersRoutes.post(
   }),
   customersController.create,
 ); // Route to create a new customer
+
+customersRoutes.delete(
+  '/customers',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+  }),
+  customersController.delete,
+); // Route to delete a customer by id
 
 export default customersRoutes;
