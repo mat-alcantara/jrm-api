@@ -18,11 +18,6 @@ describe('Delete Customers', () => {
 
   // Test the deletion of a user
   it('should be able to show all customers', async () => {
-    const spyShowAllCustomers = spyOn(
-      fakeCustomersRepository,
-      'showAllCustomers',
-    );
-
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -34,7 +29,6 @@ describe('Delete Customers', () => {
 
     const allCustomers = await showAllCustomersService.execute();
 
-    await expect(spyShowAllCustomers).toHaveBeenCalled();
     await expect(allCustomers).toContain(customerCreated);
   });
 });

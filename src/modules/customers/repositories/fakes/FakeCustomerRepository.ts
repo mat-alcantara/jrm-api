@@ -44,8 +44,6 @@ export default class FakeCustomerRepository implements ICustomerRepository {
 
   // Show all customers
   public async showAllCustomers(): Promise<Customer[]> {
-    console.log(this.customersCreated);
-    console.log('ok');
     return this.customersCreated;
   }
 }

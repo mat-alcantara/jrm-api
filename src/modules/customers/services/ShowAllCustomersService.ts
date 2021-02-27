@@ -12,7 +12,6 @@ export default class ShowAllCustomersService {
     private customersRepository: ICustomersRepository,
   ) {}
 
-  // Create a new customer
   public async execute(): Promise<Customer[]> {
     const allCustomers = await this.customersRepository.showAllCustomers();
 
