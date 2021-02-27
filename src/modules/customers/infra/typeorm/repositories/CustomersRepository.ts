@@ -11,11 +11,13 @@ export default class CustomerRepository implements ICustomerRepository {
     this.ormRepository = getRepository(Customer);
   }
 
-  public async create(data: ICreateCustomerDTO): Promise<Customer> {
+  public async createCustomer(data: ICreateCustomerDTO): Promise<Customer> {
     const customer = await this.ormRepository.create(data);
 
     this.ormRepository.save(customer);
 
     return customer;
   }
+
+  public async deleteCustomerById(id: string): Promise<void> {}
 }
