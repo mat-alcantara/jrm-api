@@ -1,5 +1,5 @@
 import ICustomerRepository from '@modules/customers/repositories/ICustomersRepository';
-import CreateCustomerDTO from '@modules/customers/dtos/CreateCustomerDTO';
+import CreateCustomerDTO from '@modules/customers/dtos/ICreateCustomerDTO';
 import { uuid } from 'uuidv4';
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';

@@ -1,4 +1,4 @@
-import CreateCustomerDTO from '@modules/customers/dtos/CreateCustomerDTO';
+import CreateCustomerDTO from '@modules/customers/dtos/ICreateCustomerDTO';
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 
 export default interface ICustomersRepository {

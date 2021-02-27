@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 
-import ICreateCustomersDTO from '@modules/customers/dtos/CreateCustomerDTO';
+import ICreateCustomersDTO from '@modules/customers/dtos/ICreateCustomerDTO';
 import ICustomersRepository from '../repositories/ICustomersRepository';
 
 @injectable()
