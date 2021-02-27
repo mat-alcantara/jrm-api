@@ -41,4 +41,13 @@ export default class FakeCustomerRepository implements ICustomerRepository {
 
     return customerFound;
   }
+
+  // Show all customers
+  public async showAllCustomers(): Promise<Customer[]> {
+    const allCustomers = await this.customersCreated.filter(
+      customer => customer,
+    );
+
+    return allCustomers;
+  }
 }

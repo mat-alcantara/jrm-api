@@ -6,7 +6,7 @@ import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 import ICustomersRepository from '../repositories/ICustomersRepository';
 
 @injectable()
-export default class CreateCustomerSession {
+export default class ShowAllCustomersService {
   constructor(
     @inject('CustomersRepository')
     private customersRepository: ICustomersRepository,
