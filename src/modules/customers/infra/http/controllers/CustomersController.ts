@@ -1,9 +1,21 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 import DeleteCustomerService from '@modules/customers/services/DeleteCustomerService';
+import ShowAllCustomersService from '@modules/customers/services/ShowAllCustomersService';
 
 export default class CustomersController {
+  public async show(request: Request, response: Response): Promise<Response> {
+    const showAllCustomersService = await container.resolve(
+      ShowAllCustomersService,
+    );
+
+    const allCustomers = showAllCustomersService.execute();
+
+    return response.json(allCustomers);
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     // Load CreateCustomersService with dependency injection
     const createCustomerService = container.resolve(CreateCustomerService);
