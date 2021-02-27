@@ -11,7 +11,10 @@ export default class FakeCustomerRepository implements ICustomerRepository {
     this.customersCreated = [];
   }
 
-  public async create(customerData: CreateCustomerDTO): Promise<Customer> {
+  // Create a new Customer
+  public async createCustomer(
+    customerData: CreateCustomerDTO,
+  ): Promise<Customer> {
     const customer = new Customer();
 
     Object.assign(customer, { id: uuid() }, customerData);
@@ -20,4 +23,7 @@ export default class FakeCustomerRepository implements ICustomerRepository {
 
     return customer;
   }
+
+  // Delete a customer by id
+  public async deleteCustomerById(id: string): Promise<void> {}
 }

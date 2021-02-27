@@ -17,7 +17,7 @@ export default class CreateCustomerSession {
   public async execute(data: ICreateCustomersDTO): Promise<Customer> {
     const { name, email, telephone, area, city, state } = data;
 
-    const customer = await this.customersRepository.create({
+    const customer = await this.customersRepository.createCustomer({
       name,
       email,
       telephone,
