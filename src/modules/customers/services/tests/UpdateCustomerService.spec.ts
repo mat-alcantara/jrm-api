@@ -2,6 +2,8 @@ import CreateCustomerService from '@modules/customers/services/CreateCustomerSer
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import UpdateCustomerService from '@modules/customers/services/UpdateCustomerService';
 
+import AppError from '@shared/errors/AppError';
+
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let updateCustomerService: UpdateCustomerService;
@@ -30,7 +32,15 @@ describe('Update Customers', () => {
       { area: 'Japuiba' },
     );
 
-    expect(customerUpdated.area).toBe('Japuiba');
-    expect(customerCreated.id).toEqual(customerCreated.id);
+    await expect(customerUpdated.area).toBe('Japuiba');
+    await expect(customerCreated.id).toEqual(customerCreated.id);
+  });
+
+  it("should not be able to update customer if it doesn' exist", async () => {
+    await expect(
+      updateCustomerService.execute('wrongId', {
+        area: 'Japuiba',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
