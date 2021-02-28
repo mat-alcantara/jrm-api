@@ -14,13 +14,13 @@ export default class Material {
   @Column()
   name: string;
 
-  @Column({ type: 'int' })
+  @Column('int')
   thickness: number;
 
-  @Column({ type: 'int' })
+  @Column('int')
   width: number;
 
-  @Column({ type: 'int' })
+  @Column('int')
   height: number;
 
   @CreateDateColumn()
