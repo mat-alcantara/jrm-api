@@ -25,6 +25,7 @@ export default class FakeMaterialsRepository implements IMaterialsRepository {
     return material;
   }
 
+  // Find a material by name and thickness and return if it exists
   public async findByNameAndThickness(
     name: string,
     thickness: number,

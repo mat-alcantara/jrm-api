@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
 import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
@@ -24,7 +25,7 @@ export default class CreateMaterialService {
       thickness,
     );
 
-    if (!doesMaterialExist) {
+    if (doesMaterialExist) {
       throw new AppError('Material already exist', 404);
     }
 
