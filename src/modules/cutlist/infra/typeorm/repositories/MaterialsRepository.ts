@@ -15,6 +15,8 @@ export default class MaterialsRepository implements IMaterialsRepository {
   ): Promise<MaterialEntity> {
     const material = await this.ormRepository.create(data);
 
+    await this.ormRepository.save(material);
+
     return material;
   }
 
@@ -22,7 +24,7 @@ export default class MaterialsRepository implements IMaterialsRepository {
     name: string,
     thickness: number,
   ): Promise<boolean> {
-    const doesMaterialExists = this.ormRepository.findOne({
+    const doesMaterialExists = await this.ormRepository.findOne({
       where: { name, thickness },
     });
 
