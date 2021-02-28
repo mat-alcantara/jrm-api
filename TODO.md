@@ -2,7 +2,7 @@
 
 [x] "Password must be a string"
 
-# [x] Create User
+# [x] User
 
 [x] Create a new user
 [x] Hash Password
@@ -13,9 +13,9 @@
 [x] Create an AppError instance
 [x] Change Error Handling on Celebrate
 
-# [x] Create Authentication
+# [x] Authentication
 
-# [x] Create Customers
+# [x] Customers
 
 [x] Create model with id, name, email, telephone, address, created_at, updated_at
 [x] Create a route to create a new customer
@@ -23,3 +23,29 @@
 [x] Create a route to list all customers
 [x] Create a route to delete a customer
 [x] Create a route to edit a customer
+
+# [ ] CutList
+
+Entity {
+
+- id
+- Relationship with a client
+- Store ['Frade', 'Japuiba', 'São João de Meriti']
+- Payment status
+- Status ['Em produção', 'Liberado para transporte', 'Transportado', 'Entregue']
+- Ps
+- Related problems
+- conclusion date
+- total price
+  }
+
+Cuts entity {
+
+- quantity
+- material
+- length
+- weight
+- board
+  }
+
+Material list
