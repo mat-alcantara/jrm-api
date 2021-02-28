@@ -14,20 +14,22 @@ export default class UpdateCustomerService {
     private customersRepository: ICustomersRepository,
   ) {}
 
-  public async execute(data: IUpdateCustomerDTO): Promise<Customer> {
-    const customerToUpdate = await this.customersRepository.findCustomerById(
-      data.id,
-    );
+  public async execute(
+    id: string,
+    data: IUpdateCustomerDTO,
+  ): Promise<Customer> {
+    // Find customer
+    const customer = await this.customersRepository.findCustomerById(id);
 
-    if (!customerToUpdate) {
+    if (!customer) {
       throw new AppError('Customer does not exist', 404);
     }
 
-    const customerAfterUpdate = await this.customersRepository.updateCustomer(
-      customerToUpdate,
+    const customerUpdated = this.customersRepository.updateCustomer(
+      customer,
       data,
     );
 
-    return customerAfterUpdate;
+    return customerUpdated;
   }
 }

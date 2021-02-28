@@ -1,5 +1,4 @@
 export default interface CreateCustomerDTO {
-  id: string;
   name?: string;
   email?: string;
   telephone?: string[];

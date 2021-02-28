@@ -3,6 +3,7 @@ import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 
 import ICustomerRepository from '@modules/customers/repositories/ICustomersRepository';
 import ICreateCustomerDTO from '@modules/customers/dtos/ICreateCustomerDTO';
+import IUpdateCustomerDTO from '@modules/customers/dtos/IUpdateCustomerDTO';
 
 export default class CustomerRepository implements ICustomerRepository {
   private ormRepository: Repository<Customer>;
@@ -35,5 +36,14 @@ export default class CustomerRepository implements ICustomerRepository {
     const allCustomers = await this.ormRepository.find();
 
     return allCustomers;
+  }
+
+  public async updateCustomer(
+    customer: Customer,
+    data: IUpdateCustomerDTO,
+  ): Promise<Customer> {
+    const userUpdated = this.ormRepository.save({ ...customer, ...data });
+
+    return userUpdated;
   }
 }
