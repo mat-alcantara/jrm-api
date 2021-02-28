@@ -26,7 +26,7 @@
 
 # [ ] CutList
 
-Entity {
+## Entity {
 
 - id
 - Relationship with a client
@@ -49,3 +49,8 @@ Cuts entity {
   }
 
 Material list
+
+# [ ] Materials
+
+[ ] Create a new material
+[ ] Remove a material
