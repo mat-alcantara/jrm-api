@@ -37,4 +37,6 @@ customersRoutes.delete(
   customersController.delete,
 ); // Route to delete a customer by id
 
+customersRoutes.put('/customers/:id', customersController.update); // Route to update a customer
+
 export default customersRoutes;
