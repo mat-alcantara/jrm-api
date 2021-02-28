@@ -22,4 +22,4 @@
 [x] Only sellers can create a new customer
 [x] Create a route to list all customers
 [x] Create a route to delete a customer
-[ ] Create a route to edit a customer
+[x] Create a route to edit a customer
