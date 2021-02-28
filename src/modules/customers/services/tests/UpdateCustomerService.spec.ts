@@ -1,23 +1,21 @@
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import ShowAllCustomersService from '@modules/customers/services/ShowAllCustomersService';
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
+import UpdateCustomerService from '@modules/customers/services/UpdateCustomerService';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
-let showAllCustomersService: ShowAllCustomersService;
+let updateCustomerService: UpdateCustomerService;
 
-describe('Show all customers', () => {
+describe('Update Customers', () => {
   // This function will be activated every time a test is created
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
-    showAllCustomersService = new ShowAllCustomersService(
-      fakeCustomersRepository,
-    );
+    updateCustomerService = new UpdateCustomerService(fakeCustomersRepository);
   });
 
   // Test the deletion of a user
-  it('should be able to show all customers', async () => {
+  it('should be able to update a customers', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -27,8 +25,12 @@ describe('Show all customers', () => {
       state: 'Rio de Janeiro',
     });
 
-    const allCustomers = await showAllCustomersService.execute();
+    const customerUpdated = await updateCustomerService.execute(
+      customerCreated.id,
+      { area: 'Japuiba' },
+    );
 
-    await expect(allCustomers).toContain(customerCreated);
+    expect(customerUpdated.area).toBe('Japuiba');
+    expect(customerCreated.id).toEqual(customerCreated.id);
   });
 });

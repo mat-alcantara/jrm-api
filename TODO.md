@@ -15,7 +15,7 @@
 
 # [x] Create Authentication
 
-# [ ] Create Customers
+# [x] Create Customers
 
 [x] Create model with id, name, email, telephone, address, created_at, updated_at
 [x] Create a route to create a new customer
