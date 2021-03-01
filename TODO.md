@@ -52,5 +52,5 @@ Material list
 
 # [ ] Materials
 
-[ ] Create a new material
+[x] Create a new material
 [ ] Remove a material
