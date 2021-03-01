@@ -81,8 +81,7 @@ export default class CreateCutlist1614591204280 implements MigrationInterface {
           },
           {
             name: 'cutlist',
-            type: 'array',
-            isArray: true,
+            type: 'json',
             isNullable: false,
           },
           {

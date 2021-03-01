@@ -52,7 +52,7 @@ export default class Material {
   @Column('float')
   price: number;
 
-  @Column({ array: true })
+  @Column('json', { array: true })
   cutlist: ICutlistDTO[];
 
   @CreateDateColumn()
