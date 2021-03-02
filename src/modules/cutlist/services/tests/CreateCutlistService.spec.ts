@@ -1,34 +1,67 @@
-import CreateMaterialService from '@modules/cutlist/services/CreateMaterialService';
 import CreateCutlistService from '@modules/cutlist/services/CreateCutlistService';
 import FakeCutlistsRepository from '@modules/cutlist/repositories/fakes/FakeCutlistsRepository';
-import FakeMaterialsRepository from '@modules/cutlist/repositories/fakes/FakeMaterialsRepository';
+import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
+import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 
-import AppError from '@shared/errors/AppError';
+import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
+import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
+import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
 
-let fakeMaterialsRepository: FakeMaterialsRepository;
-let createMaterialService: CreateMaterialService;
+// import AppError from '@shared/errors/AppError';
+
+let fakeCustomersRepository: FakeCustomersRepository;
+let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
 let createCutlistService: CreateCutlistService;
 
 describe('Create cutlist', () => {
   beforeEach(() => {
-    fakeMaterialsRepository = new FakeMaterialsRepository();
-    createMaterialService = new CreateMaterialService(fakeMaterialsRepository);
+    fakeCustomersRepository = new FakeCustomersRepository();
+    createCustomerService = new CreateCustomerService(fakeCustomersRepository);
     fakeCutlistsRepository = new FakeCutlistsRepository();
     createCutlistService = new CreateCutlistService(
       fakeCutlistsRepository,
-      fakeMaterialsRepository,
+      fakeCustomersRepository,
     );
   });
 
   it('Should create a new cutlist', async () => {
-    const materialCreated = await createMaterialService.execute({
-      name: 'MDF COMUM',
-      thickness: 15,
-      width: 2750,
-      height: 1850,
+    const customerCreated = await createCustomerService.execute({
+      name: 'Mateus',
+      email: 'mateus@mateus.com',
+      area: 'Frade',
+      telephone: ['24-999710064', '24-999656973'],
+      city: 'Angra dos Reis',
+      state: 'Rio de Janeiro',
     });
 
-    expect(materialCreated).toHaveProperty('id');
+    const cutlistCreated = await createCutlistService.execute({
+      customerId: customerCreated.id,
+      orderStatus: OrderStatusEnumDTO.PRODUCAO,
+      orderStore: OrderStoreEnumDTO.FRADE,
+      paymentStatus: PaymentStatusEnumDTO.PARCIAL,
+      price: 215,
+      cutlist: [
+        {
+          material: 'MDF 15mm Comum',
+          quantidade: 20,
+          side_a_size: 500,
+          side_b_size: 200,
+          side_a_border: 1,
+          side_b_border: 2,
+        },
+        {
+          material: 'MDF 15mm Ultra',
+          quantidade: 20,
+          side_a_size: 800,
+          side_b_size: 400,
+          side_a_border: 0,
+          side_b_border: 2,
+        },
+      ],
+    });
+
+    await expect(cutlistCreated).toHaveProperty('id');
+    await expect(cutlistCreated.customerId).toEqual(customerCreated.id);
   });
 });
