@@ -21,7 +21,7 @@ export default class Material {
   id: string;
 
   @Column({ nullable: true })
-  customerId: string;
+  customerId?: string;
 
   @JoinColumn({ name: 'customerId' })
   @ManyToOne(() => Customer)
