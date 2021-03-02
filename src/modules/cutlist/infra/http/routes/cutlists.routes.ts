@@ -48,6 +48,7 @@ cutlistRoutes.post(
       cutlist: Joi.array().items(
         Joi.object().keys({
           material: Joi.string().required(),
+          quantidade: Joi.number().integer().required(),
           side_a_size: Joi.number().integer().required(),
           side_b_size: Joi.number().integer().required(),
           side_a_border: Joi.number().integer().required().valid(0, 1, 2),
