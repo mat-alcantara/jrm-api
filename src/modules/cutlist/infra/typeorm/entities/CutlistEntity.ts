@@ -20,7 +20,7 @@ export default class Material {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   customerId: string;
 
   @JoinColumn({ name: 'customerId' })
@@ -39,14 +39,14 @@ export default class Material {
   })
   orderStatus: OrderStatusEnumDTO;
 
-  @Column()
-  ps: string;
+  @Column({ nullable: true })
+  ps?: string;
 
-  @Column()
-  relatedProblems: string;
+  @Column({ nullable: true })
+  relatedProblems?: string;
 
-  @Column()
-  conclusionDate: Date;
+  @Column({ nullable: true })
+  conclusionDate?: Date;
 
   @Column('float')
   price: number;

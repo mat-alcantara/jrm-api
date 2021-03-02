@@ -115,6 +115,6 @@ export default class CreateCutlist1614591204280 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('cutlists', 'cutlistProvider');
-    queryRunner.dropTable('cutlists');
+    await queryRunner.dropTable('cutlists');
   }
 }

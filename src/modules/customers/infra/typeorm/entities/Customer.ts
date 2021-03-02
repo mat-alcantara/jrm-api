@@ -17,7 +17,7 @@ export default class Customer {
   @Column('varchar', { array: true })
   telephone: string[];
 
-  @Column()
+  @Column({ nullable: true })
   email?: string;
 
   @Column()

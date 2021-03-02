@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateMaterial1614531313984 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.createTable(
+    await queryRunner.createTable(
       new Table({
         name: 'materials',
         columns: [
@@ -51,6 +51,6 @@ export default class CreateMaterial1614531313984 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('materials');
+    await queryRunner.dropTable('materials');
   }
 }
