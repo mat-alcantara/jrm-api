@@ -7,7 +7,7 @@ import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
 
-// import AppError from '@shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
@@ -63,5 +63,35 @@ describe('Create cutlist', () => {
 
     await expect(cutlistCreated).toHaveProperty('id');
     await expect(cutlistCreated.customerId).toEqual(customerCreated.id);
+  });
+
+  it('Should not create a new cutlist if customer does not exist', async () => {
+    await expect(
+      createCutlistService.execute({
+        customerId: 'wrongId',
+        orderStatus: OrderStatusEnumDTO.PRODUCAO,
+        orderStore: OrderStoreEnumDTO.FRADE,
+        paymentStatus: PaymentStatusEnumDTO.PARCIAL,
+        price: 215,
+        cutlist: [
+          {
+            material: 'MDF 15mm Comum',
+            quantidade: 20,
+            side_a_size: 500,
+            side_b_size: 200,
+            side_a_border: 1,
+            side_b_border: 2,
+          },
+          {
+            material: 'MDF 15mm Ultra',
+            quantidade: 20,
+            side_a_size: 800,
+            side_b_size: 400,
+            side_a_border: 0,
+            side_b_border: 2,
+          },
+        ],
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
