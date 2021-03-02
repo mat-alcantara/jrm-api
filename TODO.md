@@ -24,7 +24,7 @@
 [x] Create a route to delete a customer
 [x] Create a route to edit a customer
 
-# [ ] CutList
+# [x] CutList
 
 ## Entity {
 
