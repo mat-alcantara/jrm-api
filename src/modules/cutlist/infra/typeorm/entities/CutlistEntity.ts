@@ -36,7 +36,6 @@ export default class Material {
   @Column({
     type: 'enum',
     enum: OrderStatusEnumDTO,
-    default: OrderStatusEnumDTO,
   })
   orderStatus: OrderStatusEnumDTO;
 
