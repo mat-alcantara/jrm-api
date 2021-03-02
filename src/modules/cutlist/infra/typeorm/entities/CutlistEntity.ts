@@ -20,11 +20,11 @@ export default class Material {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column('uuid', { nullable: true })
   customerId?: string;
 
-  @JoinColumn({ name: 'customerId' })
   @ManyToOne(() => Customer)
+  @JoinColumn({ name: 'customerId' })
   customer: Customer;
 
   @Column({ type: 'enum', enum: OrderStoreEnumDTO })

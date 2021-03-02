@@ -103,7 +103,7 @@ export default class CreateCutlist1614591204280 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'cutlists',
       new TableForeignKey({
-        name: 'custlistProvider',
+        name: 'custlistForeignKey',
         columnNames: ['customerId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'customers',
@@ -114,7 +114,6 @@ export default class CreateCutlist1614591204280 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('cutlists', 'cutlistProvider');
     await queryRunner.dropTable('cutlists');
   }
 }
