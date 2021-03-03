@@ -9,6 +9,8 @@ const materialController = new MaterialController();
 
 materialRoutes.use(ensureAuthenticated);
 
+materialRoutes.get('/materials', materialController.show);
+
 materialRoutes.post(
   '/materials',
   celebrate({
