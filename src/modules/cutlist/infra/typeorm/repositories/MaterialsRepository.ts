@@ -36,4 +36,14 @@ export default class MaterialsRepository implements IMaterialsRepository {
 
     return allMaterials;
   }
+
+  public async showMaterialById(
+    id: string,
+  ): Promise<MaterialEntity | undefined> {
+    const specificMaterial = await this.ormRepository.findOne({
+      where: { id },
+    });
+
+    return specificMaterial;
+  }
 }
