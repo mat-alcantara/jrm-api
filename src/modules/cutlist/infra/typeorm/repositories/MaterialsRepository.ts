@@ -46,4 +46,8 @@ export default class MaterialsRepository implements IMaterialsRepository {
 
     return specificMaterial;
   }
+
+  public async removeById(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
+  }
 }
