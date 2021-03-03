@@ -30,4 +30,10 @@ export default class MaterialsRepository implements IMaterialsRepository {
 
     return !!doesMaterialExists;
   }
+
+  public async showAllMaterials(): Promise<MaterialEntity[]> {
+    const allMaterials = await this.ormRepository.find();
+
+    return allMaterials;
+  }
 }
