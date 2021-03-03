@@ -56,7 +56,7 @@ Material list
 
 [x] Create a new material
 [x] Show all materials
-[ ] Show material by id
+[x] Show material by id
 [ ] Remove a material
 [ ] Edit a material
 [ ] Refatorar para criar um modulo de materiais
