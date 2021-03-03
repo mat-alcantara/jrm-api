@@ -41,7 +41,7 @@ export default class FakeMaterialsRepository implements IMaterialsRepository {
     return this.materialsCreated;
   }
 
-  public async showMaterialById(
+  public async findMaterialById(
     id: string,
   ): Promise<MaterialEntity | undefined> {
     const specificMaterial = await this.materialsCreated.find(

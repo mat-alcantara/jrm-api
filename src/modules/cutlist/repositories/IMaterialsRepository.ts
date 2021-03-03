@@ -5,5 +5,6 @@ export default interface IMaterialsRepository {
   createMaterial(materialData: ICreateMaterialDTO): Promise<MaterialEntity>;
   findByNameAndThickness(name: string, thickness: number): Promise<boolean>;
   showAllMaterials(): Promise<MaterialEntity[]>;
-  showMaterialById(id: string): Promise<MaterialEntity | undefined>;
+  findMaterialById(id: string): Promise<MaterialEntity | undefined>;
+  removeById(id: string): Promise<void>;
 }
