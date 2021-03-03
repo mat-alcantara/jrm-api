@@ -50,4 +50,17 @@ export default class FakeMaterialsRepository implements IMaterialsRepository {
 
     return specificMaterial;
   }
+
+  public async removeById(id: string): Promise<void> {
+    const itemToRemove = await this.materialsCreated.find(
+      material => material.id === id,
+    );
+
+    if (itemToRemove) {
+      this.materialsCreated.splice(
+        this.materialsCreated.indexOf(itemToRemove),
+        1,
+      );
+    }
+  }
 }
