@@ -15,7 +15,7 @@ describe('Show all materials', () => {
     createMaterialService = new CreateMaterialService(fakeMaterialsRepository);
   });
 
-  it('Should create a new material', async () => {
+  it('Should show all materials', async () => {
     const firstMaterialCreated = await createMaterialService.execute({
       name: 'MDF COMUM',
       thickness: 15,
