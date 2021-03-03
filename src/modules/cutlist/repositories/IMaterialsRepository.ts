@@ -4,4 +4,5 @@ import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEnti
 export default interface IMaterialsRepository {
   createMaterial(materialData: ICreateMaterialDTO): Promise<MaterialEntity>;
   findByNameAndThickness(name: string, thickness: number): Promise<boolean>;
+  showAllMaterials(): Promise<MaterialEntity[]>;
 }
