@@ -36,4 +36,8 @@ export default class FakeMaterialsRepository implements IMaterialsRepository {
 
     return !!doesMaterialExists; // Return the response as a boolean
   }
+
+  public async showAllMaterials(): Promise<MaterialEntity[]> {
+    return this.materialsCreated;
+  }
 }
