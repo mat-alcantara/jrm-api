@@ -29,4 +29,6 @@ materialRoutes.post(
   materialController.create,
 );
 
+materialRoutes.delete('/materials/:id', materialController.remove);
+
 export default materialRoutes;
