@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 
 @injectable()
 export default class DeleteMaterialService {

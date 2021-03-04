@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
-import MaterialController from '@modules/cutlist/infra/http/controllers/MaterialController';
-import SpecificMaterialController from '@modules/cutlist/infra/http/controllers/SpecificMaterialController';
+import MaterialController from '@modules/materials/infra/http/controllers/MaterialController';
+import SpecificMaterialController from '@modules/materials/infra/http/controllers/SpecificMaterialController';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 

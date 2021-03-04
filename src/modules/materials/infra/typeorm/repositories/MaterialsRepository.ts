@@ -1,8 +1,8 @@
-import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
-import ICreateMaterialDTO from '@modules/cutlist/dtos/ICreateMaterialDTO';
-import IUpdateMaterialDTO from '@modules/cutlist/dtos/IUpdateMaterialDTO';
+import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
+import ICreateMaterialDTO from '@modules/materials/dtos/ICreateMaterialDTO';
+import IUpdateMaterialDTO from '@modules/materials/dtos/IUpdateMaterialDTO';
 import { getRepository, Repository } from 'typeorm';
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 
 export default class MaterialsRepository implements IMaterialsRepository {
   private ormRepository: Repository<MaterialEntity>;

@@ -1,6 +1,6 @@
-import ShowAllMaterialsService from '@modules/cutlist/services/ShowAllMaterialsService';
-import FakeMaterialsRepository from '@modules/cutlist/repositories/fakes/FakeMaterialsRepository';
-import CreateMaterialService from '@modules/cutlist/services/CreateMaterialService';
+import ShowAllMaterialsService from '@modules/materials/services/ShowAllMaterialsService';
+import FakeMaterialsRepository from '@modules/materials/repositories/fakes/FakeMaterialsRepository';
+import CreateMaterialService from '@modules/materials/services/CreateMaterialService';
 
 let fakeMaterialsRepository: FakeMaterialsRepository;
 let showAllMaterialsService: ShowAllMaterialsService;

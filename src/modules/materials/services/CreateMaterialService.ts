@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
+import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
 
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
-import ICreateMaterialDTO from '@modules/cutlist/dtos/ICreateMaterialDTO';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
+import ICreateMaterialDTO from '@modules/materials/dtos/ICreateMaterialDTO';
 
 import AppError from '@shared/errors/AppError';
 

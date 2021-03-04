@@ -3,10 +3,10 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
+import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
 
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
-import IUpdateMaterialDTO from '@modules/cutlist/dtos/IUpdateMaterialDTO';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
+import IUpdateMaterialDTO from '@modules/materials/dtos/IUpdateMaterialDTO';
 
 @injectable()
 export default class UpdateMaterialService {

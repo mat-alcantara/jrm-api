@@ -1,6 +1,6 @@
-import ICreateMaterialDTO from '@modules/cutlist/dtos/ICreateMaterialDTO';
-import IUpdateMaterialDTO from '@modules/cutlist/dtos/IUpdateMaterialDTO';
-import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
+import ICreateMaterialDTO from '@modules/materials/dtos/ICreateMaterialDTO';
+import IUpdateMaterialDTO from '@modules/materials/dtos/IUpdateMaterialDTO';
+import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
 
 export default interface IMaterialsRepository {
   createMaterial(materialData: ICreateMaterialDTO): Promise<MaterialEntity>;

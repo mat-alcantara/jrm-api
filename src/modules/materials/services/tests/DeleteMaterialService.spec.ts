@@ -1,6 +1,6 @@
-import FakeMaterialsRepository from '@modules/cutlist/repositories/fakes/FakeMaterialsRepository';
-import CreateMaterialService from '@modules/cutlist/services/CreateMaterialService';
-import DeleteMaterialService from '@modules/cutlist/services/DeleteMaterialService';
+import FakeMaterialsRepository from '@modules/materials/repositories/fakes/FakeMaterialsRepository';
+import CreateMaterialService from '@modules/materials/services/CreateMaterialService';
+import DeleteMaterialService from '@modules/materials/services/DeleteMaterialService';
 
 import AppError from '@shared/errors/AppError';
 

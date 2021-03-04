@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
+import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
 
 import AppError from '@shared/errors/AppError';
 
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 
 @injectable()
 export default class ShowMaterialById {

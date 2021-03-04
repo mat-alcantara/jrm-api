@@ -1,8 +1,8 @@
-import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
+import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
 
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
-import ICreateMaterialDTO from '@modules/cutlist/dtos/ICreateMaterialDTO';
-import IUpdateMaterialDTO from '@modules/cutlist/dtos/IUpdateMaterialDTO';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
+import ICreateMaterialDTO from '@modules/materials/dtos/ICreateMaterialDTO';
+import IUpdateMaterialDTO from '@modules/materials/dtos/IUpdateMaterialDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 

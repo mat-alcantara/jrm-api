@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateMaterialService from '@modules/cutlist/services/CreateMaterialService';
-import ShowAllMaterialsService from '@modules/cutlist/services/ShowAllMaterialsService';
-import DeleteMaterialService from '@modules/cutlist/services/DeleteMaterialService';
-import UpdateMaterialService from '@modules/cutlist/services/UpdateMaterialService';
+import CreateMaterialService from '@modules/materials/services/CreateMaterialService';
+import ShowAllMaterialsService from '@modules/materials/services/ShowAllMaterialsService';
+import DeleteMaterialService from '@modules/materials/services/DeleteMaterialService';
+import UpdateMaterialService from '@modules/materials/services/UpdateMaterialService';
 
 export default class MaterialController {
   public async show(request: Request, response: Response): Promise<Response> {

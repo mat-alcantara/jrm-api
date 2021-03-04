@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 
-import ShowMaterialById from '@modules/cutlist/services/ShowMaterialByIdService';
+import ShowMaterialById from '@modules/materials/services/ShowMaterialByIdService';
 import { Request, Response } from 'express';
 
 export default class SpecificMaterialController {

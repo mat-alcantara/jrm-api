@@ -1,9 +1,9 @@
-import FakeMaterialsRepository from '@modules/cutlist/repositories/fakes/FakeMaterialsRepository';
+import FakeMaterialsRepository from '@modules/materials/repositories/fakes/FakeMaterialsRepository';
 
 import AppError from '@shared/errors/AppError';
 
-import CreateMaterialService from '@modules/cutlist/services/CreateMaterialService';
-import ShowMaterialById from '@modules/cutlist/services/ShowMaterialByIdService';
+import CreateMaterialService from '@modules/materials/services/CreateMaterialService';
+import ShowMaterialById from '@modules/materials/services/ShowMaterialByIdService';
 
 let fakeMaterialsRepository: FakeMaterialsRepository;
 let createMaterialService: CreateMaterialService;
