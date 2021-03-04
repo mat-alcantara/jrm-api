@@ -9,7 +9,7 @@ export default interface IMaterialsRepository {
   findMaterialById(id: string): Promise<MaterialEntity | undefined>;
   removeById(id: string): Promise<void>;
   updateMaterial(
-    id: string,
+    materialToUpdate: MaterialEntity,
     updateData: IUpdateMaterialDTO,
   ): Promise<MaterialEntity>;
 }

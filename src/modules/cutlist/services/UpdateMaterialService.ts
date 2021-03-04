@@ -28,7 +28,7 @@ export default class UpdateMaterialService {
     }
 
     const updatedMaterial = await this.materialsRepository.updateMaterial(
-      id,
+      materialToUpdate,
       updateData,
     );
 

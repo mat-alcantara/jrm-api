@@ -2,6 +2,7 @@ import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEnti
 
 import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
 import ICreateMaterialDTO from '@modules/cutlist/dtos/ICreateMaterialDTO';
+import IUpdateMaterialDTO from '@modules/cutlist/dtos/IUpdateMaterialDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 
@@ -62,5 +63,23 @@ export default class FakeMaterialsRepository implements IMaterialsRepository {
         1,
       );
     }
+  }
+
+  public async updateMaterial(
+    materialToUpdate: MaterialEntity,
+    updateData: IUpdateMaterialDTO,
+  ): Promise<MaterialEntity> {
+    // Create a updated material
+    const materialUpdated = { ...materialToUpdate, ...updateData };
+
+    // Remove old material
+    this.materialsCreated.splice(
+      this.materialsCreated.indexOf(materialToUpdate),
+    );
+
+    // Add new material
+    this.materialsCreated.push(materialUpdated);
+
+    return materialUpdated;
   }
 }
