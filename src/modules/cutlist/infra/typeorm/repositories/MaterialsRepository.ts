@@ -1,5 +1,6 @@
 import MaterialEntity from '@modules/cutlist/infra/typeorm/entities/MaterialEntity';
 import ICreateMaterialDTO from '@modules/cutlist/dtos/ICreateMaterialDTO';
+import IUpdateMaterialDTO from '@modules/cutlist/dtos/IUpdateMaterialDTO';
 import { getRepository, Repository } from 'typeorm';
 import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
 
@@ -49,5 +50,16 @@ export default class MaterialsRepository implements IMaterialsRepository {
 
   public async removeById(id: string): Promise<void> {
     await this.ormRepository.delete(id);
+  }
+
+  public async updateMaterial(
+    materialToUpdate: MaterialEntity,
+    updateData: IUpdateMaterialDTO,
+  ): Promise<MaterialEntity> {
+    const materialUpdated = { ...materialToUpdate, ...updateData };
+
+    await this.ormRepository.update(materialToUpdate, materialUpdated);
+
+    return materialUpdated;
   }
 }
