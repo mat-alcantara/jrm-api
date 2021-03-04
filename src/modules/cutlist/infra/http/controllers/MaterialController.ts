@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreateMaterialService from '@modules/cutlist/services/CreateMaterialService';
 import ShowAllMaterialsService from '@modules/cutlist/services/ShowAllMaterialsService';
 import DeleteMaterialService from '@modules/cutlist/services/DeleteMaterialService';
+import UpdateMaterialService from '@modules/cutlist/services/UpdateMaterialService';
 
 export default class MaterialController {
   public async show(request: Request, response: Response): Promise<Response> {
@@ -36,5 +37,18 @@ export default class MaterialController {
     await deleteMaterialService.execute(id);
 
     return response.json();
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const updateData = request.body;
+    const { id } = request.params;
+
+    const updateMaterialService = await container.resolve(
+      UpdateMaterialService,
+    );
+
+    const updatedMaterial = await updateMaterialService.execute(id, updateData);
+
+    return response.json(updatedMaterial);
   }
 }
