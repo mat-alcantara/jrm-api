@@ -73,6 +73,6 @@ Material list
 [ ] Rate Limit
 [ ] Helmet
 
-# [ ] Configure cors
+# [x] Configure cors
 
 # [ ] Prepare to deploy
