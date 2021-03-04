@@ -4,6 +4,8 @@ import 'reflect-metadata';
 import express, { Response, Request, NextFunction } from 'express';
 import 'express-async-errors'; // Dependency needed to catch erros in the application
 
+import cors from 'cors';
+
 import 'dotenv/config';
 
 import { errors } from 'celebrate';
@@ -16,6 +18,7 @@ import '@shared/containers/index'; // Import dependency injection Containers
 
 const server = express();
 
+server.use(cors());
 server.use(express.json()); // Allow JSON on express
 server.use(routes); // Activate routes on express
 server.use(errors()); // Celebrate Errors

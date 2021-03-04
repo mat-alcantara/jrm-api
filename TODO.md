@@ -68,7 +68,10 @@ Material list
 [ ] Remove a cutlist
 [ ] Edit a cutlist
 
-# [ ] Limit requisitions
+# [ ] Configure Secutiry
+
+[ ] Rate Limit
+[ ] Helmet
 
 # [ ] Configure cors
 
