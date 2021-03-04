@@ -58,7 +58,7 @@ Material list
 [x] Show all materials
 [x] Show material by id
 [x] Remove a material
-[ ] Edit a material
+[x] Edit a material
 [ ] Refatorar para criar um modulo de materiais
 
 # [ ] Cutlist

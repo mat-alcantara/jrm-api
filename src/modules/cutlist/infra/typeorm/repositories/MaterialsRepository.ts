@@ -56,10 +56,11 @@ export default class MaterialsRepository implements IMaterialsRepository {
     materialToUpdate: MaterialEntity,
     updateData: IUpdateMaterialDTO,
   ): Promise<MaterialEntity> {
-    const materialUpdated = { ...materialToUpdate, ...updateData };
+    const materialUpdatedByTypeORM = await this.ormRepository.save({
+      ...materialToUpdate,
+      ...updateData,
+    });
 
-    await this.ormRepository.update(materialToUpdate, materialUpdated);
-
-    return materialUpdated;
+    return materialUpdatedByTypeORM;
   }
 }
