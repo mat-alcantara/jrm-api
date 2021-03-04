@@ -9,8 +9,8 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import CustomersRepository from '@modules/customers/infra/typeorm/repositories/CustomersRepository';
 import ICustomersRepository from '@modules/customers/repositories/ICustomersRepository';
 
-import MaterialsRepository from '@modules/cutlist/infra/typeorm/repositories/MaterialsRepository';
-import IMaterialsRepository from '@modules/cutlist/repositories/IMaterialsRepository';
+import MaterialsRepository from '@modules/materials/infra/typeorm/repositories/MaterialsRepository';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 
 import CutlistsRepository from '@modules/cutlist/infra/typeorm/repositories/CutlistsRepository';
 import ICutlistsRepository from '@modules/cutlist/repositories/ICutlistsRepository';
