@@ -31,4 +31,17 @@ materialRoutes.post(
 
 materialRoutes.delete('/materials/:id', materialController.remove);
 
+materialRoutes.put(
+  '/materials/:id',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      name: Joi.string(),
+      thickness: Joi.number().integer(),
+      width: Joi.number().integer(),
+      height: Joi.number().integer(),
+    }),
+  }),
+  materialController.update,
+);
+
 export default materialRoutes;
