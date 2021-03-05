@@ -33,4 +33,8 @@ export default class CutlistsRepository implements ICutlistRepository {
 
     return specificCutlist;
   }
+
+  public async deleteCutlist(cutlist: CutlistEntity): Promise<void> {
+    await this.ormRepository.delete(cutlist.id);
+  }
 }
