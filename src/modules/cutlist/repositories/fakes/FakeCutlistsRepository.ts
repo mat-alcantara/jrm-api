@@ -28,4 +28,8 @@ export default class FakeCutlistsRepository implements ICutlistsRepository {
   public async showAllCutlists(): Promise<CutlistEntity[]> {
     return this.cutlistsCreated;
   }
+
+  public async findCutlistById(id: string): Promise<CutlistEntity | undefined> {
+    return this.cutlistsCreated.find(cutlist => cutlist.id === id);
+  }
 }
