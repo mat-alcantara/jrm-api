@@ -5,4 +5,5 @@ export default interface IMaterialsRepository {
   createCutlist(cutlistData: ICreateCutlistDTO): Promise<CutlistEntity>;
   showAllCutlists(): Promise<CutlistEntity[]>;
   findCutlistById(id: string): Promise<CutlistEntity | undefined>;
+  deleteCutlist(cutlist: CutlistEntity): Promise<void>;
 }
