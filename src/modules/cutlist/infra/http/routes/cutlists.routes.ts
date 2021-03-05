@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
 import CutlistController from '@modules/cutlist/infra/http/controllers/CutlistController';
+import SpecificCutlistController from '@modules/cutlist/infra/http/controllers/SpecificCutlistController';
 
 import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
@@ -11,10 +12,12 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 
 const cutlistRoutes = Router();
 const cutlistController = new CutlistController();
+const specificCutlistController = new SpecificCutlistController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
 cutlistRoutes.get('/cutlists', cutlistController.show);
+cutlistRoutes.get('/cutlists/:id', specificCutlistController.show);
 cutlistRoutes.post(
   '/cutlists',
   celebrate({

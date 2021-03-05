@@ -64,8 +64,9 @@ Material list
 # [ ] Cutlist
 
 [x] Show all cutlists
-[ ] Show cutlist by id
+[x] Show cutlist by id
 [ ] Remove a cutlist
+[ ] Add ID to each cutlist
 [ ] Edit a cutlist
 
 # [ ] Configure Secutiry
