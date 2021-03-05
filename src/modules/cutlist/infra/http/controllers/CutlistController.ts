@@ -5,7 +5,7 @@ import CreateCutlistService from '@modules/cutlist/services/CreateCutlistService
 import ShowAllCutlists from '@modules/cutlist/services/ShowAllCutlistsService';
 import DeleteCutlistService from '@modules/cutlist/services/DeleteCutlistService';
 
-export default class MaterialController {
+export default class CutlistController {
   public async create(request: Request, response: Response): Promise<Response> {
     const cutlistData = request.body;
 

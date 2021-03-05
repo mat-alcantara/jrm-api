@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import ShowSpecificCutlistService from '@modules/cutlist/services/ShowSpecificCutlistService';
 
-export default class MaterialController {
+export default class SpecificCutlistController {
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 

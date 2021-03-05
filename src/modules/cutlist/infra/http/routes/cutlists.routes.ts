@@ -64,5 +64,6 @@ cutlistRoutes.post(
   }),
   cutlistController.create,
 );
+cutlistRoutes.delete('/cutlists/:id', cutlistController.remove);
 
 export default cutlistRoutes;
