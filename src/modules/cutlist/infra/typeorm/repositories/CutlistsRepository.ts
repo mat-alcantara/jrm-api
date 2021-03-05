@@ -27,4 +27,10 @@ export default class CutlistsRepository implements ICutlistRepository {
 
     return allCutlists;
   }
+
+  public async findCutlistById(id: string): Promise<CutlistEntity | undefined> {
+    const specificCutlist = await this.ormRepository.findOne({ where: { id } });
+
+    return specificCutlist;
+  }
 }
