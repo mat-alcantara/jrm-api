@@ -63,7 +63,7 @@ Material list
 
 # [ ] Cutlist
 
-[ ] Show all cutlists
+[x] Show all cutlists
 [ ] Show cutlist by id
 [ ] Remove a cutlist
 [ ] Edit a cutlist

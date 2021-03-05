@@ -1,6 +1,6 @@
 import CreateCutlistService from '@modules/cutlist/services/CreateCutlistService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import ShowAllCutlists from '@modules/cutlist/services/ShowAllCutlists';
+import ShowAllCutlists from '@modules/cutlist/services/ShowAllCutlistsService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import FakeCutlistsRepository from '@modules/cutlist/repositories/fakes/FakeCutlistsRepository';
