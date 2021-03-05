@@ -71,7 +71,7 @@ Material list
 # [ ] Configure Secutiry
 
 [ ] Rate Limit
-[ ] Helmet
+[x] Helmet
 
 # [x] Configure cors
 

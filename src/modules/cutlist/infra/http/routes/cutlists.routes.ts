@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import CutlistController from '@modules/cutlist/infra/http/controllers/CutlistController';
 import { celebrate, Segments, Joi } from 'celebrate';
+
+import CutlistController from '@modules/cutlist/infra/http/controllers/CutlistController';
 
 import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
@@ -13,6 +14,7 @@ const cutlistController = new CutlistController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
+cutlistRoutes.get('/cutlists', cutlistController.show);
 cutlistRoutes.post(
   '/cutlists',
   celebrate({

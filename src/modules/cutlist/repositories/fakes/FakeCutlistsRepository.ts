@@ -24,4 +24,8 @@ export default class FakeCutlistsRepository implements ICutlistsRepository {
 
     return cutlist;
   }
+
+  public async showAllCutlists(): Promise<CutlistEntity[]> {
+    return this.cutlistsCreated;
+  }
 }
