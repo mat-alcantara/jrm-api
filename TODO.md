@@ -65,7 +65,7 @@ Material list
 
 [x] Show all cutlists
 [x] Show cutlist by id
-[ ] Remove a cutlist
+[x] Remove a cutlist
 [ ] Add ID to each cutlist
 [ ] Edit a cutlist
 
