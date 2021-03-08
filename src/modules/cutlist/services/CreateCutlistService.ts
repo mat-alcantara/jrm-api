@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
