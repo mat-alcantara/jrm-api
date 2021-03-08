@@ -43,6 +43,7 @@ describe('Create cutlist', () => {
       price: 215,
       cutlist: [
         {
+          id: '',
           material: 'MDF 15mm Comum',
           quantidade: 20,
           side_a_size: 500,
@@ -51,6 +52,7 @@ describe('Create cutlist', () => {
           side_b_border: 2,
         },
         {
+          id: '',
           material: 'MDF 15mm Ultra',
           quantidade: 20,
           side_a_size: 800,
@@ -75,6 +77,7 @@ describe('Create cutlist', () => {
         price: 215,
         cutlist: [
           {
+            id: '',
             material: 'MDF 15mm Comum',
             quantidade: 20,
             side_a_size: 500,
@@ -83,6 +86,7 @@ describe('Create cutlist', () => {
             side_b_border: 2,
           },
           {
+            id: '',
             material: 'MDF 15mm Ultra',
             quantidade: 20,
             side_a_size: 800,

@@ -9,6 +9,8 @@ import ICustomersRepository from '@modules/customers/repositories/ICustomersRepo
 
 import AppError from '@shared/errors/AppError';
 
+import { v4 } from 'uuid';
+
 @injectable()
 export default class CreateMaterialService {
   constructor(
@@ -29,6 +31,12 @@ export default class CreateMaterialService {
 
     if (!doesCustomerExist) {
       throw new AppError('Customer does not exist', 404);
+    }
+
+    // Add id to every json file
+    for (let i = 0; i < cutlistData.cutlist.length; i += 1) {
+      const cutlistId = v4();
+      cutlistData.cutlist[i].id = cutlistId;
     }
 
     // Create a new cutlist
