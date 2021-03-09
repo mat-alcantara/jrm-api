@@ -6,4 +6,5 @@ export default interface IMaterialsRepository {
   showAllOrders(): Promise<OrderEntity[]>;
   findOrderById(id: string): Promise<OrderEntity | undefined>;
   deleteOrder(order: OrderEntity): Promise<void>;
+  deleteCutlist(order: OrderEntity, cutlistId: string): Promise<void>;
 }
