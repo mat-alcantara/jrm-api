@@ -15,7 +15,7 @@ let fakeCutlistsRepository: FakeCutlistsRepository;
 let createOrderService: CreateOrderService;
 let showAllOrdersService: ShowAllOrdersService;
 
-describe('Show All Cutlists', () => {
+describe('Show All Orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
@@ -27,7 +27,7 @@ describe('Show All Cutlists', () => {
     showAllOrdersService = new ShowAllOrdersService(fakeCutlistsRepository);
   });
 
-  it('Should show all cutlists created', async () => {
+  it('Should show all orders created', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',

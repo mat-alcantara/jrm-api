@@ -17,7 +17,7 @@ let fakeCutlistsRepository: FakeCutlistsRepository;
 let createOrderService: CreateOrderService;
 let deleteOrderService: DeleteOrderService;
 
-describe('Show specific cutlist', () => {
+describe('Delete Orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
@@ -29,7 +29,7 @@ describe('Show specific cutlist', () => {
     deleteOrderService = new DeleteOrderService(fakeCutlistsRepository);
   });
 
-  it('Should remove a specific cutlist', async () => {
+  it('Should remove a specific order', async () => {
     const spyFunction = spyOn(fakeCutlistsRepository, 'deleteCutlist');
 
     const customerCreated = await createCustomerService.execute({
@@ -74,7 +74,7 @@ describe('Show specific cutlist', () => {
     expect(spyFunction).toBeCalledWith(cutlistCreated);
   });
 
-  it('Should not remove a specific cutlist if it do not exist', async () => {
+  it('Should not remove a specific order if it do not exist', async () => {
     expect(deleteOrderService.execute('wrongId')).rejects.toBeInstanceOf(
       AppError,
     );

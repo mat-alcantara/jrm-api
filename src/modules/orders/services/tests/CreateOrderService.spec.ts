@@ -14,7 +14,7 @@ let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
 let createOrderService: CreateOrderService;
 
-describe('Create cutlist', () => {
+describe('Create orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
@@ -25,7 +25,7 @@ describe('Create cutlist', () => {
     );
   });
 
-  it('Should create a new cutlist', async () => {
+  it('Should create a new order', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -67,7 +67,7 @@ describe('Create cutlist', () => {
     await expect(cutlistCreated.customerId).toEqual(customerCreated.id);
   });
 
-  it('Should not create a new cutlist if customer does not exist', async () => {
+  it('Should not create a new order if customer does not exist', async () => {
     await expect(
       createOrderService.execute({
         customerId: 'wrongId',

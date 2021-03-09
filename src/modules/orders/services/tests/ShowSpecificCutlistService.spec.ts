@@ -17,7 +17,7 @@ let fakeCutlistsRepository: FakeCutlistsRepository;
 let createOrderService: CreateOrderService;
 let showSpecificOrderService: ShowSpecificOrderService;
 
-describe('Show specific cutlist', () => {
+describe('Show specific orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
@@ -31,7 +31,7 @@ describe('Show specific cutlist', () => {
     );
   });
 
-  it('Should show a specific cutlist', async () => {
+  it('Should show a specific order', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -76,7 +76,7 @@ describe('Show specific cutlist', () => {
     await expect(specificCutlist).toEqual(cutlistCreated);
   });
 
-  it('Should not show a specific cutlist if it do not exist', async () => {
+  it('Should not show a specific order if it do not exist', async () => {
     await expect(
       showSpecificOrderService.execute('wrongId'),
     ).rejects.toBeInstanceOf(AppError);
