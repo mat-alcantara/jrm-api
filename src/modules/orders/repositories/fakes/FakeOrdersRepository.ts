@@ -34,4 +34,19 @@ export default class FakeOrdersRepository implements IOrdersRepository {
   public async deleteOrder(order: OrderEntity): Promise<void> {
     await this.ordersCreated.splice(this.ordersCreated.indexOf(order), 1);
   }
+
+  public async deleteCutlist(
+    order: OrderEntity,
+    cutlistId: string,
+  ): Promise<void> {
+    const cutlistWithoutDeletedCutlist = order.cutlist.filter(
+      cutlist => cutlist.id !== cutlistId,
+    );
+
+    this.ordersCreated.splice(this.ordersCreated.indexOf(order), 1);
+
+    this.ordersCreated.push({ ...order, ...cutlistWithoutDeletedCutlist });
+
+    console.log({ ...order, ...cutlistWithoutDeletedCutlist });
+  }
 }
