@@ -5,36 +5,34 @@ import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 
-export default class CutlistsRepository implements IOrdersRepository {
+export default class OrdersRepository implements IOrdersRepository {
   private ormRepository: Repository<OrderEntity>;
 
   constructor() {
     this.ormRepository = getRepository(OrderEntity);
   }
 
-  public async createCutlist(
-    cutlistData: ICreateOrderDTO,
-  ): Promise<OrderEntity> {
-    const cutlistCreated = await this.ormRepository.create(cutlistData);
+  public async createOrder(orderData: ICreateOrderDTO): Promise<OrderEntity> {
+    const orderCreated = await this.ormRepository.create(orderData);
 
-    await this.ormRepository.save(cutlistCreated);
+    await this.ormRepository.save(orderCreated);
 
-    return cutlistCreated;
+    return orderCreated;
   }
 
-  public async showAllCutlists(): Promise<OrderEntity[]> {
-    const allCutlists = await this.ormRepository.find();
+  public async showAllOrders(): Promise<OrderEntity[]> {
+    const allOrders = await this.ormRepository.find();
 
-    return allCutlists;
+    return allOrders;
   }
 
-  public async findCutlistById(id: string): Promise<OrderEntity | undefined> {
-    const specificCutlist = await this.ormRepository.findOne({ where: { id } });
+  public async findOrderById(id: string): Promise<OrderEntity | undefined> {
+    const specificOrder = await this.ormRepository.findOne({ where: { id } });
 
-    return specificCutlist;
+    return specificOrder;
   }
 
-  public async deleteCutlist(cutlist: OrderEntity): Promise<void> {
-    await this.ormRepository.delete(cutlist.id);
+  public async deleteOrder(order: OrderEntity): Promise<void> {
+    await this.ormRepository.delete(order.id);
   }
 }

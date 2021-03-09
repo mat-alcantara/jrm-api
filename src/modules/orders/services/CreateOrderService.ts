@@ -15,16 +15,16 @@ import { v4 } from 'uuid';
 @injectable()
 export default class CreateOrderService {
   constructor(
-    @inject('CutlistsRepository')
-    private cutlistsRepository: IOrdersRepository,
+    @inject('OrdersRepository')
+    private ordersRepository: IOrdersRepository,
 
     @inject('CustomersRepository')
     private customersRepository: ICustomersRepository,
   ) {}
 
-  public async execute(cutlistData: ICreateOrderDTO): Promise<OrderEntity> {
+  public async execute(orderData: ICreateOrderDTO): Promise<OrderEntity> {
     // Check if customer exist
-    const { customerId } = cutlistData;
+    const { customerId } = orderData;
 
     const doesCustomerExist = await this.customersRepository.findCustomerById(
       customerId,
@@ -35,16 +35,14 @@ export default class CreateOrderService {
     }
 
     // Add id to every json file
-    for (let i = 0; i < cutlistData.cutlist.length; i += 1) {
-      const cutlistId = v4();
-      cutlistData.cutlist[i].id = cutlistId;
+    for (let i = 0; i < orderData.cutlist.length; i += 1) {
+      const orderId = v4();
+      orderData.cutlist[i].id = orderId;
     }
 
     // Create a new cutlist
-    const cutlistCreated = await this.cutlistsRepository.createCutlist(
-      cutlistData,
-    );
+    const orderCreated = await this.ordersRepository.createOrder(orderData);
 
-    return cutlistCreated;
+    return orderCreated;
   }
 }

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
-import CutlistController from '@modules/orders/infra/http/controllers/CutlistController';
-import SpecificCutlistController from '@modules/orders/infra/http/controllers/SpecificCutlistController';
+import OrderController from '@modules/orders/infra/http/controllers/OrderController';
+import SpecificOrderController from '@modules/orders/infra/http/controllers/SpecificOrderController';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -11,13 +11,13 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const cutlistRoutes = Router();
-const cutlistController = new CutlistController();
-const specificCutlistController = new SpecificCutlistController();
+const orderController = new OrderController();
+const specificOrderController = new SpecificOrderController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
-cutlistRoutes.get('/cutlists', cutlistController.show);
-cutlistRoutes.get('/cutlists/:id', specificCutlistController.show);
+cutlistRoutes.get('/cutlists', orderController.show);
+cutlistRoutes.get('/cutlists/:id', specificOrderController.show);
 cutlistRoutes.post(
   '/cutlists',
   celebrate({
@@ -62,8 +62,8 @@ cutlistRoutes.post(
       ),
     }),
   }),
-  cutlistController.create,
+  orderController.create,
 );
-cutlistRoutes.delete('/cutlists/:id', cutlistController.remove);
+cutlistRoutes.delete('/cutlists/:id', orderController.remove);
 
 export default cutlistRoutes;

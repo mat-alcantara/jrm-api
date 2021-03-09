@@ -2,8 +2,8 @@ import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
 export default interface IMaterialsRepository {
-  createCutlist(cutlistData: ICreateOrderDTO): Promise<OrderEntity>;
-  showAllCutlists(): Promise<OrderEntity[]>;
-  findCutlistById(id: string): Promise<OrderEntity | undefined>;
-  deleteCutlist(cutlist: OrderEntity): Promise<void>;
+  createOrder(orderData: ICreateOrderDTO): Promise<OrderEntity>;
+  showAllOrders(): Promise<OrderEntity[]>;
+  findOrderById(id: string): Promise<OrderEntity | undefined>;
+  deleteOrder(order: OrderEntity): Promise<void>;
 }

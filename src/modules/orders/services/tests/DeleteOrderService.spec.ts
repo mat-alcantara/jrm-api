@@ -30,7 +30,7 @@ describe('Delete Orders', () => {
   });
 
   it('Should remove a specific order', async () => {
-    const spyFunction = spyOn(fakeOrdersRepository, 'deleteCutlist');
+    const spyFunction = spyOn(fakeOrdersRepository, 'deleteOrder');
 
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
@@ -41,7 +41,7 @@ describe('Delete Orders', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createOrderService.execute({
+    const orderCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -69,9 +69,9 @@ describe('Delete Orders', () => {
       ],
     });
 
-    await deleteOrderService.execute(cutlistCreated.id);
+    await deleteOrderService.execute(orderCreated.id);
 
-    expect(spyFunction).toBeCalledWith(cutlistCreated);
+    expect(spyFunction).toBeCalledWith(orderCreated);
   });
 
   it('Should not remove a specific order if it do not exist', async () => {

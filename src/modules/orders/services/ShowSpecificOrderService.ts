@@ -10,17 +10,17 @@ import AppError from '@shared/errors/AppError';
 @injectable()
 export default class ShowSpecificOrderService {
   constructor(
-    @inject('CutlistsRepository')
-    private cutlistsRepository: IOrdersRepository,
+    @inject('OrdersRepository')
+    private ordersRepository: IOrdersRepository,
   ) {}
 
   public async execute(id: string): Promise<OrderEntity> {
-    const specificCutlist = await this.cutlistsRepository.findCutlistById(id);
+    const specificOrder = await this.ordersRepository.findOrderById(id);
 
-    if (!specificCutlist) {
-      throw new AppError('Cutlist does not exist', 404);
+    if (!specificOrder) {
+      throw new AppError('Order does not exist', 404);
     }
 
-    return specificCutlist;
+    return specificOrder;
   }
 }

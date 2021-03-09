@@ -5,35 +5,33 @@ import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 
-export default class FakeCutlistsRepository implements IOrdersRepository {
-  private cutlistsCreated: OrderEntity[];
+export default class FakeOrdersRepository implements IOrdersRepository {
+  private ordersCreated: OrderEntity[];
 
   constructor() {
-    this.cutlistsCreated = [];
+    this.ordersCreated = [];
   }
 
   // Create a new cutlist
-  public async createCutlist(
-    cutlistData: ICreateOrderDTO,
-  ): Promise<OrderEntity> {
-    const cutlist = new OrderEntity();
+  public async createOrder(orderData: ICreateOrderDTO): Promise<OrderEntity> {
+    const order = new OrderEntity();
 
-    Object.assign(cutlist, { id: uuid_v4() }, cutlistData);
+    Object.assign(order, { id: uuid_v4() }, orderData);
 
-    this.cutlistsCreated.push(cutlist);
+    this.ordersCreated.push(order);
 
-    return cutlist;
+    return order;
   }
 
-  public async showAllCutlists(): Promise<OrderEntity[]> {
-    return this.cutlistsCreated;
+  public async showAllOrders(): Promise<OrderEntity[]> {
+    return this.ordersCreated;
   }
 
-  public async findCutlistById(id: string): Promise<OrderEntity | undefined> {
-    return this.cutlistsCreated.find(cutlist => cutlist.id === id);
+  public async findOrderById(id: string): Promise<OrderEntity | undefined> {
+    return this.ordersCreated.find(order => order.id === id);
   }
 
-  public async deleteCutlist(cutlist: OrderEntity): Promise<void> {
-    await this.cutlistsCreated.splice(this.cutlistsCreated.indexOf(cutlist), 1);
+  public async deleteOrder(order: OrderEntity): Promise<void> {
+    await this.ordersCreated.splice(this.ordersCreated.indexOf(order), 1);
   }
 }

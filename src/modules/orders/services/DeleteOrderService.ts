@@ -8,17 +8,17 @@ import AppError from '@shared/errors/AppError';
 @injectable()
 export default class DeleteOrderService {
   constructor(
-    @inject('CutlistsRepository')
-    private cutlistsRepository: IOrdersRepository,
+    @inject('OrdersRepository')
+    private ordersRepository: IOrdersRepository,
   ) {}
 
   public async execute(id: string): Promise<void> {
-    const cutlistToRemove = await this.cutlistsRepository.findCutlistById(id);
+    const orderToRemove = await this.ordersRepository.findOrderById(id);
 
-    if (!cutlistToRemove) {
-      throw new AppError('Cutlist does not exist', 404);
+    if (!orderToRemove) {
+      throw new AppError('Order does not exist', 404);
     }
 
-    await this.cutlistsRepository.deleteCutlist(cutlistToRemove);
+    await this.ordersRepository.deleteOrder(orderToRemove);
   }
 }

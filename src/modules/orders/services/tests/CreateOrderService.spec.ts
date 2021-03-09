@@ -35,7 +35,7 @@ describe('Create orders', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createOrderService.execute({
+    const orderCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -63,8 +63,8 @@ describe('Create orders', () => {
       ],
     });
 
-    await expect(cutlistCreated).toHaveProperty('id');
-    await expect(cutlistCreated.customerId).toEqual(customerCreated.id);
+    await expect(orderCreated).toHaveProperty('id');
+    await expect(orderCreated.customerId).toEqual(customerCreated.id);
   });
 
   it('Should not create a new order if customer does not exist', async () => {

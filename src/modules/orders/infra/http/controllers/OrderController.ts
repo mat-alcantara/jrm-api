@@ -5,23 +5,23 @@ import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import ShowAllOrdersService from '@modules/orders/services/ShowAllOrdersService';
 import DeleteOrderService from '@modules/orders/services/DeleteOrderService';
 
-export default class CutlistController {
+export default class OrderController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const cutlistData = request.body;
+    const ordersData = request.body;
 
     const createOrderService = await container.resolve(CreateOrderService);
 
-    const cutlistCreated = await createOrderService.execute(cutlistData);
+    const orderCreated = await createOrderService.execute(ordersData);
 
-    return response.json(cutlistCreated);
+    return response.json(orderCreated);
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
     const showAllOrdersService = await container.resolve(ShowAllOrdersService);
 
-    const allCutlists = await showAllOrdersService.execute();
+    const allOrders = await showAllOrdersService.execute();
 
-    return response.json(allCutlists);
+    return response.json(allOrders);
   }
 
   public async remove(request: Request, response: Response): Promise<Response> {

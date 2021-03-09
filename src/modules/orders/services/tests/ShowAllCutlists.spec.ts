@@ -37,7 +37,7 @@ describe('Show All Orders', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createOrderService.execute({
+    const orderCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -65,8 +65,8 @@ describe('Show All Orders', () => {
       ],
     });
 
-    const allCutlists = await showAllOrdersService.execute();
+    const allOrders = await showAllOrdersService.execute();
 
-    await expect(allCutlists).toContain(cutlistCreated);
+    await expect(allOrders).toContain(orderCreated);
   });
 });

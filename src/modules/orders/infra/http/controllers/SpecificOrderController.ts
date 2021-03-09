@@ -11,8 +11,8 @@ export default class SpecificCutlistController {
       ShowSpecificOrderService,
     );
 
-    const specificCutlist = await showSpecificOrderService.execute(id);
+    const specificOrder = await showSpecificOrderService.execute(id);
 
-    return response.json(specificCutlist);
+    return response.json(specificOrder);
   }
 }

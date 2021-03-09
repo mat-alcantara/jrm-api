@@ -41,7 +41,7 @@ describe('Show specific orders', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createOrderService.execute({
+    const orderCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -69,11 +69,11 @@ describe('Show specific orders', () => {
       ],
     });
 
-    const specificCutlist = await showSpecificOrderService.execute(
-      cutlistCreated.id,
+    const specificOrder = await showSpecificOrderService.execute(
+      orderCreated.id,
     );
 
-    await expect(specificCutlist).toEqual(cutlistCreated);
+    await expect(specificOrder).toEqual(orderCreated);
   });
 
   it('Should not show a specific order if it do not exist', async () => {

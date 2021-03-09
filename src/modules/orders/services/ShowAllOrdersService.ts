@@ -8,13 +8,13 @@ import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 @injectable()
 export default class ShowAllOrdersService {
   constructor(
-    @inject('CutlistsRepository')
-    private cutlistsRepository: IOrdersRepository,
+    @inject('OrdersRepository')
+    private ordersRepository: IOrdersRepository,
   ) {}
 
   public async execute(): Promise<OrderEntity[]> {
-    const allCutlists = this.cutlistsRepository.showAllCutlists();
+    const allOrders = this.ordersRepository.showAllOrders();
 
-    return allCutlists;
+    return allOrders;
   }
 }
