@@ -15,7 +15,7 @@ import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
 import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
 
-@Entity('cutlists')
+@Entity('orders')
 export default class Material {
   @PrimaryGeneratedColumn('uuid')
   id: string;

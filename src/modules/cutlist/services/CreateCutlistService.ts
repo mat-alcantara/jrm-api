@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import CutlistEntity from '@modules/cutlist/infra/typeorm/entities/CutlistEntity';
+import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
 import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
 import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
@@ -22,7 +22,7 @@ export default class CreateMaterialService {
     private customersRepository: ICustomersRepository,
   ) {}
 
-  public async execute(cutlistData: ICreateCutlistDTO): Promise<CutlistEntity> {
+  public async execute(cutlistData: ICreateCutlistDTO): Promise<OrderEntity> {
     // Check if customer exist
     const { customerId } = cutlistData;
 

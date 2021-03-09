@@ -1,9 +1,9 @@
 import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
-import CutlistEntity from '@modules/cutlist/infra/typeorm/entities/CutlistEntity';
+import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
 export default interface IMaterialsRepository {
-  createCutlist(cutlistData: ICreateCutlistDTO): Promise<CutlistEntity>;
-  showAllCutlists(): Promise<CutlistEntity[]>;
-  findCutlistById(id: string): Promise<CutlistEntity | undefined>;
-  deleteCutlist(cutlist: CutlistEntity): Promise<void>;
+  createCutlist(cutlistData: ICreateCutlistDTO): Promise<OrderEntity>;
+  showAllCutlists(): Promise<OrderEntity[]>;
+  findCutlistById(id: string): Promise<OrderEntity | undefined>;
+  deleteCutlist(cutlist: OrderEntity): Promise<void>;
 }

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import CutlistEntity from '@modules/cutlist/infra/typeorm/entities/CutlistEntity';
+import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
 import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
 
@@ -12,7 +12,7 @@ export default class ShowAllCutlistsService {
     private cutlistsRepository: ICutlistRepository,
   ) {}
 
-  public async execute(): Promise<CutlistEntity[]> {
+  public async execute(): Promise<OrderEntity[]> {
     const allCutlists = this.cutlistsRepository.showAllCutlists();
 
     return allCutlists;

@@ -1,4 +1,4 @@
-import CutlistEntity from '@modules/cutlist/infra/typeorm/entities/CutlistEntity';
+import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
 import ICutlistsRepository from '@modules/cutlist/repositories/ICutlistsRepository';
 import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
@@ -6,7 +6,7 @@ import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
 import { v4 as uuid_v4 } from 'uuid';
 
 export default class FakeCutlistsRepository implements ICutlistsRepository {
-  private cutlistsCreated: CutlistEntity[];
+  private cutlistsCreated: OrderEntity[];
 
   constructor() {
     this.cutlistsCreated = [];
@@ -15,8 +15,8 @@ export default class FakeCutlistsRepository implements ICutlistsRepository {
   // Create a new cutlist
   public async createCutlist(
     cutlistData: ICreateCutlistDTO,
-  ): Promise<CutlistEntity> {
-    const cutlist = new CutlistEntity();
+  ): Promise<OrderEntity> {
+    const cutlist = new OrderEntity();
 
     Object.assign(cutlist, { id: uuid_v4() }, cutlistData);
 
@@ -25,15 +25,15 @@ export default class FakeCutlistsRepository implements ICutlistsRepository {
     return cutlist;
   }
 
-  public async showAllCutlists(): Promise<CutlistEntity[]> {
+  public async showAllCutlists(): Promise<OrderEntity[]> {
     return this.cutlistsCreated;
   }
 
-  public async findCutlistById(id: string): Promise<CutlistEntity | undefined> {
+  public async findCutlistById(id: string): Promise<OrderEntity | undefined> {
     return this.cutlistsCreated.find(cutlist => cutlist.id === id);
   }
 
-  public async deleteCutlist(cutlist: CutlistEntity): Promise<void> {
+  public async deleteCutlist(cutlist: OrderEntity): Promise<void> {
     await this.cutlistsCreated.splice(this.cutlistsCreated.indexOf(cutlist), 1);
   }
 }
