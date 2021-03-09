@@ -13,7 +13,7 @@ import AppError from '@shared/errors/AppError';
 import { v4 } from 'uuid';
 
 @injectable()
-export default class CreateMaterialService {
+export default class CreateOrderService {
   constructor(
     @inject('CutlistsRepository')
     private cutlistsRepository: ICutlistRepository,

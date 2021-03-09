@@ -1,6 +1,6 @@
-import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
+import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import ShowAllCutlists from '@modules/orders/services/ShowAllCutlistsService';
+import ShowAllOrdersService from '@modules/orders/services/ShowAllOrdersService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
@@ -12,19 +12,19 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
-let createCutlistService: CreateCutlistService;
-let showAllCutlists: ShowAllCutlists;
+let createOrderService: CreateOrderService;
+let showAllOrdersService: ShowAllOrdersService;
 
 describe('Show All Cutlists', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
     fakeCutlistsRepository = new FakeCutlistsRepository();
-    createCutlistService = new CreateCutlistService(
+    createOrderService = new CreateOrderService(
       fakeCutlistsRepository,
       fakeCustomersRepository,
     );
-    showAllCutlists = new ShowAllCutlists(fakeCutlistsRepository);
+    showAllOrdersService = new ShowAllOrdersService(fakeCutlistsRepository);
   });
 
   it('Should show all cutlists created', async () => {
@@ -37,7 +37,7 @@ describe('Show All Cutlists', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createCutlistService.execute({
+    const cutlistCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -65,7 +65,7 @@ describe('Show All Cutlists', () => {
       ],
     });
 
-    const allCutlists = await showAllCutlists.execute();
+    const allCutlists = await showAllOrdersService.execute();
 
     await expect(allCutlists).toContain(cutlistCreated);
   });

@@ -1,8 +1,8 @@
 import AppError from '@shared/errors/AppError';
 
-import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
+import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import DeleteCutlistService from '@modules/orders/services/DeleteCutlistService';
+import DeleteOrderService from '@modules/orders/services/DeleteOrderService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
@@ -14,19 +14,19 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
-let createCutlistService: CreateCutlistService;
-let deleteCutlistService: DeleteCutlistService;
+let createOrderService: CreateOrderService;
+let deleteOrderService: DeleteOrderService;
 
 describe('Show specific cutlist', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
     fakeCutlistsRepository = new FakeCutlistsRepository();
-    createCutlistService = new CreateCutlistService(
+    createOrderService = new CreateOrderService(
       fakeCutlistsRepository,
       fakeCustomersRepository,
     );
-    deleteCutlistService = new DeleteCutlistService(fakeCutlistsRepository);
+    deleteOrderService = new DeleteOrderService(fakeCutlistsRepository);
   });
 
   it('Should remove a specific cutlist', async () => {
@@ -41,7 +41,7 @@ describe('Show specific cutlist', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createCutlistService.execute({
+    const cutlistCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -69,13 +69,13 @@ describe('Show specific cutlist', () => {
       ],
     });
 
-    await deleteCutlistService.execute(cutlistCreated.id);
+    await deleteOrderService.execute(cutlistCreated.id);
 
     expect(spyFunction).toBeCalledWith(cutlistCreated);
   });
 
   it('Should not remove a specific cutlist if it do not exist', async () => {
-    expect(deleteCutlistService.execute('wrongId')).rejects.toBeInstanceOf(
+    expect(deleteOrderService.execute('wrongId')).rejects.toBeInstanceOf(
       AppError,
     );
   });

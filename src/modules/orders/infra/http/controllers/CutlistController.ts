@@ -1,25 +1,25 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
-import ShowAllCutlists from '@modules/orders/services/ShowAllCutlistsService';
-import DeleteCutlistService from '@modules/orders/services/DeleteCutlistService';
+import CreateOrderService from '@modules/orders/services/CreateOrderService';
+import ShowAllOrdersService from '@modules/orders/services/ShowAllOrdersService';
+import DeleteOrderService from '@modules/orders/services/DeleteOrderService';
 
 export default class CutlistController {
   public async create(request: Request, response: Response): Promise<Response> {
     const cutlistData = request.body;
 
-    const createCutlistService = await container.resolve(CreateCutlistService);
+    const createOrderService = await container.resolve(CreateOrderService);
 
-    const cutlistCreated = await createCutlistService.execute(cutlistData);
+    const cutlistCreated = await createOrderService.execute(cutlistData);
 
     return response.json(cutlistCreated);
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const showAllCutlists = await container.resolve(ShowAllCutlists);
+    const showAllOrdersService = await container.resolve(ShowAllOrdersService);
 
-    const allCutlists = await showAllCutlists.execute();
+    const allCutlists = await showAllOrdersService.execute();
 
     return response.json(allCutlists);
   }
@@ -27,9 +27,9 @@ export default class CutlistController {
   public async remove(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const deleteCutlistService = await container.resolve(DeleteCutlistService);
+    const deleteOrderService = await container.resolve(DeleteOrderService);
 
-    await deleteCutlistService.execute(id);
+    await deleteOrderService.execute(id);
 
     return response.json();
   }

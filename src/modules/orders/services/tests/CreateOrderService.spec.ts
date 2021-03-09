@@ -1,4 +1,4 @@
-import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
+import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
@@ -12,14 +12,14 @@ import AppError from '@shared/errors/AppError';
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
-let createCutlistService: CreateCutlistService;
+let createOrderService: CreateOrderService;
 
 describe('Create cutlist', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
     fakeCutlistsRepository = new FakeCutlistsRepository();
-    createCutlistService = new CreateCutlistService(
+    createOrderService = new CreateOrderService(
       fakeCutlistsRepository,
       fakeCustomersRepository,
     );
@@ -35,7 +35,7 @@ describe('Create cutlist', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createCutlistService.execute({
+    const cutlistCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -69,7 +69,7 @@ describe('Create cutlist', () => {
 
   it('Should not create a new cutlist if customer does not exist', async () => {
     await expect(
-      createCutlistService.execute({
+      createOrderService.execute({
         customerId: 'wrongId',
         orderStatus: OrderStatusEnumDTO.PRODUCAO,
         orderStore: OrderStoreEnumDTO.FRADE,

@@ -1,8 +1,8 @@
 import AppError from '@shared/errors/AppError';
 
-import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
+import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import ShowSpecificCutlistService from '@modules/orders/services/ShowSpecificCutlistService';
+import ShowSpecificOrderService from '@modules/orders/services/ShowSpecificOrderService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
@@ -14,19 +14,19 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
-let createCutlistService: CreateCutlistService;
-let showSpecificCutlistService: ShowSpecificCutlistService;
+let createOrderService: CreateOrderService;
+let showSpecificOrderService: ShowSpecificOrderService;
 
 describe('Show specific cutlist', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
     fakeCutlistsRepository = new FakeCutlistsRepository();
-    createCutlistService = new CreateCutlistService(
+    createOrderService = new CreateOrderService(
       fakeCutlistsRepository,
       fakeCustomersRepository,
     );
-    showSpecificCutlistService = new ShowSpecificCutlistService(
+    showSpecificOrderService = new ShowSpecificOrderService(
       fakeCutlistsRepository,
     );
   });
@@ -41,7 +41,7 @@ describe('Show specific cutlist', () => {
       state: 'Rio de Janeiro',
     });
 
-    const cutlistCreated = await createCutlistService.execute({
+    const cutlistCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
@@ -69,7 +69,7 @@ describe('Show specific cutlist', () => {
       ],
     });
 
-    const specificCutlist = await showSpecificCutlistService.execute(
+    const specificCutlist = await showSpecificOrderService.execute(
       cutlistCreated.id,
     );
 
@@ -78,7 +78,7 @@ describe('Show specific cutlist', () => {
 
   it('Should not show a specific cutlist if it do not exist', async () => {
     await expect(
-      showSpecificCutlistService.execute('wrongId'),
+      showSpecificOrderService.execute('wrongId'),
     ).rejects.toBeInstanceOf(AppError);
   });
 });
