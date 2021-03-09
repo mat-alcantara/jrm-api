@@ -3,7 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
 import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
-import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
+import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
 
 export default class CutlistsRepository implements ICutlistRepository {
   private ormRepository: Repository<OrderEntity>;
@@ -13,7 +13,7 @@ export default class CutlistsRepository implements ICutlistRepository {
   }
 
   public async createCutlist(
-    cutlistData: ICreateCutlistDTO,
+    cutlistData: ICreateOrderDTO,
   ): Promise<OrderEntity> {
     const cutlistCreated = await this.ormRepository.create(cutlistData);
 

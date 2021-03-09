@@ -3,7 +3,7 @@ import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
 import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
 import ICutlistDTO from '@modules/cutlist/dtos/ICutlistDTO';
 
-export default interface ICreateMaterialDTO {
+export default interface ICreateOrderDTO {
   customerId: string;
   orderStore: OrderStoreEnumDTO;
   paymentStatus: PaymentStatusEnumDTO;

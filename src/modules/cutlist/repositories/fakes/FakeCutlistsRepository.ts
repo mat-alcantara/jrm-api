@@ -1,7 +1,7 @@
 import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
 import ICutlistsRepository from '@modules/cutlist/repositories/ICutlistsRepository';
-import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
+import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 
@@ -14,7 +14,7 @@ export default class FakeCutlistsRepository implements ICutlistsRepository {
 
   // Create a new cutlist
   public async createCutlist(
-    cutlistData: ICreateCutlistDTO,
+    cutlistData: ICreateOrderDTO,
   ): Promise<OrderEntity> {
     const cutlist = new OrderEntity();
 

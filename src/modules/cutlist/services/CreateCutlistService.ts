@@ -4,7 +4,7 @@ import { inject, injectable } from 'tsyringe';
 
 import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
 
-import ICreateCutlistDTO from '@modules/cutlist/dtos/ICreateCutlistDTO';
+import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
 import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
 import ICustomersRepository from '@modules/customers/repositories/ICustomersRepository';
 
@@ -22,7 +22,7 @@ export default class CreateMaterialService {
     private customersRepository: ICustomersRepository,
   ) {}
 
-  public async execute(cutlistData: ICreateCutlistDTO): Promise<OrderEntity> {
+  public async execute(cutlistData: ICreateOrderDTO): Promise<OrderEntity> {
     // Check if customer exist
     const { customerId } = cutlistData;
 
