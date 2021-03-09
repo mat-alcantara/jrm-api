@@ -9,11 +9,11 @@ import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
 import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
 
-export default class CreateCutlist1614591204280 implements MigrationInterface {
+export default class CreateOrders1615251721442 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'cutlists',
+        name: 'orders',
         columns: [
           {
             name: 'id',
@@ -101,7 +101,7 @@ export default class CreateCutlist1614591204280 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'cutlists',
+      'orders',
       new TableForeignKey({
         name: 'custlistForeignKey',
         columnNames: ['customerId'],
@@ -114,6 +114,6 @@ export default class CreateCutlist1614591204280 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('cutlists');
+    await queryRunner.dropTable('orders');
   }
 }
