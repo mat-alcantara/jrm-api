@@ -2,10 +2,10 @@ import { getRepository, Repository } from 'typeorm';
 
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICutlistRepository from '@modules/orders/repositories/ICutlistsRepository';
+import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 
-export default class CutlistsRepository implements ICutlistRepository {
+export default class CutlistsRepository implements IOrdersRepository {
   private ormRepository: Repository<OrderEntity>;
 
   constructor() {

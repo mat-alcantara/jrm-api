@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICutlistRepository from '@modules/orders/repositories/ICutlistsRepository';
+import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 
 import AppError from '@shared/errors/AppError';
 
@@ -11,7 +11,7 @@ import AppError from '@shared/errors/AppError';
 export default class ShowSpecificOrderService {
   constructor(
     @inject('CutlistsRepository')
-    private cutlistsRepository: ICutlistRepository,
+    private cutlistsRepository: IOrdersRepository,
   ) {}
 
   public async execute(id: string): Promise<OrderEntity> {

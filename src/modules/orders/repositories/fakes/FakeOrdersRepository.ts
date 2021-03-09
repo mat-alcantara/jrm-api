@@ -1,11 +1,11 @@
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICutlistsRepository from '@modules/orders/repositories/ICutlistsRepository';
+import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 
-export default class FakeCutlistsRepository implements ICutlistsRepository {
+export default class FakeCutlistsRepository implements IOrdersRepository {
   private cutlistsCreated: OrderEntity[];
 
   constructor() {

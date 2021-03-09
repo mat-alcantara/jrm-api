@@ -5,7 +5,7 @@ import CreateCustomerService from '@modules/customers/services/CreateCustomerSer
 import DeleteOrderService from '@modules/orders/services/DeleteOrderService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
-import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
+import FakeOrdersRepository from '@modules/orders/repositories/fakes/FakeOrdersRepository';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -13,7 +13,7 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
-let fakeCutlistsRepository: FakeCutlistsRepository;
+let fakeOrdersRepository: FakeOrdersRepository;
 let createOrderService: CreateOrderService;
 let deleteOrderService: DeleteOrderService;
 
@@ -21,16 +21,16 @@ describe('Delete Orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
-    fakeCutlistsRepository = new FakeCutlistsRepository();
+    fakeOrdersRepository = new FakeOrdersRepository();
     createOrderService = new CreateOrderService(
-      fakeCutlistsRepository,
+      fakeOrdersRepository,
       fakeCustomersRepository,
     );
-    deleteOrderService = new DeleteOrderService(fakeCutlistsRepository);
+    deleteOrderService = new DeleteOrderService(fakeOrdersRepository);
   });
 
   it('Should remove a specific order', async () => {
-    const spyFunction = spyOn(fakeCutlistsRepository, 'deleteCutlist');
+    const spyFunction = spyOn(fakeOrdersRepository, 'deleteCutlist');
 
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',

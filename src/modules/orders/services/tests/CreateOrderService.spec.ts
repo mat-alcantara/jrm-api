@@ -1,5 +1,5 @@
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
-import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
+import FakeOrdersRepository from '@modules/orders/repositories/fakes/FakeOrdersRepository';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 
@@ -11,16 +11,16 @@ import AppError from '@shared/errors/AppError';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
-let fakeCutlistsRepository: FakeCutlistsRepository;
+let fakeOrdersRepository: FakeOrdersRepository;
 let createOrderService: CreateOrderService;
 
 describe('Create orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
-    fakeCutlistsRepository = new FakeCutlistsRepository();
+    fakeOrdersRepository = new FakeOrdersRepository();
     createOrderService = new CreateOrderService(
-      fakeCutlistsRepository,
+      fakeOrdersRepository,
       fakeCustomersRepository,
     );
   });

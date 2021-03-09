@@ -5,7 +5,7 @@ import CreateCustomerService from '@modules/customers/services/CreateCustomerSer
 import ShowSpecificOrderService from '@modules/orders/services/ShowSpecificOrderService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
-import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
+import FakeOrdersRepository from '@modules/orders/repositories/fakes/FakeOrdersRepository';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -13,7 +13,7 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
-let fakeCutlistsRepository: FakeCutlistsRepository;
+let fakeOrdersRepository: FakeOrdersRepository;
 let createOrderService: CreateOrderService;
 let showSpecificOrderService: ShowSpecificOrderService;
 
@@ -21,13 +21,13 @@ describe('Show specific orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
-    fakeCutlistsRepository = new FakeCutlistsRepository();
+    fakeOrdersRepository = new FakeOrdersRepository();
     createOrderService = new CreateOrderService(
-      fakeCutlistsRepository,
+      fakeOrdersRepository,
       fakeCustomersRepository,
     );
     showSpecificOrderService = new ShowSpecificOrderService(
-      fakeCutlistsRepository,
+      fakeOrdersRepository,
     );
   });
 
