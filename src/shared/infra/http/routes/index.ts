@@ -4,7 +4,7 @@ import usersRoutes from '@modules/users/infra/http/routes/users.routes';
 import authRoutes from '@modules/users/infra/http/routes/auth.routes';
 import customersRoutes from '@modules/customers/infra/http/routes/customers.routes';
 import materialsRoutes from '@modules/materials/infra/http/routes/materials.routes';
-import cutlistsRoutes from '@modules/cutlist/infra/http/routes/cutlists.routes';
+import cutlistsRoutes from '@modules/orders/infra/http/routes/cutlists.routes';
 
 const router = Router();
 

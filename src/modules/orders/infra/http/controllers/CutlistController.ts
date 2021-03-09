@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateCutlistService from '@modules/cutlist/services/CreateCutlistService';
-import ShowAllCutlists from '@modules/cutlist/services/ShowAllCutlistsService';
-import DeleteCutlistService from '@modules/cutlist/services/DeleteCutlistService';
+import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
+import ShowAllCutlists from '@modules/orders/services/ShowAllCutlistsService';
+import DeleteCutlistService from '@modules/orders/services/DeleteCutlistService';
 
 export default class CutlistController {
   public async create(request: Request, response: Response): Promise<Response> {

@@ -1,7 +1,7 @@
-import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
+import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICutlistsRepository from '@modules/cutlist/repositories/ICutlistsRepository';
-import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
+import ICutlistsRepository from '@modules/orders/repositories/ICutlistsRepository';
+import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 

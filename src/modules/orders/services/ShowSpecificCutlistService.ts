@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
+import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
+import ICutlistRepository from '@modules/orders/repositories/ICutlistsRepository';
 
 import AppError from '@shared/errors/AppError';
 

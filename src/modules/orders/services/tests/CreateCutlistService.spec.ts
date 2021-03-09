@@ -1,23 +1,20 @@
-import AppError from '@shared/errors/AppError';
-
-import CreateCutlistService from '@modules/cutlist/services/CreateCutlistService';
+import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
+import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import DeleteCutlistService from '@modules/cutlist/services/DeleteCutlistService';
-
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
-import FakeCutlistsRepository from '@modules/cutlist/repositories/fakes/FakeCutlistsRepository';
 
-import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
-import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
-import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
+import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
+import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
+import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
+
+import AppError from '@shared/errors/AppError';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
 let createCutlistService: CreateCutlistService;
-let deleteCutlistService: DeleteCutlistService;
 
-describe('Show specific cutlist', () => {
+describe('Create cutlist', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
@@ -26,12 +23,9 @@ describe('Show specific cutlist', () => {
       fakeCutlistsRepository,
       fakeCustomersRepository,
     );
-    deleteCutlistService = new DeleteCutlistService(fakeCutlistsRepository);
   });
 
-  it('Should remove a specific cutlist', async () => {
-    const spyFunction = spyOn(fakeCutlistsRepository, 'deleteCutlist');
-
+  it('Should create a new cutlist', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -69,14 +63,39 @@ describe('Show specific cutlist', () => {
       ],
     });
 
-    await deleteCutlistService.execute(cutlistCreated.id);
-
-    expect(spyFunction).toBeCalledWith(cutlistCreated);
+    await expect(cutlistCreated).toHaveProperty('id');
+    await expect(cutlistCreated.customerId).toEqual(customerCreated.id);
   });
 
-  it('Should not remove a specific cutlist if it do not exist', async () => {
-    expect(deleteCutlistService.execute('wrongId')).rejects.toBeInstanceOf(
-      AppError,
-    );
+  it('Should not create a new cutlist if customer does not exist', async () => {
+    await expect(
+      createCutlistService.execute({
+        customerId: 'wrongId',
+        orderStatus: OrderStatusEnumDTO.PRODUCAO,
+        orderStore: OrderStoreEnumDTO.FRADE,
+        paymentStatus: PaymentStatusEnumDTO.PARCIAL,
+        price: 215,
+        cutlist: [
+          {
+            id: '',
+            material: 'MDF 15mm Comum',
+            quantidade: 20,
+            side_a_size: 500,
+            side_b_size: 200,
+            side_a_border: 1,
+            side_b_border: 2,
+          },
+          {
+            id: '',
+            material: 'MDF 15mm Ultra',
+            quantidade: 20,
+            side_a_size: 800,
+            side_b_size: 400,
+            side_a_border: 0,
+            side_b_border: 2,
+          },
+        ],
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

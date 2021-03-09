@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
-import CutlistController from '@modules/cutlist/infra/http/controllers/CutlistController';
-import SpecificCutlistController from '@modules/cutlist/infra/http/controllers/SpecificCutlistController';
+import CutlistController from '@modules/orders/infra/http/controllers/CutlistController';
+import SpecificCutlistController from '@modules/orders/infra/http/controllers/SpecificCutlistController';
 
-import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
-import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
-import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
+import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
+import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
+import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 

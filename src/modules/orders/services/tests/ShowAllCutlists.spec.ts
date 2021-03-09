@@ -1,23 +1,21 @@
-import AppError from '@shared/errors/AppError';
-
-import CreateCutlistService from '@modules/cutlist/services/CreateCutlistService';
+import CreateCutlistService from '@modules/orders/services/CreateCutlistService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
-import ShowSpecificCutlistService from '@modules/cutlist/services/ShowSpecificCutlistService';
+import ShowAllCutlists from '@modules/orders/services/ShowAllCutlistsService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
-import FakeCutlistsRepository from '@modules/cutlist/repositories/fakes/FakeCutlistsRepository';
+import FakeCutlistsRepository from '@modules/orders/repositories/fakes/FakeCutlistsRepository';
 
-import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
-import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
-import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
+import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
+import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
+import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
 let fakeCutlistsRepository: FakeCutlistsRepository;
 let createCutlistService: CreateCutlistService;
-let showSpecificCutlistService: ShowSpecificCutlistService;
+let showAllCutlists: ShowAllCutlists;
 
-describe('Show specific cutlist', () => {
+describe('Show All Cutlists', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
@@ -26,12 +24,10 @@ describe('Show specific cutlist', () => {
       fakeCutlistsRepository,
       fakeCustomersRepository,
     );
-    showSpecificCutlistService = new ShowSpecificCutlistService(
-      fakeCutlistsRepository,
-    );
+    showAllCutlists = new ShowAllCutlists(fakeCutlistsRepository);
   });
 
-  it('Should show a specific cutlist', async () => {
+  it('Should show all cutlists created', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
@@ -69,16 +65,8 @@ describe('Show specific cutlist', () => {
       ],
     });
 
-    const specificCutlist = await showSpecificCutlistService.execute(
-      cutlistCreated.id,
-    );
+    const allCutlists = await showAllCutlists.execute();
 
-    await expect(specificCutlist).toEqual(cutlistCreated);
-  });
-
-  it('Should not show a specific cutlist if it do not exist', async () => {
-    await expect(
-      showSpecificCutlistService.execute('wrongId'),
-    ).rejects.toBeInstanceOf(AppError);
+    await expect(allCutlists).toContain(cutlistCreated);
   });
 });

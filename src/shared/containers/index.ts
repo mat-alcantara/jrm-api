@@ -12,8 +12,8 @@ import ICustomersRepository from '@modules/customers/repositories/ICustomersRepo
 import MaterialsRepository from '@modules/materials/infra/typeorm/repositories/MaterialsRepository';
 import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 
-import CutlistsRepository from '@modules/cutlist/infra/typeorm/repositories/CutlistsRepository';
-import ICutlistsRepository from '@modules/cutlist/repositories/ICutlistsRepository';
+import CutlistsRepository from '@modules/orders/infra/typeorm/repositories/CutlistsRepository';
+import ICutlistsRepository from '@modules/orders/repositories/ICutlistsRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',

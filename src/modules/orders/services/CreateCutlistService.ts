@@ -2,10 +2,10 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
+import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
-import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
+import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
+import ICutlistRepository from '@modules/orders/repositories/ICutlistsRepository';
 import ICustomersRepository from '@modules/customers/repositories/ICustomersRepository';
 
 import AppError from '@shared/errors/AppError';

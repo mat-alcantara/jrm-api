@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
+import ICutlistRepository from '@modules/orders/repositories/ICutlistsRepository';
 
 import AppError from '@shared/errors/AppError';
 

@@ -1,5 +1,5 @@
-import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
-import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
+import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
+import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
 export default interface IMaterialsRepository {
   createCutlist(cutlistData: ICreateOrderDTO): Promise<OrderEntity>;

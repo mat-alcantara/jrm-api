@@ -10,10 +10,10 @@ import {
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 
-import ICutlistDTO from '@modules/cutlist/dtos/ICutlistDTO';
-import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
-import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
-import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
+import ICutlistDTO from '@modules/orders/dtos/ICutlistDTO';
+import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
+import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
+import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 
 @Entity('orders')
 export default class Material {

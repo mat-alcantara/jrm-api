@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import ShowSpecificCutlistService from '@modules/cutlist/services/ShowSpecificCutlistService';
+import ShowSpecificCutlistService from '@modules/orders/services/ShowSpecificCutlistService';
 
 export default class SpecificCutlistController {
   public async show(request: Request, response: Response): Promise<Response> {

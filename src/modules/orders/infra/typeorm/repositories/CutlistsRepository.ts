@@ -1,9 +1,9 @@
 import { getRepository, Repository } from 'typeorm';
 
-import OrderEntity from '@modules/cutlist/infra/typeorm/entities/OrderEntity';
+import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-import ICutlistRepository from '@modules/cutlist/repositories/ICutlistsRepository';
-import ICreateOrderDTO from '@modules/cutlist/dtos/ICreateOrderDTO';
+import ICutlistRepository from '@modules/orders/repositories/ICutlistsRepository';
+import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 
 export default class CutlistsRepository implements ICutlistRepository {
   private ormRepository: Repository<OrderEntity>;

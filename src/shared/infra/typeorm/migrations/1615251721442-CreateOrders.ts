@@ -5,9 +5,9 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-import OrderStoreEnumDTO from '@modules/cutlist/dtos/OrderStoreEnumDTO';
-import PaymentStatusEnumDTO from '@modules/cutlist/dtos/PaymentStatusEnumDTO';
-import OrderStatusEnumDTO from '@modules/cutlist/dtos/OrderStatusEnumDTO';
+import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
+import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
+import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 
 export default class CreateOrders1615251721442 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
