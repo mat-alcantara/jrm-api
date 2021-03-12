@@ -5,6 +5,7 @@ import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import IUpdateCutlistDTO from '@modules/orders/dtos/IUpdateCutlistDTO';
+import ICutlistDTO from '@modules/orders/dtos/ICutlistDTO';
 
 export default class OrdersRepository implements IOrdersRepository {
   private ormRepository: Repository<OrderEntity>;
@@ -73,5 +74,16 @@ export default class OrdersRepository implements IOrdersRepository {
     }
 
     return orderToUpdate;
+  }
+
+  public async createCutlist(
+    order: OrderEntity,
+    cutlist: ICutlistDTO,
+  ): Promise<OrderEntity> {
+    order.cutlist.push(cutlist);
+
+    await this.ormRepository.save(order);
+
+    return order;
   }
 }
