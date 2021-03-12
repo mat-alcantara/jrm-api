@@ -40,6 +40,14 @@ export default class OrdersRepository implements IOrdersRepository {
     order: OrderEntity,
     cutlistId: string,
   ): Promise<void> {
-    console.log('repository');
+    const orderWithoutCutlist = order.cutlist.filter(
+      currentOrder => currentOrder.id !== cutlistId,
+    );
+
+    const newOrder = order;
+
+    newOrder.cutlist = orderWithoutCutlist;
+
+    await this.ormRepository.save({ ...order, ...newOrder }); // Update a cutlist
   }
 }
