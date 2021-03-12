@@ -1,4 +1,4 @@
-// import AppError from '@shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
@@ -78,5 +78,11 @@ describe('Delete Cutlist', () => {
       orderCreated,
       orderCreated.cutlist[0].id,
     );
+  });
+
+  it('Should not remove a specific cutlist if it does not exist', async () => {
+    await expect(
+      deleteCutlistService.execute('wrongId', 'wrongCutlistId'),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
