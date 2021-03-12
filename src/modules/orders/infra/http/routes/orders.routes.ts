@@ -3,6 +3,7 @@ import { celebrate, Segments, Joi } from 'celebrate';
 
 import OrderController from '@modules/orders/infra/http/controllers/OrderController';
 import SpecificOrderController from '@modules/orders/infra/http/controllers/SpecificOrderController';
+import CutlistController from '@modules/orders/infra/http/controllers/CutlistController';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -13,13 +14,14 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 const cutlistRoutes = Router();
 const orderController = new OrderController();
 const specificOrderController = new SpecificOrderController();
+const cutlistController = new CutlistController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
-cutlistRoutes.get('/cutlists', orderController.show);
-cutlistRoutes.get('/cutlists/:id', specificOrderController.show);
+cutlistRoutes.get('/orders', orderController.show);
+cutlistRoutes.get('/orders/:id', specificOrderController.show);
 cutlistRoutes.post(
-  '/cutlists',
+  '/orders',
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       customerId: Joi.string().required(),
@@ -64,6 +66,7 @@ cutlistRoutes.post(
   }),
   orderController.create,
 );
-cutlistRoutes.delete('/cutlists/:id', orderController.remove);
+cutlistRoutes.delete('/orders/:id', orderController.remove);
+cutlistRoutes.delete('/cutlists/:id', cutlistController.remove);
 
 export default cutlistRoutes;
