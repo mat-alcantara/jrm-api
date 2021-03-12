@@ -18,6 +18,7 @@ const cutlistController = new CutlistController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
+// Orders
 cutlistRoutes.get('/orders', orderController.show);
 cutlistRoutes.get('/orders/:id', specificOrderController.show);
 cutlistRoutes.post(
@@ -67,6 +68,25 @@ cutlistRoutes.post(
   orderController.create,
 );
 cutlistRoutes.delete('/orders/:id', orderController.remove);
+
+// Cutlists
 cutlistRoutes.delete('/cutlists/:id', cutlistController.remove);
+cutlistRoutes.put(
+  '/cutlists/:id',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      cutlistId: Joi.string(),
+      cutlistData: Joi.object().keys({
+        quantidade: Joi.number().integer(),
+        material: Joi.string(),
+        side_a_size: Joi.number().integer(),
+        side_b_size: Joi.number().integer(),
+        side_a_border: Joi.number().integer().valid(0, 1, 2),
+        side_b_border: Joi.number().integer().valid(0, 1, 2),
+      }),
+    }),
+  }),
+  cutlistController.update,
+);
 
 export default cutlistRoutes;

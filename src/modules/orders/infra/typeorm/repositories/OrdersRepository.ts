@@ -65,9 +65,13 @@ export default class OrdersRepository implements IOrdersRepository {
     if (cutlistToUpdate) {
       const cutlistUpdated = { ...cutlistToUpdate, ...cutlistData };
 
+      console.log(cutlistData, cutlistUpdated);
+
       orderToUpdate.cutlist[
         orderToUpdate.cutlist.indexOf(cutlistToUpdate)
       ] = cutlistUpdated;
+
+      console.log(orderToUpdate);
 
       await this.ormRepository.save(orderToUpdate);
     }
