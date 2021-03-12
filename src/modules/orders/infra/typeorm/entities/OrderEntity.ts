@@ -16,7 +16,7 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 
 @Entity('orders')
-export default class Material {
+export default class OrderEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

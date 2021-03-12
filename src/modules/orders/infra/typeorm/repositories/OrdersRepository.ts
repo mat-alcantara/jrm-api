@@ -35,4 +35,11 @@ export default class OrdersRepository implements IOrdersRepository {
   public async deleteOrder(order: OrderEntity): Promise<void> {
     await this.ormRepository.delete(order.id);
   }
+
+  public async deleteCutlist(
+    order: OrderEntity,
+    cutlistId: string,
+  ): Promise<void> {
+    console.log('repository');
+  }
 }

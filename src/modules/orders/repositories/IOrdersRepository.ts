@@ -1,7 +1,7 @@
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
-export default interface IMaterialsRepository {
+export default interface IOrdersRepository {
   createOrder(orderData: ICreateOrderDTO): Promise<OrderEntity>;
   showAllOrders(): Promise<OrderEntity[]>;
   findOrderById(id: string): Promise<OrderEntity | undefined>;

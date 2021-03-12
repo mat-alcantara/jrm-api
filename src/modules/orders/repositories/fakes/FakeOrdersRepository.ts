@@ -45,8 +45,9 @@ export default class FakeOrdersRepository implements IOrdersRepository {
 
     this.ordersCreated.splice(this.ordersCreated.indexOf(order), 1);
 
-    this.ordersCreated.push({ ...order, ...cutlistWithoutDeletedCutlist });
+    // eslint-disable-next-line no-param-reassign
+    order.cutlist = cutlistWithoutDeletedCutlist;
 
-    console.log({ ...order, ...cutlistWithoutDeletedCutlist });
+    this.ordersCreated.push(order);
   }
 }
