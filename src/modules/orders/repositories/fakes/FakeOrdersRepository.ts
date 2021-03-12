@@ -2,6 +2,7 @@ import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
+import IUpdateCutlistDTO from '@modules/orders/dtos/IUpdateCutlistDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
 
@@ -49,5 +50,28 @@ export default class FakeOrdersRepository implements IOrdersRepository {
     order.cutlist = cutlistWithoutDeletedCutlist;
 
     this.ordersCreated.push(order);
+  }
+
+  public async updateCutlist(
+    order: OrderEntity,
+    cutlistId: string,
+    cutlistData: IUpdateCutlistDTO,
+  ): Promise<OrderEntity> {
+    const cutlistToChange = order.cutlist.find(
+      currentCutlist => currentCutlist.id === cutlistId,
+    );
+
+    if (cutlistToChange) {
+      this.ordersCreated.splice(this.ordersCreated.indexOf(order), 1);
+
+      const changedCutlist = { ...cutlistToChange, ...cutlistData };
+
+      // eslint-disable-next-line no-param-reassign
+      order.cutlist[order.cutlist.indexOf(cutlistToChange)] = changedCutlist;
+
+      this.ordersCreated.push(order);
+    }
+
+    return order;
   }
 }
