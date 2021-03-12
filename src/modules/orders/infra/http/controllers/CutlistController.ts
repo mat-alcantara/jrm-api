@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import DeleteCutlistService from '@modules/orders/services/DeleteCutlistService';
+import UpdateCutlistService from '@modules/orders/services/UpdateCutlistService';
 
 export default class CutlistController {
   public async remove(request: Request, response: Response): Promise<Response> {
@@ -13,5 +14,20 @@ export default class CutlistController {
     await deleteCutlistService.execute(id, cutlistId);
 
     return response.json();
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const { cutlistId, cutlistData } = request.body;
+
+    const updateCutlistService = await container.resolve(UpdateCutlistService);
+
+    const orderWithCutlistUpdated = await updateCutlistService.execute(
+      id,
+      cutlistId,
+      cutlistData,
+    );
+
+    return response.json(orderWithCutlistUpdated);
   }
 }
