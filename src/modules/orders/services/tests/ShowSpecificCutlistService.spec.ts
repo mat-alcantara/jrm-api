@@ -6,6 +6,7 @@ import ShowSpecificOrderService from '@modules/orders/services/ShowSpecificOrder
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import FakeOrdersRepository from '@modules/orders/repositories/fakes/FakeOrdersRepository';
+import FakeDateProvider from '@shared/containers/providers/DateProvider/fakes/FakeDateProvider';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -16,15 +17,18 @@ let createCustomerService: CreateCustomerService;
 let fakeOrdersRepository: FakeOrdersRepository;
 let createOrderService: CreateOrderService;
 let showSpecificOrderService: ShowSpecificOrderService;
+let fakeDateProvider: FakeDateProvider;
 
 describe('Show specific orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
     fakeOrdersRepository = new FakeOrdersRepository();
+    fakeDateProvider = new FakeDateProvider();
     createOrderService = new CreateOrderService(
       fakeOrdersRepository,
       fakeCustomersRepository,
+      fakeDateProvider,
     );
     showSpecificOrderService = new ShowSpecificOrderService(
       fakeOrdersRepository,

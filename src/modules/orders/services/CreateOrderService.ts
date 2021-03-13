@@ -44,10 +44,8 @@ export default class CreateOrderService {
       orderData.cutlist[i].id = orderId;
     }
 
-    // Add / Format date
-    if (!orderData.deliveryDate) {
-      orderData.deliveryDate = this.dateProvider.defaultDate7Days();
-    }
+    // Add
+    orderData.deliveryDate = this.dateProvider.defaultDate7Days();
 
     // Create a new cutlist
     const orderCreated = await this.ordersRepository.createOrder(orderData);
