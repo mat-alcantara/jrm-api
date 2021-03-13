@@ -71,9 +71,9 @@ Material list
 [x] Edit a cutlist
 [x] Create a cutlist
 
-# [ ] Configure Secutiry
+# [x] Configure Secutiry
 
-[ ] Rate Limit
+[x] Rate Limit
 [x] Helmet
 
 # [x] Configure cors
