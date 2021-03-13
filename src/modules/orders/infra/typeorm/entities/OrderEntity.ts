@@ -48,6 +48,9 @@ export default class OrderEntity {
   @Column({ nullable: true })
   conclusionDate?: Date;
 
+  @Column()
+  deliveryDate: Date;
+
   @Column('float')
   price: number;
 

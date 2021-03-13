@@ -75,6 +75,11 @@ export default class CreateOrders1615251721442 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'deliveryDate',
+            type: 'date',
+            isNullable: false,
+          },
+          {
             name: 'conclusionDate',
             type: 'date',
             isNullable: true,

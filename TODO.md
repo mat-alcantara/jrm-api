@@ -61,7 +61,7 @@ Material list
 [x] Edit a material
 [x] Refatorar para criar um modulo de materiais
 
-# [ ] Order / Cutlist
+# [x] Order / Cutlist
 
 [x] Show all Orders
 [x] Show Order by id
