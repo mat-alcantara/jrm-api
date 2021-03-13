@@ -13,4 +13,5 @@ export default interface ICreateOrderDTO {
   conclusionDate?: Date;
   price: number;
   cutlist: ICutlistDTO[];
+  deliveryDate?: string;
 }

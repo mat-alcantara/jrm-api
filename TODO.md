@@ -78,4 +78,8 @@ Material list
 
 # [x] Configure cors
 
+# Adições ao projeto
+
+[ ] Data de entrega dos pedidos
+
 # [ ] Prepare to deploy

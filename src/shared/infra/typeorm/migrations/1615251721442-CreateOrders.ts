@@ -76,7 +76,7 @@ export default class CreateOrders1615251721442 implements MigrationInterface {
           },
           {
             name: 'deliveryDate',
-            type: 'date',
+            type: 'varchar',
             isNullable: false,
           },
           {

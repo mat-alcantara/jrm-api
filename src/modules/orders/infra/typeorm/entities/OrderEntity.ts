@@ -49,7 +49,7 @@ export default class OrderEntity {
   conclusionDate?: Date;
 
   @Column()
-  deliveryDate: Date;
+  deliveryDate: string;
 
   @Column('float')
   price: number;

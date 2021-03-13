@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
+import { format, addDays } from 'date-fns';
 
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
@@ -38,6 +39,14 @@ export default class CreateOrderService {
     for (let i = 0; i < orderData.cutlist.length; i += 1) {
       const orderId = v4();
       orderData.cutlist[i].id = orderId;
+    }
+
+    // Add / Format date
+    if (!orderData.deliveryDate) {
+      orderData.deliveryDate = format(
+        addDays(new Date(Date.now()), 7),
+        'dd/MM/yyyy',
+      );
     }
 
     // Create a new cutlist
