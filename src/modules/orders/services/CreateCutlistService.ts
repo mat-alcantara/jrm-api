@@ -22,6 +22,8 @@ export default class CreateOrderService {
     id: string,
     cutlistData: ICutlistDTO,
   ): Promise<OrderEntity> {
+    console.log(cutlistData);
+
     // Add id to cutlist
     cutlistData.id = v4();
 

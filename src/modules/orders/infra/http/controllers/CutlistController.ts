@@ -8,7 +8,7 @@ import CreateCutlistService from '@modules/orders/services/CreateCutlistService'
 export default class CutlistController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { cutlistData } = request.body;
+    const cutlistData = request.body;
 
     const createCutlistService = await container.resolve(CreateCutlistService);
 

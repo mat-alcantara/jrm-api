@@ -69,7 +69,7 @@ Material list
 [x] Add ID to each cutlist
 [x] Remove a cutlist
 [x] Edit a cutlist
-[ ] Create a cutlist
+[x] Create a cutlist
 
 # [ ] Configure Secutiry
 

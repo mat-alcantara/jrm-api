@@ -88,5 +88,19 @@ cutlistRoutes.put(
   }),
   cutlistController.update,
 );
+cutlistRoutes.post(
+  '/cutlists/:id',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      quantidade: Joi.number().integer().required(),
+      material: Joi.string().required(),
+      side_a_size: Joi.number().integer().required(),
+      side_b_size: Joi.number().integer().required(),
+      side_a_border: Joi.number().integer().required().valid(0, 1, 2),
+      side_b_border: Joi.number().integer().required().valid(0, 1, 2),
+    }),
+  }),
+  cutlistController.create,
+);
 
 export default cutlistRoutes;
