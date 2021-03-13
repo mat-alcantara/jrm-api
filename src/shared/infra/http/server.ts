@@ -16,6 +16,7 @@ import routes from '@shared/infra/http/routes'; // Import all routes
 
 import '@shared/infra/typeorm'; // Import database
 import '@shared/containers/index'; // Import dependency injection Containers
+import '@shared/infra/http/middlewares/RateLimiter';
 
 const server = express();
 
