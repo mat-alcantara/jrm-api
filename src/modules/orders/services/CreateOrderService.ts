@@ -1,13 +1,13 @@
 /* eslint-disable no-param-reassign */
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
-import { format, addDays } from 'date-fns';
 
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICustomersRepository from '@modules/customers/repositories/ICustomersRepository';
+import IDateProvider from '@shared/containers/providers/DateProvider/models/IDateProvider';
 
 import AppError from '@shared/errors/AppError';
 
@@ -21,6 +21,9 @@ export default class CreateOrderService {
 
     @inject('CustomersRepository')
     private customersRepository: ICustomersRepository,
+
+    @inject('DateProvider')
+    private dateProvider: IDateProvider,
   ) {}
 
   public async execute(orderData: ICreateOrderDTO): Promise<OrderEntity> {
@@ -43,10 +46,7 @@ export default class CreateOrderService {
 
     // Add / Format date
     if (!orderData.deliveryDate) {
-      orderData.deliveryDate = format(
-        addDays(new Date(Date.now()), 7),
-        'dd/MM/yyyy',
-      );
+      orderData.deliveryDate = this.dateProvider.defaultDate7Days();
     }
 
     // Create a new cutlist
