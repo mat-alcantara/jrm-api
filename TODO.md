@@ -80,6 +80,6 @@ Material list
 
 # Adições ao projeto
 
-[ ] Data de entrega dos pedidos
+[x] Data de entrega dos pedidos
 
 # [ ] Prepare to deploy

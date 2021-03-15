@@ -6,3 +6,4 @@ tmp/
 temp/
 coverage
 .env
+keys.md
