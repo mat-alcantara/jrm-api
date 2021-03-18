@@ -5,6 +5,7 @@
    "main": "index.js",
    "scripts": {
       "dev:server": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules -r tsconfig-paths/register src/shared/infra/http/server.ts",
+      "prod:server": "pm2 start dist/shared/infra/http/server.js",
       "test": "jest",
       "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
       "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
