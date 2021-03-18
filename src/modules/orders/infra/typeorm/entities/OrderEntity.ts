@@ -39,16 +39,16 @@ export default class OrderEntity {
   })
   orderStatus: OrderStatusEnumDTO;
 
-  @Column({ nullable: true })
+  @Column('varchar', { nullable: true })
   ps?: string;
 
-  @Column({ nullable: true })
+  @Column('varchar', { nullable: true })
   relatedProblems?: string;
 
-  @Column({ nullable: true })
+  @Column('date', { nullable: true })
   conclusionDate?: Date;
 
-  @Column()
+  @Column('varchar')
   deliveryDate: string;
 
   @Column('float')

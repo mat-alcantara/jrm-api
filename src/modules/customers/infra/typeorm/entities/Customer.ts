@@ -11,22 +11,22 @@ export default class Customer {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column('varchar')
   name: string;
 
   @Column('varchar', { array: true })
   telephone: string[];
 
-  @Column({ nullable: true })
+  @Column('varchar', { nullable: true })
   email?: string;
 
-  @Column()
+  @Column('varchar')
   area: string;
 
-  @Column()
+  @Column('varchar')
   city: string;
 
-  @Column()
+  @Column('varchar')
   state: string;
 
   @CreateDateColumn()

@@ -11,6 +11,8 @@ import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 
 export default class CreateOrders1615251721442 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+
     await queryRunner.createTable(
       new Table({
         name: 'orders',

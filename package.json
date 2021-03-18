@@ -6,13 +6,19 @@
    "scripts": {
       "dev:server": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules -r tsconfig-paths/register src/shared/infra/http/server.ts",
       "test": "jest",
-      "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-      "start": "ts-node src/index.ts"
+      "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
+      "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
    },
    "keywords": [],
    "author": "",
    "license": "ISC",
    "devDependencies": {
+      "@babel/cli": "^7.13.10",
+      "@babel/core": "^7.13.10",
+      "@babel/node": "^7.13.10",
+      "@babel/plugin-proposal-decorators": "^7.13.5",
+      "@babel/preset-env": "^7.13.10",
+      "@babel/preset-typescript": "^7.13.0",
       "@types/bcryptjs": "^2.4.2",
       "@types/cors": "^2.8.10",
       "@types/express": "^4.17.11",
@@ -22,6 +28,7 @@
       "@types/node": "^8.0.29",
       "@typescript-eslint/eslint-plugin": "^4.15.0",
       "@typescript-eslint/parser": "^4.15.0",
+      "babel-plugin-module-resolver": "^4.1.0",
       "eslint": "^7.19.0",
       "eslint-config-airbnb-base": "^14.2.1",
       "eslint-config-prettier": "^7.2.0",
