@@ -15,6 +15,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const routes = (0, _express.Router)();
 const userController = new _UserController.default();
+routes.get('/test', (req, res) => {
+  res.send('Se você chegou até essa mensagem, significa que a aplicação JRM está online e funcionando corretamente.');
+});
 routes.post('/users', (0, _celebrate.celebrate)({
   [_celebrate.Segments.BODY]: _celebrate.Joi.object().keys({
     name: _celebrate.Joi.string().required(),
