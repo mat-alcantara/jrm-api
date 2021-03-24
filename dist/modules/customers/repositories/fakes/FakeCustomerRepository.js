@@ -13,6 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 class FakeCustomerRepository {
   constructor() {
+    this.customersCreated = void 0;
     this.customersCreated = [];
   } // Create a new Customer
 

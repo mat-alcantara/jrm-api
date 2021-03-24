@@ -7,3 +7,4 @@ temp/
 coverage
 .env
 keys.md
+dist

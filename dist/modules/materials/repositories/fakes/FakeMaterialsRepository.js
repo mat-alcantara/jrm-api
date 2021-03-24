@@ -13,6 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 class FakeMaterialsRepository {
   constructor() {
+    this.materialsCreated = void 0;
     this.materialsCreated = [];
   } // Create a new material
 

@@ -12,9 +12,11 @@ var _uuid = require("uuid");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class FakeUsersRepository {
-  // Array containing all users created
-  usersCreated = []; // Create a new User
+  constructor() {
+    this.usersCreated = [];
+  }
 
+  // Create a new User
   async create(userData) {
     const user = new _User.default();
     Object.assign(user, {

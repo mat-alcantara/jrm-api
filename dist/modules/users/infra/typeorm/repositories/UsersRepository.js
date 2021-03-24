@@ -14,6 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 class UsersRepository {
   // User Repository
   constructor() {
+    this.ormRepository = void 0;
     this.ormRepository = (0, _typeorm.getRepository)(_User.default);
   } // Method used to create a new User in database
 

@@ -13,6 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 class FakeOrdersRepository {
   constructor() {
+    this.ordersCreated = void 0;
     this.ordersCreated = [];
   } // Create a new cutlist
 

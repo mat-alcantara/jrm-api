@@ -13,6 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 class CustomerRepository {
   constructor() {
+    this.ormRepository = void 0;
     this.ormRepository = (0, _typeorm.getRepository)(_Customer.default);
   }
 

@@ -11,11 +11,15 @@ var _tsyringe = require("tsyringe");
 
 var _AppError = _interopRequireDefault(require("../../../shared/errors/AppError"));
 
-var _dec, _class;
+var _ICustomersRepository = _interopRequireDefault(require("../repositories/ICustomersRepository"));
+
+var _dec, _dec2, _dec3, _dec4, _class;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ShowAllCustomersService = (_dec = (0, _tsyringe.injectable)(), _dec(_class = class ShowAllCustomersService {
+let ShowAllCustomersService = (_dec = (0, _tsyringe.injectable)(), _dec2 = function (target, key) {
+  return (0, _tsyringe.inject)('CustomersRepository')(target, undefined, 0);
+}, _dec3 = Reflect.metadata("design:type", Function), _dec4 = Reflect.metadata("design:paramtypes", [typeof _ICustomersRepository.default === "undefined" ? Object : _ICustomersRepository.default]), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = class ShowAllCustomersService {
   constructor(customersRepository) {
     this.customersRepository = customersRepository;
   }
@@ -30,5 +34,5 @@ let ShowAllCustomersService = (_dec = (0, _tsyringe.injectable)(), _dec(_class =
     return specificCustomer;
   }
 
-}) || _class);
+}) || _class) || _class) || _class) || _class);
 exports.default = ShowAllCustomersService;

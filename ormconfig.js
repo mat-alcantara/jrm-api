@@ -1,6 +1,7 @@
 require('dotenv/config');
 
 const rootDir = process.env.NODE_ENV === 'development' ? 'src' : 'dist';
+const fileType = process.env.NODE_ENV === 'development' ? 'ts' : 'js';
 
 module.exports = {
   type: 'postgres',
@@ -11,10 +12,10 @@ module.exports = {
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [`${rootDir}/modules/**/infra/typeorm/entities/*.ts`],
-  migrations: [`${rootDir}/shared/infra/typeorm/migrations/*.ts`],
+  entities: [`${rootDir}/modules/**/infra/typeorm/entities/*.${fileType}`],
+  migrations: [`${rootDir}/shared/infra/typeorm/migrations/*.${fileType}`],
   cli: {
-    entitiesDir: 'src/modules/**/infra/typeorm/entities',
+    entitiesDir: `src/modules/**/infra/typeorm/entities`,
     migrationsDir: 'src/shared/infra/typeorm/migrations',
   },
 };
