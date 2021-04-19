@@ -21,6 +21,9 @@ export default class Customer {
   email?: string;
 
   @Column('varchar')
+  street: string;
+
+  @Column('varchar')
   area: string;
 
   @Column('varchar')
