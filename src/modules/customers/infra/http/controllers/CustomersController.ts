@@ -21,12 +21,13 @@ export default class CustomersController {
     // Load CreateCustomersService with dependency injection
     const createCustomerService = container.resolve(CreateCustomerService);
 
-    const { name, email, telephone, area, city, state } = request.body;
+    const { name, email, telephone, street, area, city, state } = request.body;
 
     const customerCreated = await createCustomerService.execute({
       name,
       email,
       telephone,
+      street,
       area,
       city,
       state,

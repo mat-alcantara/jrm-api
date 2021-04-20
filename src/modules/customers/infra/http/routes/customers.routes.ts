@@ -23,6 +23,7 @@ customersRoutes.post(
       name: Joi.string().required(),
       email: Joi.string(),
       telephone: Joi.array().items(Joi.string()),
+      street: Joi.string().required(),
       area: Joi.string().required(),
       city: Joi.string().required(),
       state: Joi.string().required(),
