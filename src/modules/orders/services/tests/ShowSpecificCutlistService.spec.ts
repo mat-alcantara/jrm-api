@@ -43,6 +43,7 @@ describe('Show specific orders', () => {
       telephone: ['24-999710064', '24-999656973'],
       city: 'Angra dos Reis',
       state: 'Rio de Janeiro',
+      street: 'Travessa dos Coqueiros',
     });
 
     const orderCreated = await createOrderService.execute({

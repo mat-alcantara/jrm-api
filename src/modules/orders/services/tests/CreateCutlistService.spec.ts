@@ -37,6 +37,8 @@ describe('Create orders', () => {
       name: 'Mateus',
       email: 'mateus@mateus.com',
       area: 'Frade',
+      street: 'Travessa dos Coqueiros',
+
       telephone: ['24-999710064', '24-999656973'],
       city: 'Angra dos Reis',
       state: 'Rio de Janeiro',

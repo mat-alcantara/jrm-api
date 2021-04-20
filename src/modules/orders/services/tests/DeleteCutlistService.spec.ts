@@ -36,6 +36,8 @@ describe('Delete Cutlist', () => {
   it('Should remove a specific cutlist', async () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
+      street: 'Travessa dos Coqueiros',
+
       email: 'mateus@mateus.com',
       area: 'Frade',
       telephone: ['24-999710064', '24-999656973'],

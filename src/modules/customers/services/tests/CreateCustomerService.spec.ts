@@ -20,6 +20,7 @@ describe('Create Customers', () => {
     const customerCreated = await createCustomerService.execute({
       name: 'Mateus',
       email: 'mateus@mateus.com',
+      street: 'Travessa dos Coqueiros',
       area: 'Frade',
       telephone: ['24-999710064', '24-999656973'],
       city: 'Angra dos Reis',
