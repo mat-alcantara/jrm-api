@@ -43,7 +43,6 @@ export default class CreateOrders1615251721442 implements MigrationInterface {
             name: 'paymentStatus',
             type: 'enum',
             enum: [
-              PaymentStatusEnumDTO.ORCAMENTO,
               PaymentStatusEnumDTO.PAGO,
               PaymentStatusEnumDTO.PARCIAL,
               PaymentStatusEnumDTO.RECEBER,
@@ -54,6 +53,7 @@ export default class CreateOrders1615251721442 implements MigrationInterface {
             name: 'orderStatus',
             type: 'enum',
             enum: [
+              OrderStatusEnumDTO.ORCAMENTO,
               OrderStatusEnumDTO.ENTREGUE,
               OrderStatusEnumDTO.LIBERADO,
               OrderStatusEnumDTO.PRODUCAO,
