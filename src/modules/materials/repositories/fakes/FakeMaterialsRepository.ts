@@ -27,12 +27,9 @@ export default class FakeMaterialsRepository implements IMaterialsRepository {
   }
 
   // Find a material by name and thickness and return if it exists
-  public async findByNameAndThickness(
-    name: string,
-    thickness: number,
-  ): Promise<boolean> {
+  public async findByName(name: string): Promise<boolean> {
     const doesMaterialExists = this.materialsCreated.find(
-      material => material.name === name && material.thickness === thickness,
+      material => material.name === name,
     );
 
     return !!doesMaterialExists; // Return the response as a boolean

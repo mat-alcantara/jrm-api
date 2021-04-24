@@ -1,6 +1,6 @@
 export default interface IUpdateMaterialDTO {
   name?: string;
-  thickness?: number;
+  price?: number;
   width?: number;
   height?: number;
 }

@@ -4,7 +4,7 @@ import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEn
 
 export default interface IMaterialsRepository {
   createMaterial(materialData: ICreateMaterialDTO): Promise<MaterialEntity>;
-  findByNameAndThickness(name: string, thickness: number): Promise<boolean>;
+  findByName(name: string): Promise<boolean>;
   showAllMaterials(): Promise<MaterialEntity[]>;
   findMaterialById(id: string): Promise<MaterialEntity | undefined>;
   removeById(id: string): Promise<void>;

@@ -21,12 +21,9 @@ export default class MaterialsRepository implements IMaterialsRepository {
     return material;
   }
 
-  public async findByNameAndThickness(
-    name: string,
-    thickness: number,
-  ): Promise<boolean> {
+  public async findByName(name: string): Promise<boolean> {
     const doesMaterialExists = await this.ormRepository.findOne({
-      where: { name, thickness },
+      where: { name },
     });
 
     return !!doesMaterialExists;

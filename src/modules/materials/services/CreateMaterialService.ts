@@ -18,12 +18,9 @@ export default class CreateMaterialService {
   public async execute(
     materialData: ICreateMaterialDTO,
   ): Promise<MaterialEntity> {
-    const { name, thickness } = materialData;
+    const { name } = materialData;
 
-    const doesMaterialExist = await this.materialsRepository.findByNameAndThickness(
-      name,
-      thickness,
-    );
+    const doesMaterialExist = await this.materialsRepository.findByName(name);
 
     if (doesMaterialExist) {
       throw new AppError('Material already exist', 404);
