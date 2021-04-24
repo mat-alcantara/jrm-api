@@ -36,7 +36,7 @@ materialRoutes.put(
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string(),
-      thickness: Joi.number().integer(),
+      price: Joi.number(),
       width: Joi.number().integer(),
       height: Joi.number().integer(),
     }),
