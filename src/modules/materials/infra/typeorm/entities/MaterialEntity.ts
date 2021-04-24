@@ -14,8 +14,8 @@ export default class Material {
   @Column('varchar')
   name: string;
 
-  @Column('int')
-  thickness: number;
+  @Column('float')
+  price: number;
 
   @Column('int')
   width: number;
