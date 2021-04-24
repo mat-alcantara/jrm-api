@@ -50,6 +50,7 @@ cutlistRoutes.post(
           OrderStoreEnumDTO.SAO_JOAO,
         ),
       ps: Joi.string(),
+      seller: Joi.string().required(),
       relatedProblems: Joi.string(),
       conclusionDate: Joi.date(),
       price: Joi.number(),

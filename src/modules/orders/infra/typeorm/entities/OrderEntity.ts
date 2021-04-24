@@ -39,6 +39,9 @@ export default class OrderEntity {
   })
   orderStatus: OrderStatusEnumDTO;
 
+  @Column('varchar')
+  seller: string;
+
   @Column('varchar', { nullable: true })
   ps?: string;
 
