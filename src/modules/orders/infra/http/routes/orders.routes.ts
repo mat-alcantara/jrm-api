@@ -29,7 +29,6 @@ cutlistRoutes.post(
       paymentStatus: Joi.string()
         .required()
         .valid(
-          PaymentStatusEnumDTO.ORCAMENTO,
           PaymentStatusEnumDTO.PAGO,
           PaymentStatusEnumDTO.PARCIAL,
           PaymentStatusEnumDTO.RECEBER,
@@ -41,6 +40,7 @@ cutlistRoutes.post(
           OrderStatusEnumDTO.LIBERADO,
           OrderStatusEnumDTO.PRODUCAO,
           OrderStatusEnumDTO.TRANSPORTADO,
+          OrderStatusEnumDTO.ORCAMENTO,
         ),
       orderStore: Joi.string()
         .required()
