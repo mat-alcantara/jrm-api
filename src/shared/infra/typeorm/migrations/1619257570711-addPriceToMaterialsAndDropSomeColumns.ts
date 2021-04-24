@@ -6,7 +6,7 @@ export default class addPriceToMaterialsAndDropSomeColumns1619257570711
     await queryRunner.dropColumn('materials', 'thickness');
 
     await queryRunner.addColumn(
-      'orders',
+      'materials',
       new TableColumn({
         name: 'price',
         type: 'float',
@@ -16,7 +16,7 @@ export default class addPriceToMaterialsAndDropSomeColumns1619257570711
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn('orders', 'price');
+    await queryRunner.dropColumn('materials', 'price');
 
     await queryRunner.addColumn(
       'materials',
