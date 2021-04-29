@@ -79,7 +79,7 @@ cutlistRoutes.put(
       cutlistId: Joi.string(),
       cutlistData: Joi.object().keys({
         quantidade: Joi.number().integer(),
-        material: Joi.string(),
+        material_id: Joi.string(),
         side_a_size: Joi.number().integer(),
         side_b_size: Joi.number().integer(),
         side_a_border: Joi.number().integer().valid(0, 1, 2),
@@ -94,7 +94,7 @@ cutlistRoutes.post(
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       quantidade: Joi.number().integer().required(),
-      material: Joi.string().required(),
+      material_id: Joi.string().required(),
       side_a_size: Joi.number().integer().required(),
       side_b_size: Joi.number().integer().required(),
       side_a_border: Joi.number().integer().required().valid(0, 1, 2),
