@@ -56,7 +56,7 @@ cutlistRoutes.post(
       price: Joi.number(),
       cutlist: Joi.array().items(
         Joi.object().keys({
-          material: Joi.string().required(),
+          material_id: Joi.string().required(),
           quantidade: Joi.number().integer().required(),
           side_a_size: Joi.number().integer().required(),
           side_b_size: Joi.number().integer().required(),
