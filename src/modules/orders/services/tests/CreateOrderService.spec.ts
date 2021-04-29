@@ -2,6 +2,8 @@ import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import FakeOrdersRepository from '@modules/orders/repositories/fakes/FakeOrdersRepository';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
+import CreateMaterialService from '@modules/materials/services/CreateMaterialService';
+import FakeMaterialsRepository from '@modules/materials/repositories/fakes/FakeMaterialsRepository';
 import FakeDateProvider from '@shared/containers/providers/DateProvider/fakes/FakeDateProvider';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
@@ -15,16 +17,24 @@ let createCustomerService: CreateCustomerService;
 let fakeOrdersRepository: FakeOrdersRepository;
 let createOrderService: CreateOrderService;
 let fakeDateProvider: FakeDateProvider;
+let fakeMaterialsRepository: FakeMaterialsRepository;
+let createMaterialService: CreateMaterialService;
 
 describe('Create orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
-    fakeOrdersRepository = new FakeOrdersRepository();
+
     fakeDateProvider = new FakeDateProvider();
+
+    fakeMaterialsRepository = new FakeMaterialsRepository();
+    createMaterialService = new CreateMaterialService(fakeMaterialsRepository);
+
+    fakeOrdersRepository = new FakeOrdersRepository();
     createOrderService = new CreateOrderService(
       fakeOrdersRepository,
       fakeCustomersRepository,
+      fakeMaterialsRepository,
       fakeDateProvider,
     );
   });
@@ -41,6 +51,13 @@ describe('Create orders', () => {
       state: 'Rio de Janeiro',
     });
 
+    const materialCreated = await createMaterialService.execute({
+      name: 'MDF 15mm Comum',
+      price: 300,
+      height: 2750,
+      width: 1850,
+    });
+
     const orderCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
@@ -50,7 +67,7 @@ describe('Create orders', () => {
       cutlist: [
         {
           id: '',
-          material: 'MDF 15mm Comum',
+          material_id: materialCreated.id,
           quantidade: 20,
           side_a_size: 500,
           side_b_size: 200,
@@ -59,7 +76,7 @@ describe('Create orders', () => {
         },
         {
           id: '',
-          material: 'MDF 15mm Ultra',
+          material_id: materialCreated.id,
           quantidade: 20,
           side_a_size: 800,
           side_b_size: 400,
@@ -84,7 +101,7 @@ describe('Create orders', () => {
         cutlist: [
           {
             id: '',
-            material: 'MDF 15mm Comum',
+            material_id: 'wrongId',
             quantidade: 20,
             side_a_size: 500,
             side_b_size: 200,
@@ -93,7 +110,7 @@ describe('Create orders', () => {
           },
           {
             id: '',
-            material: 'MDF 15mm Ultra',
+            material_id: 'wrongId',
             quantidade: 20,
             side_a_size: 800,
             side_b_size: 400,

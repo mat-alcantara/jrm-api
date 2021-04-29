@@ -5,8 +5,10 @@ import { inject, injectable } from 'tsyringe';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
+
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICustomersRepository from '@modules/customers/repositories/ICustomersRepository';
+import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 import IDateProvider from '@shared/containers/providers/DateProvider/models/IDateProvider';
 
 import AppError from '@shared/errors/AppError';
@@ -21,6 +23,9 @@ export default class CreateOrderService {
 
     @inject('CustomersRepository')
     private customersRepository: ICustomersRepository,
+
+    @inject('MaterialsRepository')
+    private materialsRepository: IMaterialsRepository,
 
     @inject('DateProvider')
     private dateProvider: IDateProvider,
@@ -38,8 +43,18 @@ export default class CreateOrderService {
       throw new AppError('Customer does not exist', 404);
     }
 
-    // Add id to every json file
+    // Check if material exist and add id to every json file
     for (let i = 0; i < orderData.cutlist.length; i += 1) {
+      orderData.cutlist.forEach(async cutlist => {
+        const doesMaterialExist = await this.materialsRepository.findMaterialById(
+          cutlist.material_id,
+        );
+
+        if (!doesMaterialExist) {
+          throw new AppError('There is a invalid material on the order', 404);
+        }
+      });
+
       const orderId = v4();
       orderData.cutlist[i].id = orderId;
     }

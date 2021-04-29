@@ -18,14 +18,14 @@ describe('Show all materials', () => {
   it('Should show all materials', async () => {
     const firstMaterialCreated = await createMaterialService.execute({
       name: 'MDF COMUM',
-      thickness: 15,
+      price: 150,
       width: 2750,
       height: 1850,
     });
 
     const secondMaterialCreatedawait = await createMaterialService.execute({
       name: 'MDF Ultra',
-      thickness: 15,
+      price: 150,
       width: 2750,
       height: 1850,
     });

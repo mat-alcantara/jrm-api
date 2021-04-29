@@ -20,7 +20,7 @@ describe('Delete Material', () => {
 
     const materialCreated = await createMaterialService.execute({
       name: 'MDF COMUM',
-      thickness: 15,
+      price: 150,
       width: 2750,
       height: 1850,
     });

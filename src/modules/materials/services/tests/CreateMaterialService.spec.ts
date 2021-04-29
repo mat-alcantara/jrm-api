@@ -15,7 +15,7 @@ describe('Create material', () => {
   it('Should create a new material', async () => {
     const materialCreated = await createMaterialService.execute({
       name: 'MDF COMUM',
-      thickness: 15,
+      price: 150,
       width: 2750,
       height: 1850,
     });
@@ -26,7 +26,7 @@ describe('Create material', () => {
   it('Should not create a new material if it already exist', async () => {
     await createMaterialService.execute({
       name: 'MDF COMUM',
-      thickness: 15,
+      price: 150,
       width: 2750,
       height: 1850,
     });
@@ -34,7 +34,7 @@ describe('Create material', () => {
     await expect(
       createMaterialService.execute({
         name: 'MDF COMUM',
-        thickness: 15,
+        price: 150,
         width: 2750,
         height: 1850,
       }),

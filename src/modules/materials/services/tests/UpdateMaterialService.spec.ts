@@ -18,7 +18,7 @@ describe('Update Material', () => {
   it('Should update a material', async () => {
     const materialCreated = await createMaterialService.execute({
       name: 'MDF COMUM',
-      thickness: 15,
+      price: 150,
       width: 2750,
       height: 1850,
     });
@@ -26,7 +26,7 @@ describe('Update Material', () => {
     const materialUpdated = await updateMaterialService.execute(
       materialCreated.id,
       {
-        thickness: 30,
+        price: 1590,
       },
     );
 
@@ -36,7 +36,7 @@ describe('Update Material', () => {
   it('Should not update a material if it does not exist', async () => {
     await expect(
       updateMaterialService.execute('wrongId', {
-        thickness: 30,
+        price: 150,
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

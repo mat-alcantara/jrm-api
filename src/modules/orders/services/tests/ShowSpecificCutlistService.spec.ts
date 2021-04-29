@@ -3,10 +3,12 @@ import AppError from '@shared/errors/AppError';
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import CreateCustomerService from '@modules/customers/services/CreateCustomerService';
 import ShowSpecificOrderService from '@modules/orders/services/ShowSpecificOrderService';
+import CreateMaterialService from '@modules/materials/services/CreateMaterialService';
 
 import FakeCustomersRepository from '@modules/customers/repositories/fakes/FakeCustomerRepository';
 import FakeOrdersRepository from '@modules/orders/repositories/fakes/FakeOrdersRepository';
 import FakeDateProvider from '@shared/containers/providers/DateProvider/fakes/FakeDateProvider';
+import FakeMaterialsRepository from '@modules/materials/repositories/fakes/FakeMaterialsRepository';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -14,20 +16,32 @@ import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
+
 let fakeOrdersRepository: FakeOrdersRepository;
 let createOrderService: CreateOrderService;
+
 let showSpecificOrderService: ShowSpecificOrderService;
+
+let createMaterialService: CreateMaterialService;
+let fakeMaterialsRepository: FakeMaterialsRepository;
+
 let fakeDateProvider: FakeDateProvider;
 
 describe('Show specific orders', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomerService = new CreateCustomerService(fakeCustomersRepository);
-    fakeOrdersRepository = new FakeOrdersRepository();
+
     fakeDateProvider = new FakeDateProvider();
+
+    fakeMaterialsRepository = new FakeMaterialsRepository();
+    createMaterialService = new CreateMaterialService(fakeMaterialsRepository);
+
+    fakeOrdersRepository = new FakeOrdersRepository();
     createOrderService = new CreateOrderService(
       fakeOrdersRepository,
       fakeCustomersRepository,
+      fakeMaterialsRepository,
       fakeDateProvider,
     );
     showSpecificOrderService = new ShowSpecificOrderService(
@@ -46,6 +60,13 @@ describe('Show specific orders', () => {
       street: 'Travessa dos Coqueiros',
     });
 
+    const materialCreated = await createMaterialService.execute({
+      name: 'MDF 15mm Comum',
+      height: 1200,
+      width: 1400,
+      price: 200,
+    });
+
     const orderCreated = await createOrderService.execute({
       customerId: customerCreated.id,
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
@@ -55,7 +76,7 @@ describe('Show specific orders', () => {
       cutlist: [
         {
           id: '',
-          material: 'MDF 15mm Comum',
+          material_id: materialCreated.id,
           quantidade: 20,
           side_a_size: 500,
           side_b_size: 200,
@@ -64,7 +85,7 @@ describe('Show specific orders', () => {
         },
         {
           id: '',
-          material: 'MDF 15mm Ultra',
+          material_id: materialCreated.id,
           quantidade: 20,
           side_a_size: 800,
           side_b_size: 400,
