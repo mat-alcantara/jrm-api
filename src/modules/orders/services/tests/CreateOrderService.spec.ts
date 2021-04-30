@@ -63,7 +63,7 @@ describe('Create orders', () => {
       orderStatus: OrderStatusEnumDTO.PRODUCAO,
       orderStore: OrderStoreEnumDTO.FRADE,
       paymentStatus: PaymentStatusEnumDTO.PARCIAL,
-
+      price: 215,
       cutlist: [
         {
           id: '',

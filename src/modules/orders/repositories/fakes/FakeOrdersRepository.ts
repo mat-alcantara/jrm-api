@@ -3,6 +3,7 @@ import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import IUpdateCutlistDTO from '@modules/orders/dtos/IUpdateCutlistDTO';
+import IUpdateOrderDTO from '@modules/orders/dtos/IUpdateOrderDTO';
 import ICutlistDTO from '@modules/orders/dtos/ICutlistDTO';
 
 import { v4 as uuid_v4 } from 'uuid';
@@ -87,5 +88,28 @@ export default class FakeOrdersRepository implements IOrdersRepository {
     this.ordersCreated.push(order);
 
     return order;
+  }
+
+  public async updateOrder(
+    orderId: string,
+    dataToUpdateOrder: IUpdateOrderDTO,
+  ): Promise<OrderEntity | undefined> {
+    const orderToUpdate = this.ordersCreated.find(
+      order => order.id === orderId,
+    );
+
+    if (orderToUpdate) {
+      if (orderToUpdate) {
+        this.ordersCreated.splice(this.ordersCreated.indexOf(orderToUpdate), 1);
+      }
+
+      const orderUpdated = { ...orderToUpdate, ...dataToUpdateOrder };
+
+      this.ordersCreated.push(orderUpdated);
+
+      return orderUpdated;
+    }
+
+    return orderToUpdate;
   }
 }

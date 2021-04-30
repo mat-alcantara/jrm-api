@@ -1,6 +1,7 @@
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import IUpdateCutlistDTO from '@modules/orders/dtos/IUpdateCutlistDTO';
 import ICutlistDTO from '@modules/orders/dtos/ICutlistDTO';
+import IUpdateOrderDTO from '@modules/orders/dtos/IUpdateOrderDTO';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
 export default interface IOrdersRepository {
@@ -15,4 +16,8 @@ export default interface IOrdersRepository {
     cutlistData: IUpdateCutlistDTO,
   ): Promise<OrderEntity>;
   createCutlist(order: OrderEntity, cutlist: ICutlistDTO): Promise<OrderEntity>;
+  updateOrder(
+    orderId: string,
+    dataToUpdateOrder: IUpdateOrderDTO,
+  ): Promise<OrderEntity | undefined>;
 }
