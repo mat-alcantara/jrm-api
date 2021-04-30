@@ -53,7 +53,6 @@ cutlistRoutes.post(
       seller: Joi.string().required(),
       relatedProblems: Joi.string(),
       conclusionDate: Joi.date(),
-      price: Joi.number(),
       cutlist: Joi.array().items(
         Joi.object().keys({
           material_id: Joi.string().required(),
