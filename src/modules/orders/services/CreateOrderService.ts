@@ -49,8 +49,9 @@ export default class CreateOrderService {
       orderData.cutlist[i].id = orderId;
     }
 
-    // Check if material exist
+    // Check if material exist and update order price
     const errors: string[] = [];
+    let price = 0;
 
     for (let i = 0; i < orderData.cutlist.length; i += 1) {
       // Need a try/catch because if id is a invalid uuid, the database will return a status 500 error
@@ -63,6 +64,8 @@ export default class CreateOrderService {
         if (!doesMaterialExist) {
           errors.push('Material does not exist');
         }
+
+        price += orderData.cutlist[i].price;
       } catch {
         /* istanbul ignore next */
         errors.push('Material does not exist');
@@ -73,8 +76,11 @@ export default class CreateOrderService {
       throw new AppError('There is a invalid material in cutlists', 404);
     }
 
-    // Add
+    // Add delivery date to order
     orderData.deliveryDate = this.dateProvider.defaultDate7Days();
+
+    // Add price to order
+    orderData.price = price;
 
     // Create a new cutlist
     const orderCreated = await this.ordersRepository.createOrder(orderData);
