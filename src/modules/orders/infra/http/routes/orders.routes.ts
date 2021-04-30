@@ -69,6 +69,37 @@ cutlistRoutes.post(
   orderController.create,
 );
 cutlistRoutes.delete('/orders/:id', orderController.remove);
+cutlistRoutes.put(
+  '/orders/:id',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      customerId: Joi.string(),
+      paymentStatus: Joi.string().valid(
+        PaymentStatusEnumDTO.PAGO,
+        PaymentStatusEnumDTO.PARCIAL,
+        PaymentStatusEnumDTO.RECEBER,
+      ),
+      orderStatus: Joi.string().valid(
+        OrderStatusEnumDTO.ENTREGUE,
+        OrderStatusEnumDTO.LIBERADO,
+        OrderStatusEnumDTO.PRODUCAO,
+        OrderStatusEnumDTO.TRANSPORTADO,
+        OrderStatusEnumDTO.ORCAMENTO,
+      ),
+      orderStore: Joi.string().valid(
+        OrderStoreEnumDTO.FRADE,
+        OrderStoreEnumDTO.JAPUIBA,
+        OrderStoreEnumDTO.SAO_JOAO,
+      ),
+      ps: Joi.string(),
+      seller: Joi.string(),
+      relatedProblems: Joi.string(),
+      conclusionDate: Joi.date(),
+      price: Joi.number(),
+    }),
+  }),
+  orderController.update,
+);
 
 // Cutlists
 cutlistRoutes.delete('/cutlists/:id', cutlistController.remove);
