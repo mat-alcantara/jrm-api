@@ -6,6 +6,7 @@ import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICreateOrderDTO from '@modules/orders/dtos/ICreateOrderDTO';
 import IUpdateCutlistDTO from '@modules/orders/dtos/IUpdateCutlistDTO';
 import ICutlistDTO from '@modules/orders/dtos/ICutlistDTO';
+import IUpdateOrderDTO from '@modules/orders/dtos/IUpdateOrderDTO';
 
 export default class OrdersRepository implements IOrdersRepository {
   private ormRepository: Repository<OrderEntity>;
@@ -85,5 +86,17 @@ export default class OrdersRepository implements IOrdersRepository {
     await this.ormRepository.save(order);
 
     return order;
+  }
+
+  public async updateOrder(
+    orderToUpdate: OrderEntity,
+    dataToUpdateOrder: IUpdateOrderDTO,
+  ): Promise<OrderEntity> {
+    const orderUpdatedByTypeORM = await this.ormRepository.save({
+      ...orderToUpdate,
+      ...dataToUpdateOrder,
+    });
+
+    return orderUpdatedByTypeORM;
   }
 }
