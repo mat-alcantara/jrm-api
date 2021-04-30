@@ -11,7 +11,6 @@ export default interface ICreateOrderDTO {
   ps?: string;
   relatedProblems?: string;
   conclusionDate?: Date;
-  price: number;
   cutlist: ICutlistDTO[];
   deliveryDate?: string;
 }
