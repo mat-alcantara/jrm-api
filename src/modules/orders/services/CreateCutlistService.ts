@@ -43,6 +43,9 @@ export default class CreateOrderService {
       price: orderToCreateCutlist.price + cutlistData.price,
     });
 
-    return orderWithCutlistCreated;
+    return {
+      ...orderWithCutlistCreated,
+      price: orderToCreateCutlist.price + cutlistData.price,
+    };
   }
 }

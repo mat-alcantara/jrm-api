@@ -100,10 +100,16 @@ describe('Update Cutlist', () => {
       ],
     });
 
-    const cutlistUpdated = await updateCutlistService.execute(
+    await updateCutlistService.execute(
       orderCreated.id,
       orderCreated.cutlist[0].id,
       { material_id: secondMaterialCreated.id },
+    );
+
+    const cutlistUpdated = await updateCutlistService.execute(
+      orderCreated.id,
+      orderCreated.cutlist[0].id,
+      { price: 500 },
     );
 
     await expect(cutlistUpdated.cutlist[0].material_id).toBe(

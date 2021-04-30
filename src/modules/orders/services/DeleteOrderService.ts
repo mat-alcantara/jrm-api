@@ -13,12 +13,16 @@ export default class DeleteOrderService {
   ) {}
 
   public async execute(id: string): Promise<void> {
-    const orderToRemove = await this.ordersRepository.findOrderById(id);
+    try {
+      const orderToRemove = await this.ordersRepository.findOrderById(id);
 
-    if (!orderToRemove) {
+      if (!orderToRemove) {
+        throw new AppError('Order does not exist', 404);
+      }
+
+      await this.ordersRepository.deleteOrder(orderToRemove);
+    } catch {
       throw new AppError('Order does not exist', 404);
     }
-
-    await this.ordersRepository.deleteOrder(orderToRemove);
   }
 }

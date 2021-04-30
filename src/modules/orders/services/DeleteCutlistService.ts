@@ -23,12 +23,14 @@ export default class DeleteCutlistervice {
       cutlist => cutlist.id === cutlistId,
     );
 
-    if (cutlistRemoved) {
-      await this.ordersRepository.updateOrder(orderToRemoveCutlist, {
-        price: orderToRemoveCutlist.price - cutlistRemoved.price,
-      });
+    if (!cutlistRemoved) {
+      throw new AppError('Cutlist does not exist', 404);
     }
 
     await this.ordersRepository.deleteCutlist(orderToRemoveCutlist, cutlistId);
+
+    await this.ordersRepository.updateOrder(orderToRemoveCutlist, {
+      price: orderToRemoveCutlist.price - cutlistRemoved.price,
+    });
   }
 }
