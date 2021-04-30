@@ -32,6 +32,16 @@ export default class UpdateCutlistService {
       cutlistData,
     );
 
+    if (cutlistData.price) {
+      await this.ordersRepository.updateOrder(orderToUpdateCutlist, {
+        price: orderToUpdateCutlist.price + cutlistUpdated.price,
+      });
+    }
+
+    await this.ordersRepository.updateOrder(orderToUpdateCutlist, {
+      price: orderToUpdateCutlist.price + cutlistUpdated.price,
+    });
+
     return cutlistUpdated;
   }
 }

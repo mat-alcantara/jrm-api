@@ -38,6 +38,11 @@ export default class CreateOrderService {
       cutlistData,
     );
 
+    // Update order price
+    await this.ordersRepository.updateOrder(orderToCreateCutlist, {
+      price: orderToCreateCutlist.price + cutlistData.price,
+    });
+
     return orderWithCutlistCreated;
   }
 }
