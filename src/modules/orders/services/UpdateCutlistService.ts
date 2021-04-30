@@ -32,15 +32,18 @@ export default class UpdateCutlistService {
       cutlistData,
     );
 
-    if (cutlistData.price) {
+    const cutlistBeforeUpdate = orderToUpdateCutlist.cutlist.find(
+      cutlist => cutlist.id === cutlistId,
+    );
+
+    if (cutlistData.price && cutlistBeforeUpdate) {
       await this.ordersRepository.updateOrder(orderToUpdateCutlist, {
-        price: orderToUpdateCutlist.price + cutlistUpdated.price,
+        price:
+          orderToUpdateCutlist.price -
+          cutlistBeforeUpdate.price +
+          cutlistUpdated.price,
       });
     }
-
-    await this.ordersRepository.updateOrder(orderToUpdateCutlist, {
-      price: orderToUpdateCutlist.price + cutlistUpdated.price,
-    });
 
     return cutlistUpdated;
   }
