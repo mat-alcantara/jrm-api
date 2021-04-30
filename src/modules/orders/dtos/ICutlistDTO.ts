@@ -6,4 +6,5 @@ export default interface ICutlistDTO {
   side_b_size: number;
   side_a_border: number;
   side_b_border: number;
+  price: number;
 }
