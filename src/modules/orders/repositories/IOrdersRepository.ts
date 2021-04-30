@@ -17,7 +17,7 @@ export default interface IOrdersRepository {
   ): Promise<OrderEntity>;
   createCutlist(order: OrderEntity, cutlist: ICutlistDTO): Promise<OrderEntity>;
   updateOrder(
-    orderId: string,
+    orderToUpdate: OrderEntity,
     dataToUpdateOrder: IUpdateOrderDTO,
-  ): Promise<OrderEntity | undefined>;
+  ): Promise<OrderEntity>;
 }

@@ -16,6 +16,9 @@ export default class UpdateOrderService {
     orderId: string,
     dataToUpdateOrder: IUpdateOrderDTO,
   ): Promise<OrderEntity> {
-    const orderToUpdate = await this.ordersRepository.findOrderById(orderId);
+    const orderUpdated = await this.ordersRepository.updateOrder(
+      orderId,
+      dataToUpdateOrder,
+    );
   }
 }

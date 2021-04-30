@@ -91,25 +91,15 @@ export default class FakeOrdersRepository implements IOrdersRepository {
   }
 
   public async updateOrder(
-    orderId: string,
+    orderToUpdate: OrderEntity,
     dataToUpdateOrder: IUpdateOrderDTO,
-  ): Promise<OrderEntity | undefined> {
-    const orderToUpdate = this.ordersCreated.find(
-      order => order.id === orderId,
-    );
+  ): Promise<OrderEntity> {
+    this.ordersCreated.splice(this.ordersCreated.indexOf(orderToUpdate), 1);
 
-    if (orderToUpdate) {
-      if (orderToUpdate) {
-        this.ordersCreated.splice(this.ordersCreated.indexOf(orderToUpdate), 1);
-      }
+    const orderUpdated = { ...orderToUpdate, ...dataToUpdateOrder };
 
-      const orderUpdated = { ...orderToUpdate, ...dataToUpdateOrder };
+    this.ordersCreated.push(orderUpdated);
 
-      this.ordersCreated.push(orderUpdated);
-
-      return orderUpdated;
-    }
-
-    return orderToUpdate;
+    return orderUpdated;
   }
 }
