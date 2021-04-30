@@ -79,6 +79,7 @@ describe('Create orders', () => {
           side_b_size: 200,
           side_a_border: 1,
           side_b_border: 2,
+          price: 100,
         },
         {
           id: '',
@@ -88,6 +89,7 @@ describe('Create orders', () => {
           side_b_size: 400,
           side_a_border: 0,
           side_b_border: 2,
+          price: 100,
         },
       ],
     });
@@ -100,6 +102,7 @@ describe('Create orders', () => {
       side_a_size: 300,
       side_b_border: 2,
       side_b_size: 400,
+      price: 100,
     });
 
     await expect(createdCutlist.id).toEqual(orderCreated.id);
@@ -115,6 +118,7 @@ describe('Create orders', () => {
         side_a_size: 300,
         side_b_border: 2,
         side_b_size: 400,
+        price: 100,
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

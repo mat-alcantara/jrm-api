@@ -82,6 +82,7 @@ describe('Show specific orders', () => {
           side_b_size: 200,
           side_a_border: 1,
           side_b_border: 2,
+          price: 100,
         },
         {
           id: '',
@@ -91,6 +92,7 @@ describe('Show specific orders', () => {
           side_b_size: 400,
           side_a_border: 0,
           side_b_border: 2,
+          price: 100,
         },
       ],
     });
