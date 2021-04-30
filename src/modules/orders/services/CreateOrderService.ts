@@ -43,22 +43,29 @@ export default class CreateOrderService {
       throw new AppError('Customer does not exist', 404);
     }
 
-    // Check if material exist and add id to every json file
+    // Add id to every json file
     for (let i = 0; i < orderData.cutlist.length; i += 1) {
-      orderData.cutlist.forEach(async cutlist => {
-        const doesMaterialExist = await this.materialsRepository.findMaterialById(
-          cutlist.material_id,
-        );
-
-        if (!doesMaterialExist) {
-          throw new AppError('There is a invalid material on the order', 404);
-        }
-      });
-
       const orderId = v4();
       orderData.cutlist[i].id = orderId;
     }
 
+    // Check if material exist
+    const errors: string[] = [];
+
+    for (let i = 0; i < orderData.cutlist.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      const doesMaterialExist = await this.materialsRepository.findMaterialById(
+        orderData.cutlist[i].material_id,
+      );
+
+      if (!doesMaterialExist) {
+        errors.push('Material does not exist');
+      }
+    }
+
+    if (errors.length > 0) {
+      throw new AppError('There is a invalid material in cutlists', 404);
+    }
     // Add
     orderData.deliveryDate = this.dateProvider.defaultDate7Days();
 

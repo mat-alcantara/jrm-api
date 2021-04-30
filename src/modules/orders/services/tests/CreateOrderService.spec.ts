@@ -121,4 +121,47 @@ describe('Create orders', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
+
+  it('Should not create a new order if material does not exist', async () => {
+    const customerCreated = await createCustomerService.execute({
+      name: 'Mateus',
+      email: 'mateus@mateus.com',
+      area: 'Frade',
+      street: 'Travessa dos Coqueiros',
+
+      telephone: ['24-999710064', '24-999656973'],
+      city: 'Angra dos Reis',
+      state: 'Rio de Janeiro',
+    });
+
+    await expect(
+      createOrderService.execute({
+        customerId: customerCreated.id,
+        orderStatus: OrderStatusEnumDTO.PRODUCAO,
+        orderStore: OrderStoreEnumDTO.FRADE,
+        paymentStatus: PaymentStatusEnumDTO.PARCIAL,
+        price: 215,
+        cutlist: [
+          {
+            id: '',
+            material_id: 'wrongId',
+            quantidade: 20,
+            side_a_size: 500,
+            side_b_size: 200,
+            side_a_border: 1,
+            side_b_border: 2,
+          },
+          {
+            id: '',
+            material_id: 'wrongId',
+            quantidade: 20,
+            side_a_size: 800,
+            side_b_size: 400,
+            side_a_border: 0,
+            side_b_border: 2,
+          },
+        ],
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
