@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import ShowAllOrdersService from '@modules/orders/services/ShowAllOrdersService';
 import DeleteOrderService from '@modules/orders/services/DeleteOrderService';
+import UpdateOrderService from '@modules/orders/services/UpdateOrderService';
 
 export default class OrderController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -32,5 +33,20 @@ export default class OrderController {
     await deleteOrderService.execute(id);
 
     return response.json();
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const dataToUpdateOrder = request.body;
+
+    const updateOrderService = await container.resolve(UpdateOrderService);
+
+    const orderUpdated = await updateOrderService.execute(
+      id,
+      dataToUpdateOrder,
+    );
+
+    return response.json(orderUpdated);
   }
 }
