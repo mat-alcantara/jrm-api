@@ -26,17 +26,21 @@ export default class UpdateCutlistService {
       throw new AppError('Order does not exist', 404);
     }
 
-    const cutlistUpdated = await this.ordersRepository.updateCutlist(
+    const cutlistBeforeUpdate = orderToUpdateCutlist.cutlist.find(
+      cutlist => cutlist.id === cutlistId,
+    );
+
+    const orderUpdated = await this.ordersRepository.updateCutlist(
       orderToUpdateCutlist,
       cutlistId,
       cutlistData,
     );
 
-    const cutlistBeforeUpdate = orderToUpdateCutlist.cutlist.find(
+    const cutlistUpdated = orderUpdated.cutlist.find(
       cutlist => cutlist.id === cutlistId,
     );
 
-    if (cutlistData.price && cutlistBeforeUpdate) {
+    if (cutlistData.price && cutlistBeforeUpdate && cutlistUpdated) {
       await this.ordersRepository.updateOrder(orderToUpdateCutlist, {
         price:
           orderToUpdateCutlist.price -
@@ -45,6 +49,6 @@ export default class UpdateCutlistService {
       });
     }
 
-    return cutlistUpdated;
+    return orderUpdated;
   }
 }
