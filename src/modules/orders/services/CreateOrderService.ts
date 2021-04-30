@@ -53,12 +53,17 @@ export default class CreateOrderService {
     const errors: string[] = [];
 
     for (let i = 0; i < orderData.cutlist.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      const doesMaterialExist = await this.materialsRepository.findMaterialById(
-        orderData.cutlist[i].material_id,
-      );
+      // Need a try/catch because if id is a invalid uuid, the database will return a status 500 error
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        const doesMaterialExist = await this.materialsRepository.findMaterialById(
+          orderData.cutlist[i].material_id,
+        );
 
-      if (!doesMaterialExist) {
+        if (!doesMaterialExist) {
+          errors.push('Material does not exist');
+        }
+      } catch {
         errors.push('Material does not exist');
       }
     }
@@ -66,6 +71,7 @@ export default class CreateOrderService {
     if (errors.length > 0) {
       throw new AppError('There is a invalid material in cutlists', 404);
     }
+
     // Add
     orderData.deliveryDate = this.dateProvider.defaultDate7Days();
 
