@@ -64,6 +64,7 @@ export default class CreateOrderService {
           errors.push('Material does not exist');
         }
       } catch {
+        /* istanbul ignore next */
         errors.push('Material does not exist');
       }
     }
