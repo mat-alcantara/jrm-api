@@ -19,18 +19,18 @@ export default class DeleteCutlistervice {
       throw new AppError('Order does not exist', 404);
     }
 
-    const cutlistRemoved = orderToRemoveCutlist.cutlist.find(
+    const cutlistToRemove = orderToRemoveCutlist.cutlist.find(
       cutlist => cutlist.id === cutlistId,
     );
 
-    if (!cutlistRemoved) {
+    if (!cutlistToRemove) {
       throw new AppError('Cutlist does not exist', 404);
     }
 
     await this.ordersRepository.deleteCutlist(orderToRemoveCutlist, cutlistId);
 
     await this.ordersRepository.updateOrder(orderToRemoveCutlist, {
-      price: orderToRemoveCutlist.price - cutlistRemoved.price,
+      price: orderToRemoveCutlist.price - cutlistToRemove.price,
     });
   }
 }
