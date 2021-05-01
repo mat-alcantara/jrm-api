@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  Generated,
 } from 'typeorm';
 
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
@@ -41,6 +42,10 @@ export default class OrderEntity {
 
   @Column('varchar')
   seller: string;
+
+  @Column()
+  @Generated('increment')
+  order_code: number;
 
   @Column('varchar', { nullable: true })
   ps?: string;
