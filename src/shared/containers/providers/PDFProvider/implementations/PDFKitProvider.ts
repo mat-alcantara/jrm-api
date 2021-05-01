@@ -114,42 +114,18 @@ export default class PDFKitProvider implements IPDFProvider {
       .text('Lista de Peças', { align: 'left' })
       .moveDown(0.2);
 
-    doc
-      .font('Courier-BoldOblique')
-      .fontSize(12)
-      .text('Qtd - Material - Lado A [Fita A] x Lado B [Fita B] - Valor', {
-        align: 'left',
-      })
-      .moveDown(0.4);
-
     for (let i = 0; i < orderToGeneratePDF.cutlist.length; i += 1) {
       doc
         .font('Courier')
         .fontSize(12)
         .text(
-          `${orderToGeneratePDF.cutlist[i].quantidade} - ${materialData[i].name} - ${orderToGeneratePDF.cutlist[i].side_a_size} [${orderToGeneratePDF.cutlist[i].side_a_border}] x ${orderToGeneratePDF.cutlist[i].side_b_size} [${orderToGeneratePDF.cutlist[i].side_b_border}] - R$ ${orderToGeneratePDF.cutlist[i].price}`,
+          `${orderToGeneratePDF.cutlist[i].quantidade} - ${materialData[i].name} - ${orderToGeneratePDF.cutlist[i].side_a_size} [${orderToGeneratePDF.cutlist[i].side_a_border}] x ${orderToGeneratePDF.cutlist[i].side_b_size} [${orderToGeneratePDF.cutlist[i].side_b_border}] | R$ ${orderToGeneratePDF.cutlist[i].price}`,
           {
             align: 'left',
           },
         )
         .moveDown(0.2);
     }
-
-    doc
-      .font('Courier')
-      .fontSize(12)
-      .text('5 - MDF Comum 15mm - 400 [2] x 200 [4] - R$ 200,00', {
-        align: 'left',
-      })
-      .moveDown(0.2);
-
-    doc
-      .font('Courier')
-      .fontSize(12)
-      .text('5 - MDF Comum 15mm - 400 [2] x 200 [4] - R$ 200,00', {
-        align: 'left',
-      })
-      .moveDown(0.2);
 
     doc.end();
   }
