@@ -1,4 +1,4 @@
-import fs from 'fs';
+import getStream from 'get-stream';
 import PDFDocument from 'pdfkit';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 import CustomerEntity from '@modules/customers/infra/typeorm/entities/Customer';
@@ -10,10 +10,10 @@ export default class PDFKitProvider implements IPDFProvider {
     orderToGeneratePDF: OrderEntity,
     customerData: CustomerEntity,
     materialData: MaterialEntity[],
-  ): Promise<void> {
+  ): Promise<Buffer> {
     const doc = new PDFDocument({ size: 'A4', bufferPages: true });
 
-    doc.pipe(fs.createWriteStream('output.pdf'));
+    // doc.pipe(fs.createWriteStream('output.pdf'));
 
     // HEADER
     doc
@@ -130,5 +130,9 @@ export default class PDFKitProvider implements IPDFProvider {
     }
 
     doc.end();
+
+    const pdfStream = getStream.buffer(doc);
+
+    return pdfStream;
   }
 }

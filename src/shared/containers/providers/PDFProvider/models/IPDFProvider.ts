@@ -7,5 +7,5 @@ export default interface IPDFProvider {
     orderToGeneratePDF: OrderEntity,
     customerData: CustomerEntity,
     materialData: MaterialEntity[],
-  ): Promise<void>;
+  ): Promise<Buffer>;
 }

@@ -25,7 +25,7 @@ export default class CreateOrderPDFService {
     private pdfProvider: IPDFProvider,
   ) {}
 
-  public async execute(orderId: string): Promise<void> {
+  public async execute(orderId: string): Promise<Buffer> {
     const orderToGeneratePDF = await this.ordersRepository.findOrderById(
       orderId,
     );
@@ -67,10 +67,12 @@ export default class CreateOrderPDFService {
       }
     }
 
-    await this.pdfProvider.createPDF(
+    const pdfStream = await this.pdfProvider.createPDF(
       orderToGeneratePDF,
       customerToGeneratePDF,
       materialsToGeneratePDF,
     );
+
+    return pdfStream;
   }
 }
