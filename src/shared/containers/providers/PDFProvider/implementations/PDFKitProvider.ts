@@ -2,14 +2,17 @@ import getStream from 'get-stream';
 import PDFDocument from 'pdfkit';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 import CustomerEntity from '@modules/customers/infra/typeorm/entities/Customer';
-import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
 import IPDFProvider from '@shared/containers/providers/PDFProvider/models/IPDFProvider';
+
+interface IMaterialData {
+  name: string;
+}
 
 export default class PDFKitProvider implements IPDFProvider {
   public async createPDF(
     orderToGeneratePDF: OrderEntity,
     customerData: CustomerEntity,
-    materialData: MaterialEntity[],
+    materialData: IMaterialData[],
   ): Promise<Buffer> {
     const doc = new PDFDocument({ size: 'A4', bufferPages: true });
 

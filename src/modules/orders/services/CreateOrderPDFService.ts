@@ -2,12 +2,14 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import MaterialEntity from '@modules/materials/infra/typeorm/entities/MaterialEntity';
-
 import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
 import ICustomersRepository from '@modules/customers/repositories/ICustomersRepository';
 import IMaterialsRepository from '@modules/materials/repositories/IMaterialsRepository';
 import IPDFProvider from '@shared/containers/providers/PDFProvider/models/IPDFProvider';
+
+interface IMaterialData {
+  name: string;
+}
 
 @injectable()
 export default class CreateOrderPDFService {
@@ -54,7 +56,8 @@ export default class CreateOrderPDFService {
       );
     }
 
-    const materialsToGeneratePDF: MaterialEntity[] = [];
+    // Create a material list. If material was removed, return 'Material removido'
+    const materialsToGeneratePDF: IMaterialData[] = [];
 
     for (let i = 0; i < orderToGeneratePDF.cutlist.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -64,6 +67,8 @@ export default class CreateOrderPDFService {
 
       if (materialSelected) {
         materialsToGeneratePDF.push(materialSelected);
+      } else {
+        materialsToGeneratePDF.push({ name: 'Material removido' });
       }
     }
 
