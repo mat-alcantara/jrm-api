@@ -26,9 +26,6 @@ export default class CreateOrderPDFService {
   ) {}
 
   public async execute(orderId: string): Promise<void> {
-    // Order para gerar o PDF
-    // Do customer que fez o pedido
-    // Um array com todos os materiais em ordem
     const orderToGeneratePDF = await this.ordersRepository.findOrderById(
       orderId,
     );
@@ -37,7 +34,14 @@ export default class CreateOrderPDFService {
       throw new AppError('Order to create PDF does not exist', 404);
     }
 
-    const { id: customerId } = orderToGeneratePDF;
+    const { customerId } = orderToGeneratePDF;
+
+    if (!customerId) {
+      throw new AppError(
+        'Customer of order to generate PDF does not exist',
+        404,
+      );
+    }
 
     const customerToGeneratePDF = await this.customersRepository.findCustomerById(
       customerId,

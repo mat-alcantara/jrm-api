@@ -95,11 +95,13 @@ export default class PDFKitProvider implements IPDFProvider {
       })
       .moveDown(0.3);
 
-    doc
-      .font('Courier')
-      .fontSize(12)
-      .text(`Observação: ${orderToGeneratePDF.ps}`, { align: 'left' })
-      .moveDown(0.3);
+    if (orderToGeneratePDF.ps) {
+      doc
+        .font('Courier')
+        .fontSize(12)
+        .text(`Observação: ${orderToGeneratePDF.ps}`, { align: 'left' })
+        .moveDown(0.3);
+    }
 
     doc
       .font('Courier')
