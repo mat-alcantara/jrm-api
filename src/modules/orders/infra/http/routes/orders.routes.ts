@@ -4,6 +4,7 @@ import { celebrate, Segments, Joi } from 'celebrate';
 import OrderController from '@modules/orders/infra/http/controllers/OrderController';
 import SpecificOrderController from '@modules/orders/infra/http/controllers/SpecificOrderController';
 import CutlistController from '@modules/orders/infra/http/controllers/CutlistController';
+import PDFController from '@modules/orders/infra/http/controllers/PDFController';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -15,6 +16,7 @@ const cutlistRoutes = Router();
 const orderController = new OrderController();
 const specificOrderController = new SpecificOrderController();
 const cutlistController = new CutlistController();
+const pdfController = new PDFController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
@@ -136,5 +138,8 @@ cutlistRoutes.post(
   }),
   cutlistController.create,
 );
+
+// PDF
+cutlistRoutes.post('/orderpdf/:id', pdfController.create);
 
 export default cutlistRoutes;
