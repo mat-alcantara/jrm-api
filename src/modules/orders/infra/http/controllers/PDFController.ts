@@ -16,7 +16,7 @@ export default class PDFController {
     response.writeHead(200, {
       'Content-Length': Buffer.byteLength(pdfStream),
       'Content-Type': 'application/pdf',
-      'Content-disposition': 'attachment;filename=test.pdf',
+      'Content-disposition': `attachment;filename=${id}.pdf`,
     });
 
     response.end(pdfStream);
