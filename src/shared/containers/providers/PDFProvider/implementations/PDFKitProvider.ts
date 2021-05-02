@@ -11,7 +11,7 @@ export default class PDFKitProvider implements IPDFProvider {
     customerData: CustomerEntity,
     materialData: MaterialEntity[],
   ): Promise<void> {
-    const doc = new PDFDocument({ size: 'A4' });
+    const doc = new PDFDocument({ size: 'A4', bufferPages: true });
 
     doc.pipe(fs.createWriteStream('output.pdf'));
 
