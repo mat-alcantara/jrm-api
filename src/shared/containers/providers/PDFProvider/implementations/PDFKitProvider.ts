@@ -96,6 +96,14 @@ export default class PDFKitProvider implements IPDFProvider {
       })
       .moveDown(0.3);
 
+    doc
+      .font('Courier')
+      .fontSize(12)
+      .text(`Tipo de Entrega: ${orderToGeneratePDF.delivery_type}`, {
+        align: 'left',
+      })
+      .moveDown(0.3);
+
     if (orderToGeneratePDF.ps) {
       doc
         .font('Courier')
