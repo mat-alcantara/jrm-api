@@ -9,6 +9,7 @@ import PDFController from '@modules/orders/infra/http/controllers/PDFController'
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
+import DeliveryTypeEnumDTO from '@modules/orders/dtos/DeliveryTypeEnumDTO';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
@@ -51,6 +52,9 @@ cutlistRoutes.post(
           OrderStoreEnumDTO.JAPUIBA,
           OrderStoreEnumDTO.SAO_JOAO,
         ),
+      delivery_type: Joi.string()
+        .required()
+        .valid(DeliveryTypeEnumDTO.ENTREGA, DeliveryTypeEnumDTO.LOJA),
       ps: Joi.string(),
       seller: Joi.string().required(),
       relatedProblems: Joi.string(),
@@ -92,6 +96,10 @@ cutlistRoutes.put(
         OrderStoreEnumDTO.FRADE,
         OrderStoreEnumDTO.JAPUIBA,
         OrderStoreEnumDTO.SAO_JOAO,
+      ),
+      delivery_type: Joi.string().valid(
+        DeliveryTypeEnumDTO.ENTREGA,
+        DeliveryTypeEnumDTO.LOJA,
       ),
       ps: Joi.string(),
       seller: Joi.string(),
