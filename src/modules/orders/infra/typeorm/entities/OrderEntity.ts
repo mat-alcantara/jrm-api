@@ -15,6 +15,7 @@ import ICutlistDTO from '@modules/orders/dtos/ICutlistDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
+import DeliveryTypeEnumDTO from '@modules/orders/dtos/DeliveryTypeEnumDTO';
 
 @Entity('orders')
 export default class OrderEntity {
@@ -33,6 +34,9 @@ export default class OrderEntity {
 
   @Column({ type: 'enum', enum: PaymentStatusEnumDTO })
   paymentStatus: PaymentStatusEnumDTO;
+
+  @Column({ type: 'enum', enum: DeliveryTypeEnumDTO })
+  delivery_type: DeliveryTypeEnumDTO;
 
   @Column({
     type: 'enum',

@@ -11,7 +11,7 @@ export default class addDeliveryTypeToOrders1620832784602
         type: 'enum',
         enum: [DeliveryTypeEnumDTO.ENTREGA, DeliveryTypeEnumDTO.LOJA],
         isNullable: false,
-        default: DeliveryTypeEnumDTO.LOJA,
+        default: "'Retirar na Loja'",
       }),
     );
   }
