@@ -13,5 +13,5 @@ export default interface ICreateOrderDTO {
   conclusionDate?: Date;
   price?: number;
   deliveryDate?: string;
-  delivery_type: DeliveryTypeEnumDTO;
+  delivery_type?: DeliveryTypeEnumDTO;
 }

@@ -9,6 +9,7 @@ import FakeDateProvider from '@shared/containers/providers/DateProvider/fakes/Fa
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
+import DeliveryTypeEnumDTO from '@modules/orders/dtos/DeliveryTypeEnumDTO';
 
 import AppError from '@shared/errors/AppError';
 
@@ -64,6 +65,7 @@ describe('Create orders', () => {
       orderStore: OrderStoreEnumDTO.FRADE,
       paymentStatus: PaymentStatusEnumDTO.PARCIAL,
       price: 215,
+      delivery_type: DeliveryTypeEnumDTO.ENTREGA,
       cutlist: [
         {
           id: '',
@@ -100,6 +102,7 @@ describe('Create orders', () => {
         orderStore: OrderStoreEnumDTO.FRADE,
         paymentStatus: PaymentStatusEnumDTO.PARCIAL,
         price: 215,
+        delivery_type: DeliveryTypeEnumDTO.ENTREGA,
         cutlist: [
           {
             id: '',
@@ -145,6 +148,7 @@ describe('Create orders', () => {
         orderStore: OrderStoreEnumDTO.FRADE,
         paymentStatus: PaymentStatusEnumDTO.PARCIAL,
         price: 215,
+        delivery_type: DeliveryTypeEnumDTO.ENTREGA,
         cutlist: [
           {
             id: '',

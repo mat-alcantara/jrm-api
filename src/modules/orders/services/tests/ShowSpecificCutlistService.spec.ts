@@ -13,6 +13,7 @@ import FakeMaterialsRepository from '@modules/materials/repositories/fakes/FakeM
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
 import PaymentStatusEnumDTO from '@modules/orders/dtos/PaymentStatusEnumDTO';
+import DeliveryTypeEnumDTO from '@modules/orders/dtos/DeliveryTypeEnumDTO';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomerService: CreateCustomerService;
@@ -73,6 +74,8 @@ describe('Show specific orders', () => {
       orderStore: OrderStoreEnumDTO.FRADE,
       paymentStatus: PaymentStatusEnumDTO.PARCIAL,
       price: 215,
+      delivery_type: DeliveryTypeEnumDTO.ENTREGA,
+
       cutlist: [
         {
           id: '',
