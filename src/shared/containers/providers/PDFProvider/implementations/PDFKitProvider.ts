@@ -19,12 +19,12 @@ export default class PDFKitProvider implements IPDFProvider {
     // HEADER
     doc
       .font('Times-Bold')
-      .fontSize(24)
+      .fontSize(22)
       .text('SERVIÇO DE CORTE', { align: 'center' });
 
     doc
-      .font('Courier')
-      .fontSize(10)
+      .font('Helvetica')
+      .fontSize(8)
       .text(
         'JRM Compensados | Frade: (24) 99964-4953  | Japuíba: (24) 99969-4543 ',
         { align: 'center' },
@@ -39,14 +39,14 @@ export default class PDFKitProvider implements IPDFProvider {
       .moveDown(0.2);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Nome: ${customerData.name}`, { align: 'left' })
       .moveDown(0.3);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(
         `Endereço: ${customerData.street}, ${customerData.area} - ${customerData.city}`,
         { align: 'left' },
@@ -54,8 +54,8 @@ export default class PDFKitProvider implements IPDFProvider {
       .moveDown(0.3);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Telefone: ${customerData.telephone[0]}`, { align: 'left' })
       .moveDown(1);
 
@@ -67,38 +67,38 @@ export default class PDFKitProvider implements IPDFProvider {
       .moveDown(0.2);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text('Codigo do Serviço: ', { align: 'left', continued: true })
-      .font('Courier-Bold')
+      .font('Helvetica-Bold')
       .text(`${orderToGeneratePDF.order_code}`)
       .moveDown(0.3);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Vendedor: ${orderToGeneratePDF.seller}`, { align: 'left' })
       .moveDown(0.3);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Loja do Pedido: ${orderToGeneratePDF.orderStore}`, {
         align: 'left',
       })
       .moveDown(0.3);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Status do Pagamento: ${orderToGeneratePDF.paymentStatus}`, {
         align: 'left',
       })
       .moveDown(0.3);
 
     doc
-      .font('Courier')
-      .fontSize(12)
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Tipo de Entrega: ${orderToGeneratePDF.delivery_type}`, {
         align: 'left',
       })
@@ -106,16 +106,16 @@ export default class PDFKitProvider implements IPDFProvider {
 
     if (orderToGeneratePDF.ps) {
       doc
-        .font('Courier')
-        .fontSize(12)
+        .font('Helvetica')
+        .fontSize(10)
         .text(`Observação: ${orderToGeneratePDF.ps}`, { align: 'left' })
         .moveDown(0.3);
     }
 
     doc
-      .font('Courier')
-      .fontSize(12)
-      .text(`Valor: ${orderToGeneratePDF.price}`, { align: 'left' })
+      .font('Helvetica')
+      .fontSize(10)
+      .text(`Valor total: R$ ${orderToGeneratePDF.price}`, { align: 'left' })
       .moveDown(1);
 
     // Dados das peças
@@ -127,8 +127,8 @@ export default class PDFKitProvider implements IPDFProvider {
 
     for (let i = 0; i < orderToGeneratePDF.cutlist.length; i += 1) {
       doc
-        .font('Courier')
-        .fontSize(12)
+        .font('Helvetica')
+        .fontSize(9)
         .text(
           `${orderToGeneratePDF.cutlist[i].quantidade} - ${materialData[i].name} - ${orderToGeneratePDF.cutlist[i].side_a_size} [${orderToGeneratePDF.cutlist[i].side_a_border}] x ${orderToGeneratePDF.cutlist[i].side_b_size} [${orderToGeneratePDF.cutlist[i].side_b_border}] | R$ ${orderToGeneratePDF.cutlist[i].price}`,
           {
