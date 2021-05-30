@@ -26,7 +26,7 @@ export default class PDFKitProvider implements IPDFProvider {
       .font('Helvetica')
       .fontSize(8)
       .text(
-        'JRM Compensados | Frade: (24) 99964-4953  | Japuíba: (24) 99969-4543 ',
+        'JRM Compensados | Frade: (24) 99964-4953  | Japuíba: (24) 99969-4543 | jrmcompensados@hotmail.com',
         { align: 'center' },
       )
       .moveDown(1.2);
@@ -41,7 +41,7 @@ export default class PDFKitProvider implements IPDFProvider {
     doc
       .font('Helvetica')
       .fontSize(10)
-      .text(`Nome: ${customerData.name}`, { align: 'left' })
+      .text(`Nome: ${customerData.name}`, { align: 'left', indent: 15 })
       .moveDown(0.3);
 
     doc
@@ -49,14 +49,17 @@ export default class PDFKitProvider implements IPDFProvider {
       .fontSize(10)
       .text(
         `Endereço: ${customerData.street}, ${customerData.area} - ${customerData.city}`,
-        { align: 'left' },
+        { align: 'left', indent: 15 },
       )
       .moveDown(0.3);
 
     doc
       .font('Helvetica')
       .fontSize(10)
-      .text(`Telefone: ${customerData.telephone[0]}`, { align: 'left' })
+      .text(`Telefone: ${customerData.telephone[0]}`, {
+        align: 'left',
+        indent: 15,
+      })
       .moveDown(1);
 
     // Dados do serviço
@@ -69,7 +72,11 @@ export default class PDFKitProvider implements IPDFProvider {
     doc
       .font('Helvetica')
       .fontSize(10)
-      .text('Codigo do Serviço: ', { align: 'left', continued: true })
+      .text('Codigo do Serviço: ', {
+        align: 'left',
+        continued: true,
+        indent: 15,
+      })
       .font('Helvetica-Bold')
       .text(`${orderToGeneratePDF.order_code}`)
       .moveDown(0.3);
@@ -77,7 +84,22 @@ export default class PDFKitProvider implements IPDFProvider {
     doc
       .font('Helvetica')
       .fontSize(10)
-      .text(`Vendedor: ${orderToGeneratePDF.seller}`, { align: 'left' })
+      .text(`Tipo de Entrega: `, {
+        align: 'left',
+        indent: 15,
+        continued: true,
+      })
+      .font('Helvetica-Bold')
+      .text(`${orderToGeneratePDF.delivery_type}`)
+      .moveDown(0.3);
+
+    doc
+      .font('Helvetica')
+      .fontSize(10)
+      .text(`Vendedor: ${orderToGeneratePDF.seller}`, {
+        align: 'left',
+        indent: 15,
+      })
       .moveDown(0.3);
 
     doc
@@ -85,6 +107,7 @@ export default class PDFKitProvider implements IPDFProvider {
       .fontSize(10)
       .text(`Loja do Pedido: ${orderToGeneratePDF.orderStore}`, {
         align: 'left',
+        indent: 15,
       })
       .moveDown(0.3);
 
@@ -93,14 +116,7 @@ export default class PDFKitProvider implements IPDFProvider {
       .fontSize(10)
       .text(`Status do Pagamento: ${orderToGeneratePDF.paymentStatus}`, {
         align: 'left',
-      })
-      .moveDown(0.3);
-
-    doc
-      .font('Helvetica')
-      .fontSize(10)
-      .text(`Tipo de Entrega: ${orderToGeneratePDF.delivery_type}`, {
-        align: 'left',
+        indent: 15,
       })
       .moveDown(0.3);
 
@@ -108,14 +124,20 @@ export default class PDFKitProvider implements IPDFProvider {
       doc
         .font('Helvetica')
         .fontSize(10)
-        .text(`Observação: ${orderToGeneratePDF.ps}`, { align: 'left' })
+        .text(`Observação: ${orderToGeneratePDF.ps}`, {
+          align: 'left',
+          indent: 15,
+        })
         .moveDown(0.3);
     }
 
     doc
       .font('Helvetica')
       .fontSize(10)
-      .text(`Valor total: R$ ${orderToGeneratePDF.price}`, { align: 'left' })
+      .text(`Valor total: R$ ${orderToGeneratePDF.price}`, {
+        align: 'left',
+        indent: 15,
+      })
       .moveDown(1);
 
     // Dados das peças
@@ -133,6 +155,7 @@ export default class PDFKitProvider implements IPDFProvider {
           `${orderToGeneratePDF.cutlist[i].quantidade} - ${materialData[i].name} - ${orderToGeneratePDF.cutlist[i].side_a_size} [${orderToGeneratePDF.cutlist[i].side_a_border}] x ${orderToGeneratePDF.cutlist[i].side_b_size} [${orderToGeneratePDF.cutlist[i].side_b_border}] | R$ ${orderToGeneratePDF.cutlist[i].price}`,
           {
             align: 'left',
+            indent: 15,
           },
         )
         .moveDown(0.2);
