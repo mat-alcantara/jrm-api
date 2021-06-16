@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import getStream from 'get-stream';
-import PDFDocument from 'pdfkit';
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 import CustomerEntity from '@modules/customers/infra/typeorm/entities/Customer';
 import IPDFProvider from '@shared/containers/providers/PDFProvider/models/IPDFProvider';
+import PDFDocument from '../repositories/pdfkit.js';
 
 interface IMaterialData {
   name: string;
@@ -140,26 +142,26 @@ export default class PDFKitProvider implements IPDFProvider {
       })
       .moveDown(1);
 
-    // Dados das peças
-    doc
-      .font('Times-Bold')
-      .fontSize(16)
-      .text('Lista de Peças', { align: 'left' })
-      .moveDown(0.2);
+    const tableRows = [];
 
     for (let i = 0; i < orderToGeneratePDF.cutlist.length; i += 1) {
-      doc
-        .font('Helvetica')
-        .fontSize(9)
-        .text(
-          `${orderToGeneratePDF.cutlist[i].quantidade} - ${materialData[i].name} - ${orderToGeneratePDF.cutlist[i].side_a_size} [${orderToGeneratePDF.cutlist[i].side_a_border}] x ${orderToGeneratePDF.cutlist[i].side_b_size} [${orderToGeneratePDF.cutlist[i].side_b_border}] | R$ ${orderToGeneratePDF.cutlist[i].price}`,
-          {
-            align: 'left',
-            indent: 15,
-          },
-        )
-        .moveDown(0.2);
+      tableRows.push([
+        `${materialData[i].name}`,
+        `${orderToGeneratePDF.cutlist[i].quantidade} - ${orderToGeneratePDF.cutlist[i].side_a_size} [${orderToGeneratePDF.cutlist[i].side_a_border}] x ${orderToGeneratePDF.cutlist[i].side_b_size} [${orderToGeneratePDF.cutlist[i].side_b_border}] | R$ ${orderToGeneratePDF.cutlist[i].price}`,
+      ]);
     }
+
+    const table = {
+      headers: ['Material', 'Dados da Peça'],
+      rows: tableRows,
+    };
+
+    doc.moveDown().table(table, {
+      prepareRow: (row: any, i: any) => doc.font('Helvetica').fontSize(8),
+      prepareHeader: (row: any, i: any) => doc.font('Times-Bold').fontSize(12),
+      width: 500,
+      columnSpacing: 5,
+    });
 
     doc.end();
 
