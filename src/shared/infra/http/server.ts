@@ -24,7 +24,12 @@ Sentry.init({
 const server = express();
 
 server.use(Sentry.Handlers.requestHandler());
-server.use(cors());
+server.use(
+  cors({
+    origin: process.env.CORS_URL_ALLOWED,
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }),
+);
 server.use(helmet());
 server.use(express.json()); // Allow JSON on express
 server.use(routes); // Activate routes on express
