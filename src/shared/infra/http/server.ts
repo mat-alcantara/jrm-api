@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-console */
 import 'reflect-metadata';
 
@@ -22,6 +23,30 @@ Sentry.init({
 });
 
 const server = express();
+server.use(helmet());
+
+server.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    process.env.CORS_URL_ALLOWED || '*',
+  );
+
+  // Request methods you wish to allow
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type',
+  );
+
+  // Pass to next layer of middleware
+  next();
+});
 
 server.use(Sentry.Handlers.requestHandler());
 server.use(
@@ -30,7 +55,7 @@ server.use(
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   }),
 );
-server.use(helmet());
+
 server.use(express.json()); // Allow JSON on express
 server.use(routes); // Activate routes on express
 server.use(Sentry.Handlers.errorHandler());
