@@ -11,6 +11,6 @@ export default class DateFnsDateProvider implements IDateProvider {
   }
 
   public convertDate(givenDate: Date): string {
-    return format(givenDate, 'dd/MMM/yyyy');
+    return format(givenDate, 'dd/MM/yyyy');
   }
 }
