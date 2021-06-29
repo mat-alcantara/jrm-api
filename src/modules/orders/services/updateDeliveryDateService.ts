@@ -5,7 +5,6 @@
 /* eslint-disable no-param-reassign */
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
-import ff from 'date-fns';
 
 import OrderEntity from '@modules/orders/infra/typeorm/entities/OrderEntity';
 
@@ -33,10 +32,13 @@ export default class UpdateDeliveryDateService {
       throw new AppError('Order does not exist', 404);
     }
 
+    let newDate: string;
+
     if (deliveryDate) {
-      return orderToUpdateDeliveryDate;
+      newDate = this.dateProvider.convertDate(deliveryDate);
+    } else {
+      newDate = this.dateProvider.defaultDate7Days();
     }
-    const newDate = await this.dateProvider.defaultDate7Days();
 
     const orderUpdated = await this.ordersRepository.updateOrder(
       orderToUpdateDeliveryDate,
