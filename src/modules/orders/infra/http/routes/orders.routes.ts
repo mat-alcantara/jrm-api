@@ -5,6 +5,7 @@ import OrderController from '@modules/orders/infra/http/controllers/OrderControl
 import SpecificOrderController from '@modules/orders/infra/http/controllers/SpecificOrderController';
 import CutlistController from '@modules/orders/infra/http/controllers/CutlistController';
 import PDFController from '@modules/orders/infra/http/controllers/PDFController';
+import DeliveryDateController from '@modules/orders/infra/http/controllers/DeliveryDateController';
 
 import OrderStatusEnumDTO from '@modules/orders/dtos/OrderStatusEnumDTO';
 import OrderStoreEnumDTO from '@modules/orders/dtos/OrderStoreEnumDTO';
@@ -18,6 +19,7 @@ const orderController = new OrderController();
 const specificOrderController = new SpecificOrderController();
 const cutlistController = new CutlistController();
 const pdfController = new PDFController();
+const deliveryDateController = new DeliveryDateController();
 
 cutlistRoutes.use(ensureAuthenticated);
 
@@ -149,5 +151,16 @@ cutlistRoutes.post(
 
 // PDF
 cutlistRoutes.post('/orderpdf/:id', pdfController.create);
+
+// Delivery Date
+cutlistRoutes.put(
+  '/delivery/:id',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      deliveryDate: Joi.date(),
+    }),
+  }),
+  deliveryDateController.update,
+);
 
 export default cutlistRoutes;
