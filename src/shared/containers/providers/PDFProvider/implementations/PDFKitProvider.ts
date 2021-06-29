@@ -136,6 +136,15 @@ export default class PDFKitProvider implements IPDFProvider {
     doc
       .font('Helvetica')
       .fontSize(10)
+      .text(`Data de entrega: ${orderToGeneratePDF.deliveryDate}`, {
+        align: 'left',
+        indent: 15,
+      })
+      .moveDown(0.3);
+
+    doc
+      .font('Helvetica')
+      .fontSize(10)
       .text(`Valor total: R$ ${orderToGeneratePDF.price}`, {
         align: 'left',
         indent: 15,
