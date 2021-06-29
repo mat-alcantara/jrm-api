@@ -9,4 +9,8 @@ export default class DateFnsDateProvider implements IDateProvider {
 
     return format(addDays(new Date(Date.now()), 7), 'dd/MM/yyyy');
   }
+
+  public convertDate(givenDate: Date): string {
+    return format(givenDate, 'dd/MMM/yyyy');
+  }
 }
