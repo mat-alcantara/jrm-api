@@ -50,10 +50,7 @@ server.use(function (req, res, next) {
 
 server.use(Sentry.Handlers.requestHandler());
 server.use(
-  cors({
-    origin: process.env.CORS_URL_ALLOWED,
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }),
+  cors({}),
 );
 
 server.use(express.json()); // Allow JSON on express
